@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Freelancer List - Ziro HTML Template</title>
+		<link rel="icon" type="image/x-icon" href="./assets/favicon.png" />
+
+		<!-- Plugin CSS -->
+		<link rel="stylesheet" href="./vendors/jquery-ui/jquery-ui.min.css" />
+		<link rel="stylesheet" href="./vendors/swiper/swiper-bundle.min.css" />
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="./dist/css/style.css" />
+	</head>
+	<body class="page__freelancerlist">
+		<nav class="navbar navbar-expand-xl bg-ghost-white">
+			<div class="container-xxl justify-content-md-start">
+				<a class="navbar-brand" href="#">
+					<img src="./assets/logo.svg" alt="" />
+				</a>
+				<!-- /.navbar-brand -->
+
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+					<img src="./assets/icons/bars.svg" class="svg-inject svg-icon" alt="" />
+				</button>
+				<!-- /.navbar-toggler-mobile -->
+
+				<div class="d-none d-md-flex d-xl-none ms-auto">
+					<a class="btn btn-alice-blue text-dark fw-semiBold py-12 px-34 me-12 rounded-pill" href="/applicationform.html" role="button">Log In</a>
+					<a class="btn btn-primary fw-semiBold py-12 px-43 rounded-pill" href="/applicationform.html" role="button">Sign Up</a>
+				</div>
+				<!-- /.btn-login and btn-signup mobile -->
+
+				<div class="collapse navbar-collapse" id="navbarContent">
+					<div class="d-grid d-xl-flex align-items-xl-center pb-15 pb-xl-0 w-100 gap-20 gap-xl-0">
+						<ul class="navbar-nav mx-xl-auto order-2 order-xl-1">
+							<li class="nav-item">
+								<a class="nav-link" href="/">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/#pricing-section">Pricing</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/eventlist.html">Blog</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/joblist.html">Become a member</a>
+							</li>
+						</ul>
+						<!-- /.navbar-nav -->
+
+						<form class="order-1 order-xl-2" role="search" action="#" method="get">
+							<div class="form-search">
+								<input class="form-control" type="search" placeholder="Search here..." aria-label="Search" />
+							</div>
+						</form>
+						<!-- /.form-search -->
+
+						<div class="d-grid d-md-none d-xl-flex gap-15 gap-xl-0 order-3">
+							<a class="btn btn-alice-blue text-dark fw-semiBold py-12 px-xl-34 ms-xl-12 rounded-pill" href="/applicationform.html" role="button">Log In</a>
+							<a class="btn btn-primary fw-semiBold py-12 px-xl-43 ms-xl-12 rounded-pill" href="/applicationform.html" role="button">Sign Up</a>
+						</div>
+						<!-- /.btn-login and btn-sign-up desktop -->
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- = /. Navbar Section = -->
+
+		<main class="main position-relative">
+			<div class="header-background">
+				<div class="container-xxl d-none d-xl-block position-relative w-100 h-100 overflow-hidden">
+					<figure class="position-absolute figure-avatar-1 mb-0">
+						<div class="avatar-rounded">
+							<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+						</div>
+					</figure>
+					<!-- /.figure-avatar -->
+
+					<figure class="position-absolute figure-avatar-2 mb-0 opacity-60">
+						<div class="avatar-rounded">
+							<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+						</div>
+					</figure>
+					<!-- /.figure-avatar -->
+
+					<figure class="position-absolute figure-avatar-3 mb-0">
+						<div class="avatar-rounded">
+							<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+						</div>
+					</figure>
+					<!-- /.figure-avatar -->
+
+					<figure class="position-absolute figure-avatar-4 mb-0 opacity-60">
+						<div class="avatar-rounded">
+							<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+						</div>
+					</figure>
+					<!-- /.figure-avatar -->
+
+					<figure class="position-absolute figure-avatar-5 mb-0">
+						<div class="avatar-rounded">
+							<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+						</div>
+					</figure>
+					<!-- /.figure-avatar -->
+
+					<figure class="position-absolute figure-avatar-6 mb-0">
+						<div class="avatar-rounded">
+							<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+						</div>
+					</figure>
+					<!-- /.figure-avatar -->
+
+					<figure class="position-absolute top-0 start-50 translate-middle-x z-index">
+						<svg width="1287" height="466" viewBox="0 0 1287 466" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="1265" cy="202" r="22" fill="#E0E6FF" />
+							<circle cx="919.5" cy="27.5" r="9.5" fill="#E0E6FF" />
+							<circle cx="53.5" cy="122.5" r="9.5" fill="#E0E6FF" />
+							<circle cx="27" cy="439" r="27" fill="#E0E6FF" />
+							<circle cx="448" cy="12" r="12" fill="#E0E6FF" />
+						</svg>
+					</figure>
+					<!-- /.svg-decoration -->
+				</div>
+			</div>
+			<!-- = /. Header Background with Figure = -->
+
+			<div class="container-xxl position-relative py-60">
+				<div class="d-grid gap-20 w-xl-60 w-xxl-50 mx-auto text-center">
+					<img src="./assets/logo-only.svg" class="is-80 is-lg-100 mx-auto" alt="logo" />
+					<div class="heading-header-2 fw-medium lh-base text-black">Search over <span class="fw-bold text-primary">30,000+</span> talented freelancers in the world through ziro</div>
+				</div>
+				<!-- /.heading-header -->
+
+				<form class="mt-34 mt-xl-60 w-xl-70 w-xxl-60 mx-auto" action="#">
+					<div class="form-search-filter gap-20 gap-md-0">
+						<div class="d-flex gap-20 gap-md-0 flex-md-fill order-2 order-md-1">
+							<select class="form-select select-icon icon-mark" aria-label="select location">
+								<option selected>Location</option>
+								<option value="1">Location 1</option>
+								<option value="2">Location 2</option>
+								<option value="3">Location 3</option>
+							</select>
+							<select class="form-select" aria-label="select title">
+								<option selected>Title</option>
+								<option value="1">Title 1</option>
+								<option value="2">Title 2</option>
+								<option value="3">Title 3</option>
+							</select>
+						</div>
+						<div class="form-search-input flex-lg-fill order-1 order-md-2">
+							<input class="form-control" type="search" placeholder="Search" aria-label="Search" />
+							<button class="btn btn-accent text-white shadow-none" type="submit">Search</button>
+						</div>
+					</div>
+				</form>
+				<!-- /.search-filter-form -->
+
+				<div class="d-flex flex-wrap justify-content-center mt-34 w-xl-50 mx-auto gap-12">
+					<a href="#" class="btn btn-suggestion fw-medium rounded-pill shadow-none">Web Dev</a>
+					<a href="#" class="btn btn-suggestion fw-medium rounded-pill shadow-none">Mobile Dev</a>
+					<a href="#" class="btn btn-suggestion fw-medium rounded-pill shadow-none">Design</a>
+					<a href="#" class="btn btn-suggestion fw-medium rounded-pill shadow-none">Writing</a>
+					<a href="#" class="d-none d-md-inline-block btn btn-suggestion fw-medium rounded-pill shadow-none">Admin Support</a>
+					<a href="#" class="d-none d-md-inline-block btn btn-suggestion fw-medium rounded-pill shadow-none">Customer Service</a>
+					<a href="#" class="d-none d-md-inline-blockbtn btn-suggestion fw-medium rounded-pill shadow-none">Marketing</a>
+					<a href="#" class="d-none d-md-inline-block btn btn-suggestion fw-medium rounded-pill shadow-none">Accounting</a>
+					<a href="#" class="btn btn-suggestion fw-medium rounded-pill shadow-none">Try advance search mode</a>
+				</div>
+				<!-- /.search-suggestion -->
+			</div>
+			<!-- = /. Header Section = -->
+
+			<div class="mt-43"></div>
+			<!-- = /. Gap Section = -->
+
+			<div class="container-xxl py-60">
+				<div class="row align-items-center">
+					<div class="col-8">
+						<h4 class="heading-section-4 text-dark mb-0">Featured profile this week</h4>
+					</div>
+					<!-- /.col -->
+
+					<div class="col-4 text-end">
+						<span class="ms-auto">
+							<a class="text-primary fw-semiBold text-decoration-none" href="/freelancerlist.html">View More</a>
+						</span>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+				<!-- /.heading-section -->
+
+				<div class="position-relative profile-card-slider mt-lg-25">
+					<div class="swiper">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="profile-card-slide">
+									<div class="d-flex">
+										<div class="profile-image">
+											<img src="./assets/profile-avatar-image-83x83.png" alt="" />
+											<div class="profile-online-status online"></div>
+										</div>
+										<div class="d-flex flex-column justify-content-center">
+											<h6 class="profile-name">
+												<a href="/freelancerlist.html">David Hutapea</a>
+											</h6>
+											<div class="profile-work">
+												<a href="#">UI/UX Designer</a>
+											</div>
+										</div>
+									</div>
+									<div class="profile-action">
+										<div class="profile-rating">
+											<div class="profile-rating-icon">
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+											</div>
+											<div class="profile-rating-number">4.3</div>
+										</div>
+										<span class="profile-price-badge">$84/hr</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="swiper-slide">
+								<div class="profile-card-slide">
+									<div class="d-flex">
+										<div class="profile-image">
+											<img src="./assets/profile-avatar-image-83x83.png" alt="avatar-2" />
+											<div class="profile-online-status online"></div>
+										</div>
+										<div class="d-flex flex-column justify-content-center">
+											<h6 class="profile-name">
+												<a href="/freelancerlist.html">Henry Simatupang</a>
+											</h6>
+											<div class="profile-work">
+												<a href="#">Photogapher</a>
+											</div>
+										</div>
+									</div>
+									<div class="profile-action">
+										<div class="profile-rating">
+											<div class="profile-rating-icon">
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+											</div>
+											<div class="profile-rating-number">4.8</div>
+										</div>
+										<span class="profile-price-badge">$95/hr</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="swiper-slide">
+								<div class="profile-card-slide">
+									<div class="d-flex">
+										<div class="profile-image">
+											<img src="./assets/profile-avatar-image-83x83.png" alt="avatar-3" />
+											<div class="profile-online-status"></div>
+										</div>
+										<div class="d-flex flex-column justify-content-center">
+											<h6 class="profile-name">
+												<a href="/freelancerlist.html">Jennie Smith</a>
+											</h6>
+											<div class="profile-work">
+												<a href="#">Content Writer</a>
+											</div>
+										</div>
+									</div>
+									<div class="profile-action">
+										<div class="profile-rating">
+											<div class="profile-rating-icon">
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+											</div>
+											<div class="profile-rating-number">4.6</div>
+										</div>
+										<span class="profile-price-badge">$86/hr</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="swiper-slide">
+								<div class="profile-card-slide">
+									<div class="d-flex">
+										<div class="profile-image">
+											<img src="./assets/profile-avatar-image-83x83.png" alt="avatar-4" />
+											<div class="profile-online-status online"></div>
+										</div>
+										<div class="d-flex flex-column justify-content-center">
+											<h6 class="profile-name">
+												<a href="/freelancerlist.html">Louis Anderson</a>
+											</h6>
+											<div class="profile-work">
+												<a href="#">Customer Service</a>
+											</div>
+										</div>
+									</div>
+									<div class="profile-action">
+										<div class="profile-rating">
+											<div class="profile-rating-icon">
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+												<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+											</div>
+											<div class="profile-rating-number">4.3</div>
+										</div>
+										<span class="profile-price-badge">$27/hr</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="profile-card-button-next">
+						<img src="./assets/icons//long-arrow-right.svg" class="svg-inject svg-icon" alt="" />
+					</div>
+					<!-- /.profile-slider-btn-next -->
+
+					<div class="profile-card-button-prev">
+						<img src="./assets/icons//long-arrow-left.svg" class="svg-inject svg-icon" alt="" />
+					</div>
+					<!-- /.profile-slider-btn-previous -->
+				</div>
+			</div>
+			<!-- /.container -->
+			<!-- = /. Featured Profile Slider Section = -->
+
+			<div class="mt-43"></div>
+			<!-- = /. Gap Section = -->
+
+			<div class="container-xxl">
+				<div class="d-flex flex-column flex-xl-row align-items-xl-center gap-20">
+					<h4 class="heading-section-4 text-dark mb-0">Showing 87 of 234 Peoples</h4>
+					<!-- /.heading-section -->
+
+					<div class="d-flex flex-column flex-md-row align-items-md-center w-100 w-xl-auto ms-auto gap-15 gap-md-34">
+						<div class="d-flex gap-43 py-15 overflow-auto">
+							<div class="d-flex gap-25">
+								<div class="checkbox-type type-1">
+									<input class="checkbox-type-input" type="checkbox" value="" id="checkFulltime" />
+									<label class="checkbox-type-label" for="checkFulltime">
+										<div class="checkbox-type-icon">
+											<img src="./assets/icons/check-circle-stroke.svg" class="svg-inject" alt="" />
+										</div>
+										<div class="checkbox-type-text fw-semiBold">Fulltime</div>
+									</label>
+								</div>
+								<!-- /.checkbox-filter -->
+
+								<div class="checkbox-type type-1">
+									<input class="checkbox-type-input" type="checkbox" value="" id="checkFreelance" checked />
+									<label class="checkbox-type-label" for="checkFreelance">
+										<div class="checkbox-type-icon">
+											<img src="./assets/icons/check-circle-stroke.svg" class="svg-inject" alt="" />
+										</div>
+										<div class="checkbox-type-text fw-semiBold">Freelance</div>
+									</label>
+								</div>
+								<!-- /.checkbox-filter -->
+							</div>
+
+							<div class="d-flex gap-25">
+								<div class="checkbox-switch checkbox-switch-end">
+									<input class="checkbox-switch-input" type="checkbox" role="switch" id="swicthCheckDetails" />
+									<label class="checkbox-switch-label" for="swicthCheckDetails">
+										<div class="checkbox-switch"></div>
+										<div class="checkbox-switch-text fw-semiBold">Details</div>
+									</label>
+								</div>
+								<!-- /.checkbox-swicth-fillter -->
+
+								<div class="checkbox-switch checkbox-switch-end">
+									<input class="checkbox-switch-input" type="checkbox" role="switch" id="switchCheckSalary" checked />
+									<label class="checkbox-switch-label" for="switchCheckSalary">
+										<div class="checkbox-switch"></div>
+										<div class="checkbox-switch-text fw-semiBold">Salary</div>
+									</label>
+								</div>
+								<!-- /.checkbox-swicth-fillter -->
+							</div>
+						</div>
+
+						<div class="d-flex gap-15 ms-auto">
+							<button class="btn d-flex align-items-center fw-medium text-dark py-12 px-25 border border-1 border-platinum rounded-pill shadow-none">
+								Newest
+								<img src="./assets/icons/chevron-down.svg" class="svg-inject text-primary is-20 ms-15" alt="" />
+							</button>
+							<!-- /.btn-newest -->
+
+							<button class="btn btn-rounded border border-1 border-platinum shadow-none" role="button">
+								<img src="./assets/icons/filter.svg" class="svg-inject svg-icon text-primary" alt="" />
+							</button>
+							<!-- /.btn-filter -->
+						</div>
+					</div>
+				</div>
+
+				<div class="row mt-20">
+					<div class="col-12 col-md-6 col-xl-4 col-xxl-3 my-15">
+						<div class="profile-card-grid">
+							<div class="profile-card-dropdown">
+								<button class="profile-card-dropdown-btn" type="button" id="profile-card-dropdown" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="./assets/icons/ellipsis.svg" class="svg-inject svg-icon" alt="" />
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-card-dropdown">
+									<li><a class="dropdown-item" href="#">Dropdown 1</a></li>
+									<li><a class="dropdown-item" href="#">Dropdown 2</a></li>
+								</ul>
+							</div>
+							<div class="profile-image">
+								<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+								<div class="profile-online-status online">Available</div>
+							</div>
+							<div class="profile-info">
+								<h6 class="profile-name">
+									<a href="#">Angela Moss</a>
+								</h6>
+								<div class="profile-work">
+									<a href="#">Content Writer</a>
+								</div>
+								<div class="profile-rating">
+									<div class="profile-rating-icon">
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+									</div>
+									<div class="profile-rating-number">4.3</div>
+								</div>
+							</div>
+							<ul class="profile-detail">
+								<li>
+									<div class="profile-detail-title">From</div>
+									<div class="profile-detail-value">New York, US</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Member since</div>
+									<div class="profile-detail-value">Oct 2008</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Rate</div>
+									<div class="profile-detail-value">$50/hr</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Latest Review</div>
+									<div class="profile-detail-value">4 Days ago</div>
+								</li>
+							</ul>
+						</div>
+						<!-- /.profile-card-grid-component -->
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-md-6 col-xl-4 col-xxl-3 my-15">
+						<div class="profile-card-grid">
+							<div class="profile-card-dropdown">
+								<button class="profile-card-dropdown-btn" type="button" id="profile-card-dropdown" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="./assets/icons/ellipsis.svg" class="svg-inject svg-icon" alt="" />
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-card-dropdown">
+									<li><a class="dropdown-item" href="#">Dropdown 1</a></li>
+									<li><a class="dropdown-item" href="#">Dropdown 2</a></li>
+								</ul>
+							</div>
+							<div class="profile-image">
+								<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+								<div class="profile-online-status">Unavailable</div>
+							</div>
+							<div class="profile-info">
+								<h6 class="profile-name">
+									<a href="#">Jimmy Lee</a>
+								</h6>
+								<div class="profile-work">
+									<a href="#">Programmer</a>
+								</div>
+								<div class="profile-rating">
+									<div class="profile-rating-icon">
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+									</div>
+									<div class="profile-rating-number">4.3</div>
+								</div>
+							</div>
+							<ul class="profile-detail">
+								<li>
+									<div class="profile-detail-title">From</div>
+									<div class="profile-detail-value">Jakarta, Indonesia</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Member since</div>
+									<div class="profile-detail-value">Oct 2014</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Rate</div>
+									<div class="profile-detail-value">$26/hr</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Latest Review</div>
+									<div class="profile-detail-value">4 Days ago</div>
+								</li>
+							</ul>
+						</div>
+						<!-- /.profile-card-grid-component -->
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-md-6 col-xl-4 col-xxl-3 my-15">
+						<div class="profile-card-grid">
+							<div class="profile-card-dropdown">
+								<button class="profile-card-dropdown-btn" type="button" id="profile-card-dropdown" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="./assets/icons/ellipsis.svg" class="svg-inject svg-icon" alt="" />
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-card-dropdown">
+									<li><a class="dropdown-item" href="#">Dropdown 1</a></li>
+									<li><a class="dropdown-item" href="#">Dropdown 2</a></li>
+								</ul>
+							</div>
+							<div class="profile-image">
+								<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+								<div class="profile-online-status online">Available</div>
+							</div>
+							<div class="profile-info">
+								<h6 class="profile-name">
+									<a href="#">Melinda Humbles</a>
+								</h6>
+								<div class="profile-work">
+									<a href="#">Graphic Designer</a>
+								</div>
+								<div class="profile-rating">
+									<div class="profile-rating-icon">
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+									</div>
+									<div class="profile-rating-number">3.0</div>
+								</div>
+							</div>
+							<ul class="profile-detail">
+								<li>
+									<div class="profile-detail-title">From</div>
+									<div class="profile-detail-value">New York</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Member since</div>
+									<div class="profile-detail-value">Oct 2020</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Rate</div>
+									<div class="profile-detail-value">$92/hr</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Latest Review</div>
+									<div class="profile-detail-value">4 Days ago</div>
+								</li>
+							</ul>
+						</div>
+						<!-- /.profile-card-grid-component -->
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-md-6 col-xl-4 col-xxl-3 my-15">
+						<div class="profile-card-grid">
+							<div class="profile-card-dropdown">
+								<button class="profile-card-dropdown-btn" type="button" id="profile-card-dropdown" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="./assets/icons/ellipsis.svg" class="svg-inject svg-icon" alt="" />
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-card-dropdown">
+									<li><a class="dropdown-item" href="#">Dropdown 1</a></li>
+									<li><a class="dropdown-item" href="#">Dropdown 2</a></li>
+								</ul>
+							</div>
+							<div class="profile-image">
+								<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+								<div class="profile-online-status online">Available</div>
+							</div>
+							<div class="profile-info">
+								<h6 class="profile-name">
+									<a href="#">Jordan Sigh</a>
+								</h6>
+								<div class="profile-work">
+									<a href="#">Content Writer</a>
+								</div>
+								<div class="profile-rating">
+									<div class="profile-rating-icon">
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+									</div>
+									<div class="profile-rating-number">4.3</div>
+								</div>
+							</div>
+							<ul class="profile-detail">
+								<li>
+									<div class="profile-detail-title">From</div>
+									<div class="profile-detail-value">New York</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Member since</div>
+									<div class="profile-detail-value">Oct 2020</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Rate</div>
+									<div class="profile-detail-value">$38/hr</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Latest Review</div>
+									<div class="profile-detail-value">4 Days ago</div>
+								</li>
+							</ul>
+						</div>
+						<!-- /.profile-card-grid-component -->
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-md-6 col-xl-4 col-xxl-3 my-15">
+						<div class="profile-card-grid">
+							<div class="profile-card-dropdown">
+								<button class="profile-card-dropdown-btn" type="button" id="profile-card-dropdown" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="./assets/icons/ellipsis.svg" class="svg-inject svg-icon" alt="" />
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-card-dropdown">
+									<li><a class="dropdown-item" href="#">Dropdown 1</a></li>
+									<li><a class="dropdown-item" href="#">Dropdown 2</a></li>
+								</ul>
+							</div>
+							<div class="profile-image">
+								<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+								<div class="profile-online-status">Unavailable</div>
+							</div>
+							<div class="profile-info">
+								<h6 class="profile-name">
+									<a href="#">Mahmud</a>
+								</h6>
+								<div class="profile-work">
+									<a href="#">Programmer</a>
+								</div>
+								<div class="profile-rating">
+									<div class="profile-rating-icon">
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+									</div>
+									<div class="profile-rating-number">4.3</div>
+								</div>
+							</div>
+							<ul class="profile-detail">
+								<li>
+									<div class="profile-detail-title">From</div>
+									<div class="profile-detail-value">Jakarta, Indonesia</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Member since</div>
+									<div class="profile-detail-value">Oct 2020</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Rate</div>
+									<div class="profile-detail-value">$26/hr</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Latest Review</div>
+									<div class="profile-detail-value">4 Days ago</div>
+								</li>
+							</ul>
+						</div>
+						<!-- /.profile-card-grid-component -->
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-md-6 col-xl-4 col-xxl-3 my-15">
+						<div class="profile-card-grid">
+							<div class="profile-card-dropdown">
+								<button class="profile-card-dropdown-btn" type="button" id="profile-card-dropdown" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="./assets/icons/ellipsis.svg" class="svg-inject svg-icon" alt="" />
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-card-dropdown">
+									<li><a class="dropdown-item" href="#">Dropdown 1</a></li>
+									<li><a class="dropdown-item" href="#">Dropdown 2</a></li>
+								</ul>
+							</div>
+							<div class="profile-image">
+								<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+								<div class="profile-online-status online">Available</div>
+							</div>
+							<div class="profile-info">
+								<h6 class="profile-name">
+									<a href="#">Roberto Karloz</a>
+								</h6>
+								<div class="profile-work">
+									<a href="#">Photographer</a>
+								</div>
+								<div class="profile-rating">
+									<div class="profile-rating-icon">
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+									</div>
+									<div class="profile-rating-number">3.0</div>
+								</div>
+							</div>
+							<ul class="profile-detail">
+								<li>
+									<div class="profile-detail-title">From</div>
+									<div class="profile-detail-value">New York</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Member since</div>
+									<div class="profile-detail-value">Oct 2020</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Rate</div>
+									<div class="profile-detail-value">$92/hr</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Latest Review</div>
+									<div class="profile-detail-value">4 Days ago</div>
+								</li>
+							</ul>
+						</div>
+						<!-- /.profile-card-grid-component -->
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-md-6 col-xl-4 col-xxl-3 my-15">
+						<div class="profile-card-grid">
+							<div class="profile-card-dropdown">
+								<button class="profile-card-dropdown-btn" type="button" id="profile-card-dropdown" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="./assets/icons/ellipsis.svg" class="svg-inject svg-icon" alt="" />
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-card-dropdown">
+									<li><a class="dropdown-item" href="#">Dropdown 1</a></li>
+									<li><a class="dropdown-item" href="#">Dropdown 2</a></li>
+								</ul>
+							</div>
+							<div class="profile-image">
+								<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+								<div class="profile-online-status">Unavailable</div>
+							</div>
+							<div class="profile-info">
+								<h6 class="profile-name">
+									<a href="#">Gwen Claudya</a>
+								</h6>
+								<div class="profile-work">
+									<a href="#">Programmer</a>
+								</div>
+								<div class="profile-rating">
+									<div class="profile-rating-icon">
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+									</div>
+									<div class="profile-rating-number">4.3</div>
+								</div>
+							</div>
+							<ul class="profile-detail">
+								<li>
+									<div class="profile-detail-title">From</div>
+									<div class="profile-detail-value">Jakarta, Indonesia</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Member since</div>
+									<div class="profile-detail-value">Oct 2014</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Rate</div>
+									<div class="profile-detail-value">$26/hr</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Latest Review</div>
+									<div class="profile-detail-value">4 Days ago</div>
+								</li>
+							</ul>
+						</div>
+						<!-- /.profile-card-grid-component -->
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-md-6 col-xl-4 col-xxl-3 my-15">
+						<div class="profile-card-grid">
+							<div class="profile-card-dropdown">
+								<button class="profile-card-dropdown-btn" type="button" id="profile-card-dropdown" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="./assets/icons/ellipsis.svg" class="svg-inject svg-icon" alt="" />
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-card-dropdown">
+									<li><a class="dropdown-item" href="#">Dropdown 1</a></li>
+									<li><a class="dropdown-item" href="#">Dropdown 2</a></li>
+								</ul>
+							</div>
+							<div class="profile-image">
+								<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+								<div class="profile-online-status online">Available</div>
+							</div>
+							<div class="profile-info">
+								<h6 class="profile-name">
+									<a href="#">Bella Smith</a>
+								</h6>
+								<div class="profile-work">
+									<a href="#">Content Writer</a>
+								</div>
+								<div class="profile-rating">
+									<div class="profile-rating-icon">
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+									</div>
+									<div class="profile-rating-number">4.3</div>
+								</div>
+							</div>
+							<ul class="profile-detail">
+								<li>
+									<div class="profile-detail-title">From</div>
+									<div class="profile-detail-value">New York</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Member since</div>
+									<div class="profile-detail-value">Oct 2020</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Rate</div>
+									<div class="profile-detail-value">$38/hr</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Latest Review</div>
+									<div class="profile-detail-value">4 Days ago</div>
+								</li>
+							</ul>
+						</div>
+						<!-- /.profile-card-grid-component -->
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-md-6 col-xl-4 col-xxl-3 my-15">
+						<div class="profile-card-grid">
+							<div class="profile-card-dropdown">
+								<button class="profile-card-dropdown-btn" type="button" id="profile-card-dropdown" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="./assets/icons/ellipsis.svg" class="svg-inject svg-icon" alt="" />
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-card-dropdown">
+									<li><a class="dropdown-item" href="#">Dropdown 1</a></li>
+									<li><a class="dropdown-item" href="#">Dropdown 2</a></li>
+								</ul>
+							</div>
+							<div class="profile-image">
+								<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+								<div class="profile-online-status">Unavailable</div>
+							</div>
+							<div class="profile-info">
+								<h6 class="profile-name">
+									<a href="#">Samantha William</a>
+								</h6>
+								<div class="profile-work">
+									<a href="#">Programmer</a>
+								</div>
+								<div class="profile-rating">
+									<div class="profile-rating-icon">
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+									</div>
+									<div class="profile-rating-number">4.3</div>
+								</div>
+							</div>
+							<ul class="profile-detail">
+								<li>
+									<div class="profile-detail-title">From</div>
+									<div class="profile-detail-value">Jakarta, Indonesia</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Member since</div>
+									<div class="profile-detail-value">Oct 2014</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Rate</div>
+									<div class="profile-detail-value">$26/hr</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Latest Review</div>
+									<div class="profile-detail-value">4 Days ago</div>
+								</li>
+							</ul>
+						</div>
+						<!-- /.profile-card-grid-component -->
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-md-6 col-xl-4 col-xxl-3 my-15">
+						<div class="profile-card-grid">
+							<div class="profile-card-dropdown">
+								<button class="profile-card-dropdown-btn" type="button" id="profile-card-dropdown" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="./assets/icons/ellipsis.svg" class="svg-inject svg-icon" alt="" />
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-card-dropdown">
+									<li><a class="dropdown-item" href="#">Dropdown 1</a></li>
+									<li><a class="dropdown-item" href="#">Dropdown 2</a></li>
+								</ul>
+							</div>
+							<div class="profile-image">
+								<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+								<div class="profile-online-status online">Available</div>
+							</div>
+							<div class="profile-info">
+								<h6 class="profile-name">
+									<a href="#">Kokom</a>
+								</h6>
+								<div class="profile-work">
+									<a href="#">Photographer</a>
+								</div>
+								<div class="profile-rating">
+									<div class="profile-rating-icon">
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+									</div>
+									<div class="profile-rating-number">3.0</div>
+								</div>
+							</div>
+							<ul class="profile-detail">
+								<li>
+									<div class="profile-detail-title">From</div>
+									<div class="profile-detail-value">New York</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Member since</div>
+									<div class="profile-detail-value">Oct 2020</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Rate</div>
+									<div class="profile-detail-value">$92/hr</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Latest Review</div>
+									<div class="profile-detail-value">4 Days ago</div>
+								</li>
+							</ul>
+						</div>
+						<!-- /.profile-card-grid-component -->
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-md-6 col-xl-4 col-xxl-3 my-15">
+						<div class="profile-card-grid">
+							<div class="profile-card-dropdown">
+								<button class="profile-card-dropdown-btn" type="button" id="profile-card-dropdown" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="./assets/icons/ellipsis.svg" class="svg-inject svg-icon" alt="" />
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-card-dropdown">
+									<li><a class="dropdown-item" href="#">Dropdown 1</a></li>
+									<li><a class="dropdown-item" href="#">Dropdown 2</a></li>
+								</ul>
+							</div>
+							<div class="profile-image">
+								<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+								<div class="profile-online-status">Unavailable</div>
+							</div>
+							<div class="profile-info">
+								<h6 class="profile-name">
+									<a href="#">Fanny Fancyson</a>
+								</h6>
+								<div class="profile-work">
+									<a href="#">Programmer</a>
+								</div>
+								<div class="profile-rating">
+									<div class="profile-rating-icon">
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+									</div>
+									<div class="profile-rating-number">4.3</div>
+								</div>
+							</div>
+							<ul class="profile-detail">
+								<li>
+									<div class="profile-detail-title">From</div>
+									<div class="profile-detail-value">Jakarta, Indonesia</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Member since</div>
+									<div class="profile-detail-value">Oct 2014</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Rate</div>
+									<div class="profile-detail-value">$26/hr</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Latest Review</div>
+									<div class="profile-detail-value">4 Days ago</div>
+								</li>
+							</ul>
+						</div>
+						<!-- /.profile-card-grid-component -->
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-md-6 col-xl-4 col-xxl-3 my-15">
+						<div class="profile-card-grid">
+							<div class="profile-card-dropdown">
+								<button class="profile-card-dropdown-btn" type="button" id="profile-card-dropdown" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="./assets/icons/ellipsis.svg" class="svg-inject svg-icon" alt="" />
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-card-dropdown">
+									<li><a class="dropdown-item" href="#">Dropdown 1</a></li>
+									<li><a class="dropdown-item" href="#">Dropdown 2</a></li>
+								</ul>
+							</div>
+							<div class="profile-image">
+								<img src="./assets/profile-avatar-image-100x100.png" alt="" />
+								<div class="profile-online-status online">Available</div>
+							</div>
+							<div class="profile-info">
+								<h6 class="profile-name">
+									<a href="#">Louis Anderson</a>
+								</h6>
+								<div class="profile-work">
+									<a href="#">Content Writer</a>
+								</div>
+								<div class="profile-rating">
+									<div class="profile-rating-icon">
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon checked" alt="" />
+										<img src="./assets/icons/star.svg" class="svg-inject svg-icon" alt="" />
+									</div>
+									<div class="profile-rating-number">4.3</div>
+								</div>
+							</div>
+							<ul class="profile-detail">
+								<li>
+									<div class="profile-detail-title">From</div>
+									<div class="profile-detail-value">New York</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Member since</div>
+									<div class="profile-detail-value">Oct 2020</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Rate</div>
+									<div class="profile-detail-value">$38/hr</div>
+								</li>
+								<li>
+									<div class="profile-detail-title">Latest Review</div>
+									<div class="profile-detail-value">4 Days ago</div>
+								</li>
+							</ul>
+						</div>
+						<!-- /.profile-card-grid-component -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+
+				<div class="d-flex justify-content-center mt-60">
+					<nav class="pagination-container" aria-label="Page navigation example">
+						<a href="#" class="page-link previous">
+							<img src="./assets/icons/angles-left.svg" class="svg-inject" alt="" />
+							Previous
+						</a>
+						<ul class="pagination bg-lavender-web-100">
+							<li class="page-item"><a class="page-link" href="#">1</a></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item active"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="#">4</a></li>
+						</ul>
+						<a href="#" class="page-link next">
+							Next
+							<img src="./assets/icons/angles-right.svg" class="svg-inject" alt="" />
+						</a>
+					</nav>
+				</div>
+				<!-- /.job-list-pagination -->
+			</div>
+			<!-- /.container -->
+			<!-- = /. Freelancer List Section = -->
+
+			<div class="mt-80"></div>
+			<!-- = /. Gap Section = -->
+
+			<div class="container py-60 py-lg-100">
+				<div class="swiper image-slider client-logo-slider mx-xl-34 mx-xxl-80">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="./assets/client-logo-image.png" alt="" />
+						</div>
+
+						<div class="swiper-slide">
+							<img src="./assets/client-logo-image.png" alt="" />
+						</div>
+
+						<div class="swiper-slide">
+							<img src="./assets/client-logo-image.png" alt="" />
+						</div>
+
+						<div class="swiper-slide">
+							<img src="./assets/client-logo-image.png" alt="" />
+						</div>
+
+						<div class="swiper-slide">
+							<img src="./assets/client-logo-image.png" alt="" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- = /. Logo Client Section = -->
+		</main>
+		<!-- = /. Main Section = -->
+
+		<footer class="footer bg-black">
+			<div class="container-xxl">
+				<div class="row py-25 py-lg-43 py-xl-80 align-items-md-center">
+					<div class="col-12 col-md-6">
+						<h2 class="heading-section-2 text-white mb-0">Don't miss our weekly updates about freelancer career</h2>
+						<!-- /.newsletter-heading -->
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-md-6 col-lg-5 offset-lg-1 mt-25 mt-md-0">
+						<form class="ms-auto" action="#">
+							<div class="form-btn-inner form-newsletter rounded-pill">
+								<input class="form-control" type="email" placeholder="Enter your email address..." />
+								<button class="btn btn-accent text-white text-uppercase fw-semiBold py-12 px-20 px-lg-34 shadow-none" type="submit">Subscribe</button>
+							</div>
+						</form>
+						<!-- /.newsletter-form -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+
+				<div class="row py-20 py-xl-80">
+					<div class="col-12 col-xl-4 footer-widget about">
+						<div class="footer-brand">
+							<img src="./assets/logo-footer.svg" alt="logo" />
+						</div>
+						<p class="footer-description mt-34">Ziro is a Freelance Landing Website lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+						<ul class="social-btn-group mt-34">
+							<li class="social-item">
+								<a class="social-link" href="#">
+									<img src="./assets/icons/facebook-f.svg" class="svg-inject svg-icon" alt="" />
+								</a>
+							</li>
+							<li class="social-item">
+								<a class="social-link" href="#">
+									<img src="./assets/icons/twitter.svg" class="svg-inject svg-icon" alt="" />
+								</a>
+							</li>
+							<li class="social-item">
+								<a class="social-link" href="#">
+									<img src="./assets/icons/youtube.svg" class="svg-inject svg-icon" alt="" />
+								</a>
+							</li>
+							<li class="social-item">
+								<a class="social-link" href="#">
+									<img src="./assets/icons/linkedin.svg" class="svg-inject svg-icon" alt="" />
+								</a>
+							</li>
+							<li class="social-item">
+								<a class="social-link" href="#">
+									<img src="./assets/icons/instagram.svg" class="svg-inject svg-icon" alt="" />
+								</a>
+							</li>
+						</ul>
+						<!-- /.social-btn-component -->
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-lg-4 col-xl footer-widget link-list mt-34 mt-xl-0">
+						<h6 class="footer-title">Ziro</h6>
+						<ul class="footer-link-list">
+							<li class="link-item">
+								<a class="link" href="#">Why Ziro</a>
+							</li>
+							<li class="link-item">
+								<a class="link" href="#">Enterprise</a>
+							</li>
+							<li class="link-item">
+								<a class="link" href="#">Customer Story</a>
+							</li>
+							<li class="link-item">
+								<a class="link" href="#">Security</a>
+							</li>
+							<li class="link-item">
+								<a class="link" href="#">Pricing</a>
+							</li>
+						</ul>
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-lg-4 col-xl footer-widget link-list mt-34 mt-xl-0">
+						<h6 class="footer-title">Resources</h6>
+						<ul class="footer-link-list">
+							<li class="link-item">
+								<a class="link" href="#">Download</a>
+							</li>
+							<li class="link-item">
+								<a class="link" href="#">Help Center</a>
+							</li>
+							<li class="link-item">
+								<a class="link" href="#">Events</a>
+							</li>
+							<li class="link-item">
+								<a class="link" href="#">Guides</a>
+							</li>
+							<li class="link-item">
+								<a class="link" href="#">Partner</a>
+							</li>
+							<li class="link-item">
+								<a class="link" href="#">Directories</a>
+							</li>
+						</ul>
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-lg-4 col-xl footer-widget link-list mt-34 mt-xl-0">
+						<h6 class="footer-title">Company</h6>
+						<ul class="footer-link-list">
+							<li class="link-item">
+								<a class="link" href="#">About us</a>
+							</li>
+							<li class="link-item">
+								<a class="link" href="#">Contact us</a>
+							</li>
+							<li class="link-item">
+								<a class="link" href="#">Products</a>
+							</li>
+							<li class="link-item">
+								<a class="link" href="#">Login</a>
+							</li>
+							<li class="link-item">
+								<a class="link" href="#">Sign Up</a>
+							</li>
+							<li class="link-item">
+								<a class="link" href="#">FAQ</a>
+							</li>
+						</ul>
+					</div>
+					<!-- /.col -->
+
+					<div class="col-12 col-xl-3 footer-widget link-list _icon mt-34 mt-xl-0">
+						<h6 class="footer-title">Get in Touch with Us</h6>
+						<ul class="footer-link-list _icon">
+							<li class="link-item">
+								<img src="./assets/icons/mark-stroke.svg" class="svg-inject svg-icon" alt="" />
+								<a class="link" href="#">
+									<span>832 Thompson Drive, San Fransisco CA 94107, United States</span>
+								</a>
+							</li>
+							<li class="link-item">
+								<img src="./assets/icons/phone-stroke.svg" class="svg-inject svg-icon" alt="" />
+								<a class="link" href="#">
+									<span>+123 345123 556</span>
+								</a>
+							</li>
+							<li class="link-item">
+								<img src="./assets/icons/envelope-stroke.svg" class="svg-inject svg-icon" alt="" />
+								<a class="link" href="#">
+									<span>support@ziro.id</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+
+			<div class="border border-arsenic border-end-0 border-bottom-0 border-start-0">
+				<div class="container-xxl d-grid d-lg-flex gap-12 gap-xl-0 justify-content-lg-between py-25">
+					<div class="fs-14 text-white text-center">Ziro Freelancer Landing Website - © 2020 All Rights Reserved</div>
+
+					<div class="fs-14 text-white text-center">Made with ♥ by Peterdraw</div>
+				</div>
+			</div>
+		</footer>
+		<!-- = /. Footer Section = -->
+
+		<!-- Bootstrap JS -->
+		<script src="./vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Vendors -->
+		<script src="./vendors/jquery/jquery-3.6.0.min.js"></script>
+		<script src="./vendors/jquery-ui/jquery-ui.min.js"></script>
+		<script src="./vendors/swiper/swiper-bundle.min.js"></script>
+		<script src="./vendors/fslightbox/fslightbox.js"></script>
+		<script src="./vendors/svg-inject/dist/svg-inject.min.js"></script>
+
+		<!-- Template Function -->
+		<script src="./dist/js/theme.js"></script>
+	</body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ziro Documentation</title>
+		<link rel="icon" type="image/x-icon" href="../assets/assets/favicon.png" />
+
+		<!-- Plugin CSS -->
+		<link rel="stylesheet" href="../vendors/jquery-ui/jquery-ui.min.css" />
+		<link rel="stylesheet" href="../vendors/swiper/swiper-bundle.css" />
+		<link rel="stylesheet" href="../vendors/highlight/styles/stackoverflow-light.min.css" />
+		<link rel="stylesheet" href="../vendors/highlightjs-copy/dist/highlightjs-copy.min.css" />
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="../assets/dist/css/style.css" />
+	</head>
+	<body>
+		<div class="overlay"></div>
+		<!-- = /. Overlay = -->
+
+		<aside class="side-nav bg-ghost-white">
+			<div class="mb-15">
+				<h6>Get Started</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Introduction</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../changelog.html">Changelog</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../credits.html">Credits</a>
+					</li>
+				</ul>
+				<h6>Costumize</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="../costumize/colors.html">Colors</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../costumize/css-variables.html">CSS Variables</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../costumize/options.html">Options</a>
+					</li>
+				</ul>
+				<h6>Layout</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="../layout/containers.html">Containers</a>
+					</li>
+				</ul>
+				<h6>Content</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="../content/typography.html">Typography</a>
+					</li>
+				</ul>
+				<h6>Forms</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="../forms/check-radios.html">Checks & Radios</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../forms/form-control.html">Form Control</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../forms/form-search.html">Form Search</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../forms/form-upload.html">Form Upload</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../forms/form-variant.html">Form Variant</a>
+					</li>
+				</ul>
+				<h6>Components</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="../components/buttons.html">Buttons</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../components/dropdowns.html">Dropdowns</a>
+					</li>
+				</ul>
+				<h6>Utilities</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/background.html">Background</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/borders.html">Borders</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/colors.html">Colors</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/opacity.html">Opacity</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/shadows.html">Shadows</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/sizing.html">Sizing</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/spacing.html">Spacing</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/Text.html">Text</a>
+					</li>
+				</ul>
+				<h6>Extend</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link active" href="../extend/svg-icons.html">SVG Icons</a>
+					</li>
+				</ul>
+			</div>
+		</aside>
+		<!-- = /. Side Navigation = -->
+
+		<div id="content">
+			<div class="navbar" data-scroll-header>
+				<div class="container-fluid px-25">
+					<div class="d-flex gap-20">
+						<button id="sidebar-nav-toggle" class="btn d-md-none p-0">
+							<img src="../assets/assets/icons/bars.svg" class="svg-inject text-dark is-20" alt="" />
+						</button>
+
+						<div class="navbar-brand">
+							<a href="#">
+								<img src="../assets/assets/logo.svg" alt="" />
+							</a>
+							<span>.Docs</span>
+						</div>
+					</div>
+
+					<ul class="social-link-list">
+						<li>
+							<a href="" class="social-link">
+								<img src="../assets/assets/icons/facebook-f.svg" class="svg-inject svg-icon" alt="" />
+							</a>
+						</li>
+						<li>
+							<a href="" class="social-link">
+								<img src="../assets/assets/icons/dribbble.svg" class="svg-inject svg-icon" alt="" />
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /.navbar -->
+
+			<div class="content">
+				<div class="row">
+					<div class="col-lg-9">
+						<section>
+							<h1 class="heading-section-1">SVG Icons</h1>
+						</section>
+
+						<div class="my-100"></div>
+
+						<section id="section-1">
+							<h3 class="mb-34">Introduction</h3>
+							<div class="card-body">
+								<p> We used this plugin for the SVG Icons
+									<a href="https://github.com/iconfu/svg-inject" class="text-decoration-none" target="_blank"
+										><code class="inline-icon bg-primary bg-opacity-10 text-primary">SVG Inject<img src="../assets/assets/icons/external-link.svg" class="svg-inject svg-icon ms-10" alt="" /></code></a
+									>. We strongly recommend you to understand the use of this plugin, for the Javascript code, we add them here <code class="inline-icon bg-primary bg-opacity-10 text-primary"><img src="../assets/assets/icons/file.svg" class="svg-inject svg-icon me-10" alt="" />js/theme.js</code>.
+								</p>
+							</div>
+						</section>
+						<!-- /.section -->
+
+						<div class="divider my-60"></div>
+						<!-- /.divider -->
+
+						<section id="section-2">
+							<h3 class="mb-34">Sizes</h3>
+							<div class="card-body">
+								<div class="d-flex align-items-center gap-10 mb-34">
+									<img src="../assets/assets/icons/heart.svg" class="svg-inject text-primary is-100" alt="" />
+									<img src="../assets/assets/icons/heart.svg" class="svg-inject text-primary is-80" alt="" />
+									<img src="../assets/assets/icons/heart.svg" class="svg-inject text-primary is-20" alt="" />
+									<img src="../assets/assets/icons/heart.svg" class="svg-inject text-primary is-16" alt="" />
+									<img src="../assets/assets/icons/heart.svg" class="svg-inject text-primary is-14" alt="" />
+								</div>
+								<pre><code class="language-html">&lt;img src=&quot;./assets/icons/heart.svg&quot; class=&quot;svg-inject text-primary is-100&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;./assets/icons/heart.svg&quot; class=&quot;svg-inject text-primary is-80&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;./assets/icons/heart.svg&quot; class=&quot;svg-inject text-primary is-20&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;./assets/icons/heart.svg&quot; class=&quot;svg-inject text-primary is-16&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;./assets/icons/heart.svg&quot; class=&quot;svg-inject text-primary is-14&quot; alt=&quot;&quot; /&gt;</code></pre>
+							</div>
+						</section>
+						<!-- /.section -->
+
+						<div class="divider my-60"></div>
+						<!-- /.divider -->
+
+						<section id="section-3">
+							<h3 class="mb-34">Icons</h3>
+							<div class="card-body">
+								<div class="row row-cols-2 row-cols-lg-3 row-cols-xl-4">
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/angles-left.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">angles-left</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/angles-left.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/angles-right.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">angles-right</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/angles-right.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/bars.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">bars</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/bars.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/calendar.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">calendar</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/calendar.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/check-circle.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">check-circle</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/check-circle.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/check-circle-stroke.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">check-circle-stroke</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/check-circle-stroke.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/check-circle-stroke-full.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">check-circle-stroke-full</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/check-circle-stroke-full.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/chevron-down.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">chevron-down</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/chevron-down.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/circle-chevron-left.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">circle-chevron-left</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/circle-chevron-left.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/circle-chevron-right.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">circle-chevron-right</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/circle-chevron-right.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/cloud-arrow-up.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">cloud-arrow-up</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/cloud-arrow-up.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/compas.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">compas</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/compas.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/ellipsis.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">ellipsis</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/ellipsis.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/envelope-stroke.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">envelope-stroke</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/envelope-stroke.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/facebook-f.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">facebook-f</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/facebook-f.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/file.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">file</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/file.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/filter.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">filter</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/filter.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/heart.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">heart</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/heart.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/instagram.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">instagram</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/instagram.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/linkedin.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">linkedin</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/linkedin.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/long-arrow-left.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">long-arrow-left</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/long-arrow-left.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/long-arrow-right.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">long-arrow-right</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/long-arrow-right.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/mark.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">mark</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/mark.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/mark-stroke.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">mark-stroke</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/mark-stroke.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/phone-stroke.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">phone-stroke</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/phone-stroke.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/play-stroke.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">play-stroke</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/play-stroke.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/sack-dollar.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">sack-dollar</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/sack-dollar.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/star.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">star</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/star.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/twitter.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">twitter</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/twitter.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/user.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">user</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/user.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/x.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">x</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/x.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+									<div class="col my-20">
+										<div class="d-flex flex-column h-100 rounded-14 shadow-2">
+											<div class="d-flex flex-column align-items-center p-20">
+												<img src="../assets/assets/icons/youtube.svg" class="svg-inject text-primary is-20" alt="" />
+												<div class="fs-14 mt-20 text-center">youtube</div>
+											</div>
+											<button class="btn fs-14 p-10 w-100 mt-auto shadow-none" data-clipboard-text="<img src='./assets/icons/youtube.svg' class='svg-inject text-dark is-20' alt='' />">Copy</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- /.section -->
+
+						<div class="divider my-60"></div>
+						<!-- /.divider -->
+
+						<section id="section-4">
+							<h3 class="mb-34">javascript</h3>
+							<div class="card-body">
+								<p>
+									For the Javascript code, we add them here <code class="inline-icon bg-primary bg-opacity-10 text-primary"><img src="../assets/assets/icons/file.svg" class="svg-inject svg-icon me-10" alt="" />js/theme.js</code>.
+								</p>
+								<pre><code class="language-javascript">SVGInject.setOptions({
+    onFail: function(img, svg) {
+        img.classList.remove('svg-inject');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    SVGInject(document.querySelectorAll('img.svg-inject'), {
+        onAllFinish: function() {}
+    });
+})</code></pre>
+							</div>
+						</section>
+						<!-- /.section -->
+					</div>
+					<!-- /.content -->
+
+					<aside class="d-none d-lg-block col-lg-3 sidebar-nav sticky-sidebar">
+						<h6>On this page</h6>
+						<nav class="nav flex-column">
+							<a class="nav-link" href="#section-1" data-scroll>Introduction</a>
+							<a class="nav-link" href="#section-2" data-scroll>Sizes</a>
+							<a class="nav-link" href="#section-3" data-scroll>icons</a>
+							<a class="nav-link" href="#section-4" data-scroll>Javascript</a>
+						</nav>
+					</aside>
+					<!-- /.content-side-nav -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.content-container -->
+		</div>
+		<!-- = /. Content = -->
+
+		<!-- Bootstrap JS -->
+		<script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Vendors -->
+		<script src="../vendors/jquery/jquery-3.6.0.min.js"></script>
+		<script src="../vendors/jquery-ui/jquery-ui.min.js"></script>
+		<script src="../vendors/swiper/swiper-bundle.min.js"></script>
+		<script src="../vendors/fslightbox/fslightbox.js"></script>
+		<script src="../vendors/svg-inject/dist/svg-inject.min.js"></script>
+		<script src="../vendors/highlight/highlight.min.js"></script>
+		<script src="../vendors/sweet-scroll/sweet-scroll.min.js"></script>
+		<script src="../vendors/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+		<script src="../vendors/clipboard.js/dist/clipboard.min.js"></script>
+		<script>
+			hljs.highlightAll();
+		</script>
+
+		<!-- Template Function -->
+		<script src="../assets/dist/js/app.js"></script>
+	</body>
+</html>

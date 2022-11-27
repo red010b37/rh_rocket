@@ -1,0 +1,91 @@
+@use "bootstrap" as *;
+
+.sticky-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100%;
+}
+
+.side-nav {
+    position: fixed;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    z-index: 100;
+
+    @include media-breakpoint-down(md) {
+        margin-left: -250px;
+        transition: .25s ease-in-out;
+
+        &.active {
+            margin-left: 0;
+        }
+        
+    }
+
+    h6 {
+        padding: 5px 25px;
+        margin: 10px 0;
+    }
+
+    .nav {
+
+        .nav-link {
+            @include font-size(14px);
+            color: $philippine-gray-100;
+            padding: 5px 25px;
+
+            &.active {
+                background-image: escape-svg(url("data:image/svg+xml, <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M6.77879 0.372723L14.7788 9.37272C14.9391 9.55521 15.0275 9.78981 15.0275 10.0327C15.0275 10.2756 14.9391 10.5102 14.7788 10.6927L6.77879 19.6927C6.6003 19.8786 6.35696 19.9883 6.09952 19.9991C5.84208 20.0099 5.5904 19.9209 5.39696 19.7507C5.20353 19.5805 5.08326 19.3422 5.06125 19.0854C5.03923 18.8287 5.11717 18.5734 5.2788 18.3727L12.6888 10.0327L5.27879 1.69272C5.18528 1.59537 5.11245 1.48008 5.06469 1.35382C5.01692 1.22757 4.99522 1.09294 5.00088 0.958071C5.00654 0.823198 5.03945 0.690867 5.09762 0.569054C5.1558 0.44724 5.23803 0.338466 5.33937 0.249287C5.44071 0.160107 5.55906 0.0923683 5.68728 0.0501537C5.8155 0.00793913 5.95094 -0.0078774 6.08544 0.00365634C6.21994 0.0151901 6.35071 0.0538351 6.46987 0.117264C6.58903 0.180692 6.69412 0.267592 6.77879 0.372723Z' fill='#{$primary}'/></svg>"));
+                background-repeat: no-repeat;
+                background-position: left calc(100% - 15px) center;
+                background-size: 12px;
+            }
+
+            &:hover, 
+            &.active {
+                color: $primary;
+            }
+
+        }
+
+    }
+
+}
+
+.sidebar-nav {
+
+    &.sticky-sidebar {
+        top: 6rem;
+    }
+
+    .nav {
+
+        .nav-link {
+            @include font-size(14px);
+            color: $philippine-gray-100;
+            padding: 5px 0;
+
+            &:hover, 
+            &.active {
+                color: $primary;
+            }
+
+        }
+
+        .nav {
+
+            .nav-link {
+                padding-left: 15px;
+            }
+
+        }
+
+    }
+
+}

@@ -1,0 +1,51 @@
+@use "bootstrap" as *;
+
+.navbar {
+    position: sticky;
+    background-color: #ffffff;
+    top: 0;
+    z-index: 98;
+    box-shadow: $shadow-2;
+
+    .navbar-brand {
+        display: flex;
+        margin-right: 0;
+        
+        img {
+            width: 120px;
+        }
+
+        span {
+            @include font-size(14px);
+            font-weight: 500;
+            color: $dark;
+            margin-left: 5px;
+        }
+
+    }
+
+}
+
+.social-link-list {
+    display: flex;
+    gap: 15px;
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+
+    .social-link {
+        color: $dark;
+        transition: .25s ease-in-out;
+
+        &:hover {
+            color: $primary;
+        }
+
+        .svg-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+    }
+
+}

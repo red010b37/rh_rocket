@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ziro Documentation</title>
+		<link rel="icon" type="image/x-icon" href="../assets/assets/favicon.png" />
+
+		<!-- Plugin CSS -->
+		<link rel="stylesheet" href="../vendors/jquery-ui/jquery-ui.min.css" />
+		<link rel="stylesheet" href="../vendors/swiper/swiper-bundle.css" />
+		<link rel="stylesheet" href="../vendors/highlight/styles/stackoverflow-light.min.css" />
+		<link rel="stylesheet" href="../vendors/highlightjs-copy/dist/highlightjs-copy.min.css" />
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="../assets/dist/css/style.css" />
+	</head>
+	<body>
+		<div class="overlay"></div>
+		<!-- = /. Overlay = -->
+
+		<aside class="side-nav bg-ghost-white">
+			<div class="mb-15">
+				<h6>Get Started</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Introduction</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../changelog.html">Changelog</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../credits.html">Credits</a>
+					</li>
+				</ul>
+				<h6>Costumize</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="../costumize/colors.html">Colors</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../costumize/css-variables.html">CSS Variables</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../costumize/options.html">Options</a>
+					</li>
+				</ul>
+				<h6>Layout</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="../layout/containers.html">Containers</a>
+					</li>
+				</ul>
+				<h6>Content</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="../content/typography.html">Typography</a>
+					</li>
+				</ul>
+				<h6>Forms</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="../forms/check-radios.html">Checks & Radios</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../forms/form-control.html">Form Control</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../forms/form-search.html">Form Search</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../forms/form-upload.html">Form Upload</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../forms/form-variant.html">Form Variant</a>
+					</li>
+				</ul>
+				<h6>Components</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link active" href="../components/buttons.html">Buttons</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../components/dropdowns.html">Dropdowns</a>
+					</li>
+				</ul>
+				<h6>Utilities</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/background.html">Background</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/borders.html">Borders</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/colors.html">Colors</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/opacity.html">Opacity</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/shadows.html">Shadows</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/sizing.html">Sizing</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/spacing.html">Spacing</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../utilities/Text.html">Text</a>
+					</li>
+				</ul>
+				<h6>Extend</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="../extend/svg-icons.html">SVG Icons</a>
+					</li>
+				</ul>
+			</div>
+		</aside>
+		<!-- = /. Side Navigation = -->
+
+		<div id="content">
+			<div class="navbar" data-scroll-header>
+				<div class="container-fluid px-25">
+					<div class="d-flex gap-20">
+						<button id="sidebar-nav-toggle" class="btn d-md-none p-0">
+							<img src="../assets/assets/icons/bars.svg" class="svg-inject text-dark is-20" alt="" />
+						</button>
+
+						<div class="navbar-brand">
+							<a href="#">
+								<img src="../assets/assets/logo.svg" alt="" />
+							</a>
+							<span>.Docs</span>
+						</div>
+					</div>
+
+					<ul class="social-link-list">
+						<li>
+							<a href="" class="social-link">
+								<img src="../assets/assets/icons/facebook-f.svg" class="svg-inject svg-icon" alt="" />
+							</a>
+						</li>
+						<li>
+							<a href="" class="social-link">
+								<img src="../assets/assets/icons/dribbble.svg" class="svg-inject svg-icon" alt="" />
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /.navbar -->
+
+			<div class="content">
+				<div class="row">
+					<div class="col-lg-9">
+						<section>
+							<h1 class="heading-section-1">Buttons</h1>
+						</section>
+
+						<div class="my-80"></div>
+
+						<section id="section-1">
+							<h3 class="mb-34">Examples</h3>
+							<div class="card-body">
+								<p>	We used 2 maps for the button from <code class="inline-icon bg-primary bg-opacity-10 text-primary"><img src="../assets/assets/icons/code.svg" class="svg-inject svg-icon me-10" alt="" />$theme-colors</code> dan <code class="inline-icon bg-primary bg-opacity-10 text-primary"><img src="../assets/assets/icons/code.svg" class="svg-inject svg-icon me-10" alt="" />$colors</code>.
+								</p>
+								<div class="d-flex flex-wrap gap-10 mb-20">
+									<button type="button" class="btn btn-primary">Primary</button>
+									<button type="button" class="btn btn-accent">Accent</button>
+									<button type="button" class="btn btn-dark">Dark</button>
+									<button type="button" class="btn btn-black">Black</button>
+								</div>
+								<div class="d-flex flex-wrap align-items-center gap-10 mb-34">
+									<button type="button" class="btn btn-cultured">Cultured</button>
+									<button type="button" class="btn btn-pale-pink">Pale Pink</button>
+									<button type="button" class="btn btn-medium-orchid">Medium Orchid</button>
+									<button type="button" class="btn btn-eerie-black">Eerie Black</button>
+									<button type="button" class="btn">Others</button>
+								</div>
+								<pre class="mb-10"><code class="language-html">&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Primary&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-accent&quot;&gt;Accent&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-dark&quot;&gt;Dark&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-black&quot;&gt;Black&lt;/button&gt;
+
+&lt;button type=&quot;button&quot; class=&quot;btn btn-cultured&quot;&gt;Cultured&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-pale-pink&quot;&gt;Pale Pink&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-medium-orchid&quot;&gt;Medium Orchid&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-eerie-black&quot;&gt;Eerie Black&lt;/button&gt;</code></pre>
+							</div>
+						</section>
+						<!-- /.section -->
+
+						<div class="divider my-60"></div>
+						<!-- /.divider -->
+
+						<section id="section-2">
+							<h3 class="mb-34">Rounded</h3>
+							<div class="card-body">
+								<div class="d-flex align-items-center gap-10 mb-34">
+									<button class="btn btn-rounded btn-primary">
+										<img src="../assets/assets/icons/heart.svg" class="svg-inject svg-icon" alt="" />
+									</button>
+									<button class="btn btn-rounded btn-orange-red text-white">
+										<img src="../assets/assets/icons/star.svg" class="svg-inject svg-icon is-16" alt="" />
+									</button>
+								</div>
+								<pre><code class="language-html">&lt;button class=&quot;btn btn-rounded btn-primary&quot;&gt;
+    &lt;img src=&quot;./assets/icons/heart.svg&quot; class=&quot;svg-inject svg-icon&quot; alt=&quot;&quot; /&gt;
+&lt;/button&gt;
+&lt;button class=&quot;btn btn-rounded btn-orange-red text-white&quot;&gt;
+    &lt;img src=&quot;./assets/icons/star.svg&quot; class=&quot;svg-inject svg-icon is-16&quot; alt=&quot;&quot; /&gt;
+&lt;/button&gt;</code></pre>
+							</div>
+						</section>
+						<!-- /.section -->
+
+						<div class="divider my-60"></div>
+						<!-- /.divider -->
+
+						<section id="section-3">
+							<h3 class="mb-34">Color Variant</h3>
+							<div class="card-body">
+								<div class="d-flex align-items-center gap-10 mb-34">
+									<button class="btn btn-rounded btn-book">
+										<img src="../assets/assets/icons/heart.svg" class="svg-inject svg-icon" alt="" />
+									</button>
+									<button class="btn btn-apply fw-semiBold py-12 px-43 rounded-pill">Apply</button>
+								</div>
+								<pre><code class="language-html">&lt;button class=&quot;btn btn-rounded btn-book&quot;&gt;
+    &lt;img src=&quot;./assets/icons/heart.svg&quot; class=&quot;svg-inject svg-icon&quot; alt=&quot;&quot; /&gt;
+&lt;/button&gt;
+&lt;button class=&quot;btn btn-apply fw-semiBold py-12 px-43 rounded-pill&quot;&gt;Apply&lt;/button&gt;</code></pre>
+							</div>
+						</section>
+						<!-- /.section -->
+
+						<div class="divider my-60"></div>
+						<!-- /.divider -->
+
+						<section id="section-4">
+							<h3 class="mb-34">Sass</h3>
+							<div class="card-body">
+								<h3 id="section-4-1">Variables</h3>
+								<p>
+									You can found SASS Variable on <code class="inline-icon bg-primary bg-opacity-10 text-primary"><img src="../assets/assets/icons/file.svg" class="svg-inject svg-icon me-10" alt="" />scss/components/bootstrap/_buttons.scss</code>
+								</p>
+								<h3>Rounded</h3>
+								<pre><code class="language-scss">$btn-rounded-padding: 14px;
+$btn-rounded-border-radius: 50rem;
+
+$btn-rounded-icon-size: 20px;</code></pre>
+								<h3 class="mt-34">Color Variant</h3>
+								<pre><code class="language-scss">// - Btn Book
+$btn-book-background: $orange-red;
+$btn-book-background__hover: $pale-pink;
+$btn-book-color: $white;
+$btn-book-color__hover: $btn-book-background;
+
+$btn-book-booked-background: $white;
+$btn-book-booked-color: $btn-book-background;
+$btn-book-booked-border-color: $platinum;
+
+// - Btn Apply
+$btn-apply-background: $alice-blue;
+$btn-apply-background__hover: $primary;
+$btn-apply-color: $primary;
+$btn-apply-color__hover: $white;</code></pre>
+							</div>
+						</section>
+						<!-- /.section -->
+					</div>
+					<!-- /.content -->
+
+					<aside class="d-none d-lg-block col-lg-3 sidebar-nav sticky-sidebar">
+						<h6>On this page</h6>
+						<nav class="nav flex-column">
+							<a class="nav-link" href="#section-1" data-scroll>Examples</a>
+							<a class="nav-link" href="#section-2" data-scroll>Rounded</a>
+							<a class="nav-link" href="#section-3" data-scroll>Color Variant</a>
+							<a class="nav-link" href="#section-4" data-scroll>Sass</a>
+							<nav class="nav flex-column">
+								<a class="nav-link" href="#section-4-1" data-scroll>Variables</a>
+							</nav>
+						</nav>
+					</aside>
+					<!-- /.content-side-nav -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.content-container -->
+		</div>
+		<!-- = /. Content = -->
+
+		<!-- Bootstrap JS -->
+		<script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Vendors -->
+		<script src="../vendors/jquery/jquery-3.6.0.min.js"></script>
+		<script src="../vendors/jquery-ui/jquery-ui.min.js"></script>
+		<script src="../vendors/swiper/swiper-bundle.min.js"></script>
+		<script src="../vendors/fslightbox/fslightbox.js"></script>
+		<script src="../vendors/svg-inject/dist/svg-inject.min.js"></script>
+		<script src="../vendors/highlight/highlight.min.js"></script>
+		<script src="../vendors/sweet-scroll/sweet-scroll.min.js"></script>
+		<script src="../vendors/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+		<script src="../vendors/clipboard.js/dist/clipboard.min.js"></script>
+		<script>
+			hljs.highlightAll();
+		</script>
+
+		<!-- Template Function -->
+		<script src="../assets/dist/js/app.js"></script>
+	</body>
+</html>

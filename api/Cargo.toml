@@ -1,5 +1,5 @@
 [package]
-name = "rocket-example-api"
+name = "rh-rocket"
 version = "0.1.0"
 authors = ["Sam Samai <sam@studio2pi.com.au>"]
 edition = "2021"
@@ -23,5 +23,5 @@ migration = { path = "../migration" }
 tokio = "1.20.0"
 
 [dependencies.sea-orm-rocket]
-path = "../../../sea-orm-rocket/lib" # remove this line in your own project and uncomment the following line
-# version = "0.5.2"
+#path = "../../../sea-orm-rocket/lib" # remove this line in your own project and uncomment the following line
+ version = "0.5.2"

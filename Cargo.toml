@@ -9,4 +9,4 @@ publish = false
 members = [".", "api", "core", "entity", "migration"]
 
 [dependencies]
-rocket-example-api = { path = "api" }
+rh-rocket = { path = "api" }
