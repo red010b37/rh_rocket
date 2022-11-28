@@ -90,10 +90,10 @@
     <!-- /.container -->
     <!-- = /. Header Section = -->
 
-    <form action="jobs//hire-remotely">
+    <form action="/jobs/hire-remotely">
         <div class="container-xxl">
             <div class="row">
-
+s
                 <div class="d-grid bg-white p-20 p-md-34 p-xxl-43 mt-24 gap-34 rounded-20 shadow-2">
                     <h2 class="heading-section-4 text-dark mb-0">Hire Remotely</h2>
 
@@ -541,12 +541,11 @@
 
 
                     <div class="col-12 d-flex my-15 my-xl-24">
-                        <button type="submit" class="btn btn-primary fw-semiBold py-12 px-24 px-md-60 rounded-pill"
-                            role="button">Submit</button>
+                        <button type="submit" class="btn btn-primary fw-semiBold py-12 px-24 px-md-60 rounded-pill">Submit</button>
                         <!-- /.btn-submit -->
 
                         <a class="btn btn-cultured text-philippine-gray fw-semiBold py-12 px-20 ms-auto rounded-pill"
-                            href="#" role="button">Cancel</a>
+                            href="#">Cancel</a>
                         <!-- /.btn-cancel -->
                     </div>
                     <!-- /.col -->
