@@ -22,7 +22,8 @@ pub use entity::post::Entity as Post;
 
 const DEFAULT_POSTS_PER_PAGE: u64 = 5;
 
-mod posts;
+mod cposts;
+mod cjobs;
 
 #[catch(404)]
 pub fn not_found(req: &Request<'_>) -> Template {
@@ -46,23 +47,31 @@ async fn start() -> Result<(), rocket::Error> {
         .attach(Db::init())
         .attach(AdHoc::try_on_ignite("Migrations", run_migrations))
         .mount("/", FileServer::from(relative!("/static")))
+        .mount("/",routes![home] )
         .mount(
             "/posts",
             routes![
-                posts::new,
-                posts::create,
-                posts::delete,
-                posts::destroy,
-                posts::list,
-                posts::edit,
-                posts::update
+                cposts::new,
+                cposts::create,
+                cposts::delete,
+                cposts::destroy,
+                cposts::list,
+                cposts::edit,
+                cposts::update
             ],
         )
+        .mount("/jobs", routes![cjobs::new, cjobs::create])
         .register("/", catchers![not_found])
         .attach(Template::fairing())
         .launch()
         .await
         .map(|_| ())
+}
+
+
+#[get("/")]
+pub async fn home() -> Template {
+    Template::render("index", &Context::default())
 }
 
 pub fn main() {
@@ -74,3 +83,5 @@ pub fn main() {
         println!("Error: {}", err);
     }
 }
+
+

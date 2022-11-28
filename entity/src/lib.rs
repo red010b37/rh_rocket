@@ -2,3 +2,4 @@
 extern crate rocket;
 
 pub mod post;
+pub mod job;

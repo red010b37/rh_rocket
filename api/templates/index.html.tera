@@ -1,4 +1,4 @@
-{% extends "layout.html.tera" %} {% block content %}
+{% extends "layout" %} {% block content %}
 <div>
   <p><!--Nothing to see here --></p>
   <h1>Remote Hut</h1>

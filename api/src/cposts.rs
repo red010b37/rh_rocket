@@ -21,7 +21,7 @@ const DEFAULT_POSTS_PER_PAGE: u64 = 5;
 
 #[get("/new")]
 pub async fn new() -> Template {
-    Template::render("new", &Context::default())
+    Template::render("posts/new", &Context::default())
 }
 
 #[delete("/")]
@@ -86,7 +86,7 @@ pub async fn list(
         .expect("Cannot find posts in page");
 
     Template::render(
-        "index",
+        "posts/index",
         json! ({
         "page": page,
         "posts_per_page": posts_per_page,
