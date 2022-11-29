@@ -1,6 +1,7 @@
 [default]
 template_dir = "api/templates/"
 directus_token = "DuT2fPre7vwgM_Q7DoELvK5LO0ISJGqz"
+log_level = "normal"
 
 [default.databases.sea_orm]
 # Mysql
