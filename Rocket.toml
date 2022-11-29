@@ -1,5 +1,6 @@
 [default]
 template_dir = "api/templates/"
+directus_token = "DuT2fPre7vwgM_Q7DoELvK5LO0ISJGqz"
 
 [default.databases.sea_orm]
 # Mysql
@@ -9,3 +10,4 @@ template_dir = "api/templates/"
 # Postgres
 # make sure to enable "sqlx-postgres" feature in Cargo.toml, i.e default = ["sqlx-postgres"]
 url = "postgres://postgres:example@localhost:5432/postgres"
+

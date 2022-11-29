@@ -1,12 +1,15 @@
 [package]
-name = "sea-orm-rocket-example"
-version = "0.1.0"
-authors = ["Sam Samai <sam@studio2pi.com.au>"]
 edition = "2021"
-publish = false
+name = "remote_hut"
+version = "0.1.0"
 
-[workspace]
-members = [".", "api", "core", "entity", "migration"]
+[[bin]]
+name = "remote_hut"
+path = "src/main.rs"
+
+[lib]
+name = "remote_hut"
+path = "src/lib.rs"
 
 [dependencies]
-rh-rocket = { path = "api" }
+rocket = { version = "0.5.0-rc.2", features = ["uuid", "secrets", "json"] }
