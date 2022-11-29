@@ -30,5 +30,10 @@ fn setup_logger() {
 #[launch]
 async fn rocket() -> Rocket<Build> {
     setup_logger();
- rocket::build()
+    rocket::build().mount("/", routes![index])
+}
+
+#[get("/")]
+fn index() -> &'static str {
+    "Hello, RemoteHub!"
 }
