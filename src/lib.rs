@@ -2,11 +2,14 @@
 extern crate rocket;
 
 use crate::states::Directus;
+use crate::routes::{jobs};
 use log::LevelFilter;
 use rocket::fs::relative;
 use rocket::fs::FileServer;
 use rocket::serde::Deserialize;
+use rocket::State;
 use rocket::{Build, Rocket};
+
 
 
 
@@ -48,7 +51,8 @@ fn setup_logger() {
 pub async fn setup_rocket() -> Rocket<Build> {
     setup_logger();
     let our_rocket = rocket::build()
-    .mount("/", routes![index]);
+    .mount("/", routes![index])
+    .mount("/", routes![jobs::index]);
 
     // Load the config
     let config: Config = our_rocket
@@ -66,6 +70,7 @@ pub async fn setup_rocket() -> Rocket<Build> {
 }
 
 #[get("/")]
-fn index() -> &'static str {
+fn index(directus: &State<Directus>) -> &'static str {
+    println!("{}", &directus.token.to_string());
     "Hello, RemoteHub!"
 }

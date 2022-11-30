@@ -14,7 +14,10 @@ pub struct Job{
 
 impl Job {
 
-    pub async fn create<'r>(new_job: &'r NewJob<'r>) -> Result<Self, OurError> {
+    pub async fn create<'r>(
+            new_job: &'r NewJob<'r>,
+            directius_token: String,
+    ) -> Result<Self, OurError> {
         !todo!("rin");
     }
 
