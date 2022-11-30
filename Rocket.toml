@@ -1,14 +1,4 @@
 [default]
-template_dir = "api/templates/"
+template_dir = "src/views"
 directus_token = "DuT2fPre7vwgM_Q7DoELvK5LO0ISJGqz"
 log_level = "normal"
-
-[default.databases.sea_orm]
-# Mysql
-# make sure to enable "sqlx-mysql" feature in Cargo.toml, i.e default = ["sqlx-mysql"]
-# url = "mysql://root:@localhost/rocket_example"
-
-# Postgres
-# make sure to enable "sqlx-postgres" feature in Cargo.toml, i.e default = ["sqlx-postgres"]
-url = "postgres://postgres:example@localhost:5432/postgres"
-
