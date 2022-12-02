@@ -1,4 +1,5 @@
 [default]
 template_dir = "src/views"
-directus_token = "DuT2fPre7vwgM_Q7DoELvK5LO0ISJGqz"
+directus_token = "t2rVMMPOeaFAXqxrAWXPAOt0PfVAyJbs"
+clockify_token = "YTVjMjZhYzgtNDBkZS00YTEyLTg5MTctODQ1OTFiMjQ3MTYw"
 log_level = "normal"

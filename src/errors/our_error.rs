@@ -39,6 +39,12 @@ impl Error for OurError {
 //     }
 // }
 
+impl From<reqwest::Error> for OurError {
+    fn from(e: reqwest::Error) -> OurError {
+        OurError::from_reqwest_error(e)
+    }
+}
+
 impl OurError {
     fn new_error_with_status(
         status: Status,
@@ -70,6 +76,9 @@ impl OurError {
         Self::new_error_with_status(Status::Unauthorized, String::from("unauthorized"), debug)
     }
 
+    pub fn from_reqwest_error(e: reqwest::Error) -> Self {
+        OurError::new_error_with_status(Status::InternalServerError, String::from("Upstream request error"), Some(Box::new(e)))
+    }
 
     pub fn from_uuid_error(e: uuidError) -> Self {
         OurError::new_bad_request_error(String::from("Something went wrong"), Some(Box::new(e)))
