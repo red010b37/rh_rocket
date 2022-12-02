@@ -1,7 +1,10 @@
 
 use rocket::State;
 use crate::errors::our_error::OurError;
-use crate::states::Clockify;
+use crate::states::{
+    Clockify,
+    Directus,
+};
 use chrono::{Datelike, NaiveDate, Utc};
 use serde::{Serialize, Deserialize};
 
@@ -17,15 +20,11 @@ impl MetricsClockify {
 
     pub async fn get_info<'r>(
             clockify: &State<Clockify>,
+            directus: &State<Directus>
             ) -> Result<Self, OurError> {
 
         let mut h = header::HeaderMap::new();
-
         let api_str = HeaderValue::from_str(clockify.token.as_str());
-
-        println!("{:?}", "here");
-
-
         h.insert("Accept", header::HeaderValue::from_static("application/json"));
         h.insert("X-Api-Key", api_str.unwrap());
 
@@ -68,24 +67,33 @@ impl MetricsClockify {
             println!("{:?}", "is running".to_string());
             let d = data.group_one.get(0).unwrap();
             for c in &d.children {
-                println!("{:?}", c.amount);
+//                println!("{:?}", c.amount);
 
 //                // TODO move this somewhere better
-//                let res = ClockifyStats::create(ClockifySummaryItem{
-//                    clockify_id: c.id.to_string(),
-//                    duration: c.duration,
-//                    amounts_type: c.amounts[0].type_field.to_string(),
-//                    amounts_value: c.amounts[0].value as i32,
-//                    amount: c.amount as i32,
-//                    name: "".to_string(),
-//                    log_date: NaiveDate::from_ymd(year, month, day),
-//                    created_at: Utc::now().naive_utc(),
-//                    updated_at: Utc::now().naive_utc(),
-//                });
-//
-//                if res.is_err() {
-//                    println!("Error writing to db")
-//                }
+                let newEntryItem = NewClockifySummaryItem{
+                    clockify_id: c.id.to_string(),
+                    duration: c.duration,
+                    amounts_type: c.amounts[0].type_field.to_string(),
+                    amounts_value: c.amounts[0].value as i32,
+                    amount: c.amount as i32,
+                    name: "".to_string(),
+                    log_date: NaiveDate::from_ymd(year, month, day),
+
+                };
+
+                let post_url = directus.directus_api_url.to_string() + "/items/metrics_clockify";
+                println!("{:?}", post_url);
+                println!("{:?}", directus.token.to_string());
+                let resp = reqwest::Client::new()
+                .post(post_url)
+                .json(&newEntryItem)
+                .bearer_auth(directus.token.to_string())
+                .send()
+                .await;
+
+                if resp.is_err() {
+                    print!("{:?}", resp.unwrap())
+                }
 
             }
         }
@@ -95,7 +103,17 @@ impl MetricsClockify {
 }
 
 
+#[derive(Serialize, Deserialize)]
 
+pub struct NewClockifySummaryItem {
+    pub clockify_id: String,
+    pub duration: i32,
+    pub amounts_type: String,
+    pub amounts_value: i32,
+    pub amount: i32,
+    pub name: String,
+    pub log_date: NaiveDate,
+}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

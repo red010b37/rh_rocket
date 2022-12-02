@@ -1,6 +1,7 @@
 
 pub struct Directus {
     pub token: String,
+    pub directus_api_url: String,
 }
 
 pub struct Clockify {

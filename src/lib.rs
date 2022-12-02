@@ -18,6 +18,7 @@ pub mod states;
 #[derive(Deserialize)]
 pub struct Config {
     directus_token: String,
+    directus_api_url: String,
     clockify_token: String,
 }
 
@@ -57,6 +58,7 @@ pub async fn setup_rocket() -> Rocket<Build> {
 
     let directus = Directus {
         token: config.directus_token.clone(),
+        directus_api_url: config.directus_api_url.clone(),
     };
     let clockify = Clockify {
         token: config.clockify_token.clone(),
