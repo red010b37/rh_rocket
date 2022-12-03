@@ -48,7 +48,10 @@ pub async fn setup_rocket() -> Rocket<Build> {
     let our_rocket = rocket::build()
         .mount("/", routes![index])
         .mount("/", routes![jobs::index])
-        .mount("/", routes![metrics::clockfyCron]);
+        .mount("/", routes![
+            metrics::index,
+            metrics::clockfyCron,
+        ]);
 
     // Load the config
     let config: Config = our_rocket

@@ -6,6 +6,16 @@ use crate::states:: {
 };
 use crate::models::metrics_clockify;
 
+
+#[get("/metrics")]
+pub async fn index(
+        directus: &State<Directus>
+) -> &'static str {
+    let r = metrics_clockify::MetricsClockify::list(directus).await;
+    "im the metrics"
+}
+
+
 #[get("/metrics/cron/clockify")]
 pub async fn clockfyCron(
         clockify: &State<Clockify>,
