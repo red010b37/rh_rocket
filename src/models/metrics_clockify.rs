@@ -1,6 +1,6 @@
 use crate::errors::our_error::OurError;
 use crate::states::{Clockify, Directus};
-use chrono::{Datelike, Duration, NaiveDate, Utc};
+use chrono::{Datelike, DateTime, Duration, NaiveDate, NaiveDateTime, Utc};
 use rocket::State;
 use serde::{Deserialize, Serialize};
 
@@ -8,16 +8,23 @@ use reqwest;
 use reqwest::header;
 use reqwest::header::HeaderValue;
 
+
+#[derive(Serialize, Deserialize, Debug)]
 pub struct MetricsClockify {
+    pub data: Vec<ResultData>
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct ResultData {
     pub clockify_id: String,
     pub duration: i32,
     pub amounts_type: String,
-    pub amounts_value: i32,
+    pub amounts_value: Option<i32>,
     pub amount: i32,
     pub name: String,
     pub log_date: NaiveDate,
-    pub created_at: NaiveDate,
-    pub updated_at: NaiveDate,
+    pub date_created: DateTime<Utc>,
+    pub date_updated: Option<DateTime<Utc>>,
 }
 
 impl MetricsClockify {
@@ -25,18 +32,28 @@ impl MetricsClockify {
         let url = directus.directus_api_url.to_string() + "/items/metrics_clockify";
         println!("{:?}", url);
         println!("{:?}", directus.token.to_string());
-        let resp = reqwest::Client::new()
+        let clockify_data: Self = reqwest::Client::new()
             .get(url)
             .bearer_auth(directus.token.to_string())
             .send()
-            .await;
+            .await?
+        .json()
+        .await?;
 
-        if resp.is_err() {
-            print!("{:?}", resp.unwrap())
-        } else {
-            print!("ok");
+        print!("{:#?}", clockify_data);
+
+//        if resp.is_err() {
 //            print!("{:?}", resp.unwrap())
-        }
+//        } else {
+//            print!("ok");
+////            print!("{:?}", resp.unwrap())
+//        }
+//
+//        let data: ClockifyApi = resp.json().await?;
+//        println!("{:?}", data);
+
+
+
 
         Ok(())
     }
