@@ -1,7 +1,7 @@
 #[macro_use]
 extern crate rocket;
 
-use crate::routes::{jobs, metrics};
+use crate::routes::{jobs, metrics, home};
 use crate::states::{Clockify, Directus};
 use log::LevelFilter;
 use rocket::fs::relative;
@@ -9,6 +9,7 @@ use rocket::fs::FileServer;
 use rocket::serde::Deserialize;
 use rocket::State;
 use rocket::{Build, Rocket};
+use rocket_dyn_templates::Template;
 
 pub mod errors;
 pub mod models;
@@ -46,12 +47,14 @@ fn setup_logger() {
 pub async fn setup_rocket() -> Rocket<Build> {
     setup_logger();
     let our_rocket = rocket::build()
-        .mount("/", routes![index])
+    .attach(Template::fairing())
+        .mount("/", routes![home::homepage])
         .mount("/", routes![jobs::index])
         .mount("/", routes![
             metrics::index,
             metrics::clockfyCron,
-        ]);
+        ])
+        .mount("/assets", FileServer::from(relative!("static")));
 
     // Load the config
     let config: Config = our_rocket
@@ -70,10 +73,4 @@ pub async fn setup_rocket() -> Rocket<Build> {
     // pass our dtat for rocket to manage in state for us
     let final_rocket = our_rocket.manage(directus).manage(clockify);
     final_rocket
-}
-
-#[get("/")]
-fn index(directus: &State<Directus>) -> &'static str {
-    println!("{}", &directus.token.to_string());
-    "Hello, RemoteHub!"
 }

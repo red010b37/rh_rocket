@@ -1,0 +1,13 @@
+{% extends "layout" %} {% block content %}
+<div>
+  <p><!--Nothing to see here --></p>
+  <h1>Remote Hut</h1>
+  {% if flash %}
+  <small class="field-{{ flash.kind }}-flash">
+    {{ flash.message }}
+  </small>
+  {% endif %}
+
+
+</div>
+{% endblock content %}

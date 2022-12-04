@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <meta charset="utf-8" />
+    <title>Remote Hut</title>
+    <meta name="description" content="Actix - SeaOrm integration example" />
+    <meta name="author" content="Sam Samai" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="//fonts.googleapis.com/css?family=Raleway:400,300,600"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+        <link rel="stylesheet" href="/css/styles.css" />
+<!--    <link rel="stylesheet" href="/css/normalize.css" />-->
+<!--    <link rel="stylesheet" href="/css/skeleton.css" />-->
+<!--    <link rel="stylesheet" href="/css/style.css" />-->
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+
+    <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
+   {% endblock head %}
+  </head>
+  <body>
+
+  <nav class="navbar navbar-expand-xl">
+    <div class="container-xxl justify-content-md-start">
+      <a class="navbar-brand" href="#">
+        <img src="/assets/logo.svg" alt="" />
+      </a>
+      <!-- /.navbar-brand -->
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <img src="./assets/icons/bars.svg" class="svg-inject svg-icon" alt="" />
+      </button>
+      <!-- /.navbar-toggler-mobile -->
+
+      <div class="d-none d-md-flex d-xl-none ms-auto">
+        <a class="btn btn-alice-blue text-dark fw-semiBold py-12 px-34 me-12 rounded-pill" href="/applicationform.html" role="button">Log In</a>
+        <a class="btn btn-primary fw-semiBold py-12 px-43 rounded-pill" href="/applicationform.html" role="button">Sign Up</a>
+      </div>
+      <!-- /.btn-login and btn-signup mobile -->
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <div class="d-grid d-xl-flex align-items-xl-center pb-15 pb-xl-0 w-100 gap-20 gap-xl-0">
+          <ul class="navbar-nav mx-xl-auto order-2 order-xl-1">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/#pricing-section">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/eventlist.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/joblist.html">Become a member</a>
+            </li>
+          </ul>
+          <!-- /.navbar-nav -->
+
+          <!--
+          <form class="order-1 order-xl-2" role="search" action="#" method="get">
+            <div class="form-search">
+              <input class="form-control border border-alice-blue" type="search" placeholder="Search here..." aria-label="Search" />
+            </div>
+          </form>
+          -->
+          <!-- /.form-search -->
+
+          <div class="d-grid d-md-none d-xl-flex gap-15 gap-xl-0 order-3">
+            <a class="btn btn-alice-blue text-dark fw-semiBold py-12 px-xl-34 ms-xl-12 rounded-pill" href="/applicationform.html" role="button">Log In</a>
+            <a class="btn btn-primary fw-semiBold py-12 px-xl-43 ms-xl-12 rounded-pill" href="/applicationform.html" role="button">Sign Up</a>
+          </div>
+          <!-- /.btn-login and btn-sign-up desktop -->
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- = /. Navbar Section = -->
+
+
+  <main class="main">
+      {% block content %}{% endblock content %}
+  </main>
+  </body>
+</html>
