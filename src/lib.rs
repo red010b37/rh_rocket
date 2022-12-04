@@ -54,7 +54,7 @@ pub async fn setup_rocket() -> Rocket<Build> {
             metrics::index,
             metrics::clockfyCron,
         ])
-        .mount("/assets", FileServer::from(relative!("static")));
+        .mount("/", FileServer::from(relative!("static")));
 
     // Load the config
     let config: Config = our_rocket
