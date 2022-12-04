@@ -1,18 +1,21 @@
 
+
 use rocket::State;
+use rocket_dyn_templates::{context, Template};
 use crate::states:: {
     Clockify,
     Directus,
 };
 use crate::models::metrics_clockify;
+use super::HtmlResponse;
 
 
 #[get("/metrics")]
 pub async fn index(
         directus: &State<Directus>
-) -> &'static str {
+) -> HtmlResponse {
     let r = metrics_clockify::MetricsClockify::list(directus).await;
-    "im the metrics"
+    Ok(Template::render("metrics/metrics", context! {}))
 }
 
 
