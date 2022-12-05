@@ -1,0 +1,18 @@
+name: octopus-app
+region: sfo
+services:
+- dockerfile_path: Dockerfile
+  github:
+  branch: production
+  deploy_on_push: true
+  repo: red010b37/rh_rocket
+  http_port: 8000
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  name: rh-rocket
+  health_check:
+    initial_delay_seconds: 5
+    http_path: /do_health_check
+  routes:
+  - path: /
+  source_dir: /

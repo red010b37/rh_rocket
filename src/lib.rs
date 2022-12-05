@@ -7,7 +7,6 @@ use log::LevelFilter;
 use rocket::fs::relative;
 use rocket::fs::FileServer;
 use rocket::serde::Deserialize;
-use rocket::State;
 use rocket::{Build, Rocket};
 use rocket_dyn_templates::Template;
 
@@ -44,12 +43,18 @@ fn setup_logger() {
     async_log::Logger::wrap(logger, || 0).start(level).unwrap();
 }
 
+
 pub async fn setup_rocket() -> Rocket<Build> {
     // setup_logger();
     let our_rocket = rocket::build()
     .attach(Template::fairing())
-        .mount("/", routes![home::homepage])
-        .mount("/", routes![jobs::index])
+        .mount("/", routes![
+            home::homepage,
+            home::health_check,
+        ])
+        .mount("/", routes![
+            jobs::index,
+        ])
         .mount("/", routes![
             metrics::index,
             metrics::clockfyCron,
