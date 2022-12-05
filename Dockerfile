@@ -2,8 +2,8 @@ FROM rust:alpine as prepare-stage
 WORKDIR /app
 COPY src src
 COPY Cargo.toml Cargo.toml
-COPY .cargo .cargo
-COPY vendor vendor
+#COPY .cargo .cargo
+#COPY vendor vendor
 
 FROM prepare-stage as build-stage
 RUN apk add --no-cache musl-dev
@@ -23,7 +23,7 @@ WORKDIR /app
 COPY --from=build-stage /app/target/release/remote_hut remote_hut
 COPY Rocket.toml .
 COPY static static
-COPY src/views src/views
+COPY /src/views /src/views
 
 RUN mkdir logs
 
