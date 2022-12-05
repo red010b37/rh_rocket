@@ -1,33 +1,20 @@
-FROM rust:alpine as prepare-stage
-WORKDIR /app
-COPY src src
-COPY Cargo.toml Cargo.toml
-#COPY .cargo .cargo
-#COPY vendor vendor
+FROM rust:1.65-buster as builder
 
-FROM prepare-stage as build-stage
-RUN apk add --no-cache musl-dev
+WORKDIR /app
+RUN apt update && apt install pkg-config libssl-dev libc-dev -y
+COPY . .
 RUN cargo build --release
 
-FROM rust:alpine
-EXPOSE 8000
-ENV TZ=Pacific/Auckland \
-    USER=staff
-RUN addgroup -S $USER \
-    && adduser -S -g $USER $USER
-RUN apk update \
-    && apk add --no-cache ca-certificates tzdata \
-    && rm -rf /var/cache/apk/*
 
+FROM debian:buster-slim AS runtime
 WORKDIR /app
-COPY --from=build-stage /app/target/release/remote_hut remote_hut
-COPY Rocket.toml .
-COPY static static
-COPY /src/views /src/views
-
-RUN mkdir logs
-
-RUN chown -R $USER:$USER /app
-
-USER $USER
-CMD ["./remote_hut"]
+# Install OpenSSL - it is dynamically linked by some of our dependencies
+# Install ca-certificates - it is needed to verify TLS certificates
+# when establishing HTTPS connections
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends openssl ca-certificates libpq5 \
+    # Clean up    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /app/target/release/remote_hut remote_hut
+ENTRYPOINT ["./remote_hut"]
