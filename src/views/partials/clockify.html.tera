@@ -1,0 +1,89 @@
+
+
+<style>
+    .clockify-wrapper {
+        position: relative;
+        margin: auto;
+        height: 400px;
+        width: 90vw;
+    }
+</style>
+
+<h2>Opportunity Cost</h2>
+<p>
+    This graph represents the amount of time and money invested into learning Rust and building RemoteHut over working on my normal billable work.
+    This currently represents lost revenue of <b>${{ cumulative_total }}.00</b> dollars
+</p>
+
+<div class="clockify-wrapper">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+    const labelsData =
+        [
+            {% for data in clockifydata %}
+                "{{ data.date }}",
+            {% endfor %}
+    ];
+
+    const graphData =
+        [
+            {% for data in clockifydata %}
+                {{ data.cumulative_amount_cents }},
+            {% endfor %}
+    ];
+</script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labelsData,
+            // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: 'Cost',
+                data: graphData,
+                borderColor: [
+                  'rgba(255,60,97,0.8)',
+                ],
+                backgroundColor: [
+                    'rgba(255,60,97,0.8)',
+                ],
+
+                // backgroundColor: [
+                //   'rgba(255, 99, 132, 0.2)',
+                //   'rgba(54, 162, 235, 0.2)',
+                //   'rgba(255, 206, 86, 0.2)',
+                //   'rgba(75, 192, 192, 0.2)',
+                //   'rgba(153, 102, 255, 0.2)',
+                //   'rgba(255, 159, 64, 0.2)'
+                // ],
+                // borderColor: [
+                //   'rgba(255, 99, 132, 1)',
+                //   'rgba(54, 162, 235, 1)',
+                //   'rgba(255, 206, 86, 1)',
+                //   'rgba(75, 192, 192, 1)',
+                //   'rgba(153, 102, 255, 1)',
+                //   'rgba(255, 159, 64, 1)'
+                // ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                },
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'month'
+                    }
+                }
+            }
+        }
+    });
+</script>
