@@ -45,7 +45,7 @@ fn setup_logger() {
 }
 
 pub async fn setup_rocket() -> Rocket<Build> {
-    setup_logger();
+    // setup_logger();
     let our_rocket = rocket::build()
     .attach(Template::fairing())
         .mount("/", routes![home::homepage])
@@ -74,3 +74,5 @@ pub async fn setup_rocket() -> Rocket<Build> {
     let final_rocket = our_rocket.manage(directus).manage(clockify);
     final_rocket
 }
+
+
