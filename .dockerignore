@@ -1,6 +1,8 @@
+.idea
 .env
 target/
 tests/
 Dockerfile
 scripts/
 logs/
+ziro/

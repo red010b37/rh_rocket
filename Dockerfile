@@ -8,6 +8,7 @@ RUN cargo build --release
 
 FROM debian:buster-slim AS runtime
 WORKDIR /app
+COPY . .
 # Install OpenSSL - it is dynamically linked by some of our dependencies
 # Install ca-certificates - it is needed to verify TLS certificates
 # when establishing HTTPS connections
