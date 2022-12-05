@@ -20,7 +20,7 @@ RUN apk update \
     && rm -rf /var/cache/apk/*
 
 WORKDIR /app
-COPY --from=build-stage /app/target/release/our_application our_application
+COPY --from=build-stage /app/target/release/remote_hut remote_hut
 COPY Rocket.toml .
 COPY static static
 COPY src/views src/views
