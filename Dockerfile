@@ -11,7 +11,7 @@ RUN cargo build --release
 
 FROM rust:alpine
 EXPOSE 8000
-ENV TZ=Asia/Tokyo \
+ENV TZ=Pacific/Auckland \
     USER=staff
 RUN addgroup -S $USER \
     && adduser -S -g $USER $USER
