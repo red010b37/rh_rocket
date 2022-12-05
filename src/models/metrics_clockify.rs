@@ -28,7 +28,7 @@ pub struct ResultData {
 }
 
 impl MetricsClockify {
-    pub async fn list<'r>(directus: &State<Directus>) -> Result<(), OurError> {
+    pub async fn list<'r>(directus: &State<Directus>) -> Result<Self, OurError> {
         let url = directus.directus_api_url.to_string() + "/items/metrics_clockify";
         println!("{:?}", url);
         println!("{:?}", directus.token.to_string());
@@ -40,22 +40,7 @@ impl MetricsClockify {
         .json()
         .await?;
 
-        print!("{:#?}", clockify_data);
-
-//        if resp.is_err() {
-//            print!("{:?}", resp.unwrap())
-//        } else {
-//            print!("ok");
-////            print!("{:?}", resp.unwrap())
-//        }
-//
-//        let data: ClockifyApi = resp.json().await?;
-//        println!("{:?}", data);
-
-
-
-
-        Ok(())
+        Ok(clockify_data)
     }
 
     pub async fn get_info<'r>(
