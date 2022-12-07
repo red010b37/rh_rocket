@@ -54,6 +54,7 @@ pub async fn setup_rocket() -> Rocket<Build> {
         ])
         .mount("/", routes![
             jobs::index,
+            jobs::new_job,
         ])
         .mount("/", routes![
             metrics::index,
