@@ -3,7 +3,7 @@
   <head>
     {% block head %}
     <meta charset="utf-8" />
-    <title>Remote Hut</title>
+    <title>Remote Hut | Remote jobs for Rust projects built in Rust</title>
     <meta name="description" content="Actix - SeaOrm integration example" />
     <meta name="author" content="Sam Samai" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
