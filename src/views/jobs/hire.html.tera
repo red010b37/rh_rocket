@@ -93,7 +93,7 @@
     <form action="/hire-remotely" method="post">
         <div class="container-xxl">
             <div class="row">
-                <div class="d-grid bg-white p-20 p-md-34 p-xxl-43 mt-24 gap-34 rounded-20 shadow-2">
+                <div class="d-grid bg-white p-20 p-md-34 p-xxl-43 mt-24 gap-10 rounded-20 shadow-2">
                     <h2 class="heading-section-4 text-dark mb-0">Hire Remotely</h2>
                     <div class="col-12 my-5 my-xl-24">
                         <label for="companyName" class="form-label">Company Name</label>
@@ -105,16 +105,19 @@
             <!-- /.row -->
 
             <div class="row">
-                <div class="d-grid bg-white p-20 p-md-34 p-xxl-43 mt-24 gap-34 rounded-20 shadow-2">
+                <div class="d-grid bg-white p-20 p-md-34 p-xxl-43 mt-24 gap-20 rounded-20 shadow-2">
                     <h2 class="heading-section-4 text-dark mb-0">Job Details</h2>
 
                     <div class="col-12 my-5 my-xl-5">
                         <label for="position" class="form-label">Position*</label>
                         <input type="text" name="position" required id="position" class="form-control rounded-pill"/>
                         <p class="small pe-10 ps-10">
-                            Please specify as single job position like "Senior Rust Developer" or "Project Manager", not a sentence.
-                            Please DO NOT WRITE IN FULL CAPS. If posting multiple roles, please create multiple job posts.
-                            A job post is limited to a single job. We only allow real jobs, absolutely no MLM-type courses "learn how to work online" please. </p>
+                            Please specify as single job position like "Senior Rust Developer" or "Project Manager", not
+                            a sentence.
+                            Please DO NOT WRITE IN FULL CAPS. If posting multiple roles, please create multiple job
+                            posts.
+                            A job post is limited to a single job. We only allow real jobs, absolutely no MLM-type
+                            courses "learn how to work online" please. </p>
                     </div>
 
                     <div class="col-12 mt-10 mb-5 my-xl-5">
@@ -145,7 +148,9 @@
                             <option value="other">Other</option>
                         </select>
                         <p class="small pe-10 ps-10">
-                            This primary category shows first and increases visibility in the main sections. Your job is shown on every page that is tagged with though. E.g. if you tag it as Software Development, it shows for Remote Software Development Jobs etc.
+                            This primary category shows first and increases visibility in the main sections. Your job is
+                            shown on every page that is tagged with though. E.g. if you tag it as Software Development,
+                            it shows for Remote Software Development Jobs etc.
                         </p>
                     </div>
 
@@ -414,14 +419,17 @@
                             </optgroup>
                         </select>
                         <p class="small pe-10 ps-10">
-                            If you'd only like to hire people from a specific location or timezone this remote job is restricted to (e.g. Europe, United States or Japan). If not restricted, please leave it as "Worldwide". The less restricted this is, the more applicants you will get.
+                            If you'd only like to hire people from a specific location or timezone this remote job is
+                            restricted to (e.g. Europe, United States or Japan). If not restricted, please leave it as
+                            "Worldwide". The less restricted this is, the more applicants you will get.
                         </p>
                     </div>
 
                     <div class="row">
                         <div class="row">
-                        <label class="form-label">Salary or compensation in USD (gross, annualized, full-time-equivalent
-                            in USD equivalent)</label>
+                            <label class="form-label">Salary or compensation in USD (gross, annualized,
+                                full-time-equivalent
+                                in USD equivalent)</label>
                         </div>
 
                         <div class="col-md-6 col-xl-6 my-5 my-xl-2">
@@ -520,27 +528,58 @@
 
                         <div class="row">
                             <p class="small pe-10 ps-10">
-                                Remote job postings are legally required to show a salary compensation range in many U.S.
-                                states and countries. Google does NOT index jobs without salary data. If it's a short-term
-                                gig, use the annual full-time equivalent. For example, if it's a 2-week project for $2,000,
-                                the annual equivalent would be $2,000 / 2 weeks * 52 weeks = $52,000. Please use convert and
+                                Remote job postings are legally required to show a salary compensation range in many
+                                U.S.
+                                states and countries. Google does NOT index jobs without salary data. If it's a
+                                short-term
+                                gig, use the annual full-time equivalent. For example, if it's a 2-week project for
+                                $2,000,
+                                the annual equivalent would be $2,000 / 2 weeks * 52 weeks = $52,000. Please use convert
+                                and
                                 use USD equivalent
                             </p>
                         </div>
                     </div>
 
 
-
                     <div class="col-12 my-15 my-xl-24">
                         <label for="jobDescription" class="form-label">Job description</label>
-                        <textarea type="text" id="jobDescription" class="form-control rounded-pill"></textarea>
+                        <textarea type="text" required name="description" id="jobDescription"
+                                  class="form-control rounded-pill"></textarea>
                     </div>
 
                     <div class="col-12 my-15 my-xl-24">
                         <label for="applyDescription" class="form-label">How to apply?</label>
-                        <textarea type="text" id="applyDescription" class="form-control rounded-pill"></textarea>
+                        <textarea id="applyDescription" name="how_to_apply"
+                                  class="form-control rounded-pill"></textarea>
                     </div>
 
+
+                    <div>
+                        <div class="col-12 my-15 my-xl-24">
+                            <label for="apply_url" class="form-label">Apply URL*</label>
+                            <input type="text"
+                                   required
+                                   id="apply_url"
+                                   name="apply_url"
+                                   class="form-control rounded-pill"/>
+                            <p class="small ps-10 pe-10">
+                                A URL with a form the applicant can fill out generally receives a lot more applicants
+                                than having people apply by email (below).
+                            </p>
+                        </div>
+                        <p class="display-6 text-center">or</p>
+                        <div class="col-12 my-15 my-xl-24">
+                            <label for="apply_email" class="form-label">Apply Email*</label>
+                            <input type="email"
+                                   required
+                                   id="apply_email"
+                                   name="apply_email"
+                                   class="form-control rounded-pill"/>
+                            <p class="small ps-10 pe-10">
+                            </p>
+                        </div>
+                    </div>
 
                     <div class="col-12 d-flex my-15 my-xl-24">
                         <button type="submit" class="btn btn-primary fw-semiBold py-12 px-24 px-md-60 rounded-pill">

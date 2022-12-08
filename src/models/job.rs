@@ -19,6 +19,10 @@ pub struct NewJobForm<'r> {
     pub category: &'r str,
     pub min_per_year: i32,
     pub max_per_year: i32,
+    pub description: String,
+    pub how_to_apply: Option<String>,
+    pub apply_url: Option<String>,
+    pub apply_email: Option<String>,
     pub location: Vec<String>,
 }
 
@@ -37,6 +41,10 @@ pub struct Job{
     pub location: String,
     pub min_per_year: i32,
     pub max_per_year: i32,
+    pub description: String,
+    pub how_to_apply: Option<String>,
+    pub apply_url: Option<String>,
+    pub apply_email: Option<String>,
     pub date_created: DateTime<Utc>,
     pub date_updated: Option<DateTime<Utc>>,
 }
