@@ -14,17 +14,29 @@ use reqwest::header::HeaderValue;
 pub struct NewJobForm<'r> {
     #[field(validate = len(3..100).or_else(msg!("company name cannot be empty")))]
     pub company_name: &'r str,
+    pub position: &'r str,
+    pub position_type: &'r str,
+    pub category: &'r str,
+    pub min_per_year: i32,
+    pub max_per_year: i32,
+    pub location: Vec<String>,
 }
 
 #[derive(Debug, Serialize,  Deserialize)]
-pub struct CreateJobReslut {
+pub struct CreateJobResult {
     pub data: Job,
 }
 
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Job{
-    pub company_name: String,  
+    pub company_name: String,
+    pub position: String,
+    pub position_type: String,
+    pub category: String,
+    pub location: String,
+    pub min_per_year: i32,
+    pub max_per_year: i32,
     pub date_created: DateTime<Utc>,
     pub date_updated: Option<DateTime<Utc>>,
 }
@@ -37,7 +49,7 @@ impl Job {
     ) -> Result<Self, OurError> {
 
         let post_url = directus.directus_api_url.to_string() + "/items/jobs";
-        let create_job_result: CreateJobReslut = reqwest::Client::new()
+        let create_job_result: CreateJobResult = reqwest::Client::new()
             .post(post_url)
             .json(&new_job)
             .bearer_auth(directus.token.to_string())

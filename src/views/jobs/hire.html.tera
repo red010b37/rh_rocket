@@ -109,14 +109,18 @@
                     <h2 class="heading-section-4 text-dark mb-0">Job Details</h2>
 
                     <div class="col-12 my-5 my-xl-5">
-                        <label for="position" class="form-label">Position</label>
-                        <input type="text" id="position" class="form-control rounded-pill"/>
+                        <label for="position" class="form-label">Position*</label>
+                        <input type="text" name="position" required id="position" class="form-control rounded-pill"/>
+                        <p class="small pe-10 ps-10">
+                            Please specify as single job position like "Senior Rust Developer" or "Project Manager", not a sentence.
+                            Please DO NOT WRITE IN FULL CAPS. If posting multiple roles, please create multiple job posts.
+                            A job post is limited to a single job. We only allow real jobs, absolutely no MLM-type courses "learn how to work online" please. </p>
                     </div>
 
                     <div class="col-12 mt-10 mb-5 my-xl-5">
-                        <select type="text" id="type" class="form-control rounded-pill">
-                            <option value="full-time">Full Time</option>
-                            <option value="part-time">Part Time</option>
+                        <select type="text" id="type" name="position_type" class="form-control rounded-pill">
+                            <option value="full_time">Full Time</option>
+                            <option value="part_time">Part Time</option>
                             <option value="contractor">Contractor</option>
                             <option value="internship">Internship</option>
                         </select>
@@ -124,27 +128,30 @@
 
 
                     <div class="col-12 mt-10 mb-5 my-xl-5">
-                        <label for="primary-tag" class="form-label">Primary Tag</label>
-                        <select type="text" id="primary-tag" class="form-control rounded-pill">
-                            <option value="">Select a primary tag</option>
+                        <label for="primary-tag" class="form-label">Primary Category*</label>
+                        <select required id="primary-tag" name="category" class="form-control rounded-pill">
+                            <option value="">Select a category</option>
                             <option value="dev">Software Development</option>
-                            <option value="customer support">Customer Support</option>
+                            <option value="customer_support">Customer Support</option>
                             <option value="sales">Sales</option>
                             <option value="marketing">Marketing</option>
                             <option value="design">Design</option>
-                            <option value="front end">Front End</option>
+                            <option value="front_end">Front End</option>
                             <option value="backend">Back End</option>
                             <option value="legal">Legal</option>
                             <option value="testing">Testing</option>
-                            <option value="quality assurance">Quality Assurance</option>
-                            <option value="non tech">Non-Tech</option>
+                            <option value="quality_assurance">Quality Assurance</option>
+                            <option value="non_tech">Non-Tech</option>
                             <option value="other">Other</option>
                         </select>
+                        <p class="small pe-10 ps-10">
+                            This primary category shows first and increases visibility in the main sections. Your job is shown on every page that is tagged with though. E.g. if you tag it as Software Development, it shows for Remote Software Development Jobs etc.
+                        </p>
                     </div>
 
                     <div class="col-12 my-5 my-xl-5">
                         <label class="form-label" for="location">Job Location</label>
-                        <select multiple name="location" id="location" class="form-control rounded-pill">
+                        <select multiple name="location[]" id="location" class="form-control rounded-pill">
                             <optgroup label="Regions">
                                 <option value="worldwide">Worldwide</option>
                                 <option value="africa">Africa</option>
@@ -406,6 +413,9 @@
                                 <option value="ZW">Zimbabwe</option>
                             </optgroup>
                         </select>
+                        <p class="small pe-10 ps-10">
+                            If you'd only like to hire people from a specific location or timezone this remote job is restricted to (e.g. Europe, United States or Japan). If not restricted, please leave it as "Worldwide". The less restricted this is, the more applicants you will get.
+                        </p>
                     </div>
 
                     <div class="row">
@@ -415,7 +425,7 @@
                         </div>
 
                         <div class="col-md-6 col-xl-6 my-5 my-xl-2">
-                            <select data-required="required" class="form-control rounded-pill">
+                            <select required="required" name="min_per_year" class="form-control rounded-pill">
                                 <option value="">Minimum per year</option>
                                 <option value="0">USD 0 per year</option>
                                 <option value="10000">USD 10,000 per year</option>
@@ -462,7 +472,7 @@
                         </div>
 
                         <div class="col-md-6 col-xl-6 my-5 my-xl-2">
-                            <select data-required="required" class="form-control rounded-pill">
+                            <select data-required="required" name="max_per_year" class="form-control rounded-pill">
                                 <option value="">Maximum per year</option>
                                 <option value="0">USD 0 per year</option>
                                 <option value="10000">USD 10,000 per year</option>
@@ -509,12 +519,12 @@
                         </div>
 
                         <div class="row">
-                            <p class="small">
+                            <p class="small pe-10 ps-10">
                                 Remote job postings are legally required to show a salary compensation range in many U.S.
                                 states and countries. Google does NOT index jobs without salary data. If it's a short-term
                                 gig, use the annual full-time equivalent. For example, if it's a 2-week project for $2,000,
-                                the annual equivalent would be $2,000 / 2 weeks * 52 weeks = $52,000. Please use USD
-                                equivalent
+                                the annual equivalent would be $2,000 / 2 weeks * 52 weeks = $52,000. Please use convert and
+                                use USD equivalent
                             </p>
                         </div>
                     </div>
