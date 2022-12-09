@@ -38,6 +38,13 @@
     $("#location").selectize(
       {copyClassesToDropdown: false}
     );
+
+    $("#tags").selectize(
+      {
+        create: true,
+        copyClassesToDropdown: false,
+      }
+    );
   });
 
 </script>
@@ -152,6 +159,16 @@
                             shown on every page that is tagged with though. E.g. if you tag it as Software Development,
                             it shows for Remote Software Development Jobs etc.
                         </p>
+                    </div>
+
+                    <div class="col-12 mt-10 mb-5 my-xl-5">
+
+                        <label class="tags" for="location">Tags</label>
+                        <select multiple type="text" id="tags" name="tags[]" class="form-control rounded-pill">
+                            {% for tag in tags %}
+                                <option value="{{tag.id}}">{{tag.name}}</option>
+                            {% endfor %}
+                        </select>
                     </div>
 
                     <div class="col-12 my-5 my-xl-5">

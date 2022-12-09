@@ -1,6 +1,6 @@
 [default]
 template_dir = "src/views"
-directus_token = "wd2PA-KBIK3nVlz3veakgoEKhv2-W4p5"
+directus_token = "s1BJBWSKakca8exmk3GmcHVIbTi1U1SC"
 directus_api_url = "https://remotehut.directus.app"
 clockify_token = "YTVjMjZhYzgtNDBkZS00YTEyLTg5MTctODQ1OTFiMjQ3MTYw"
 log_level = "normal"

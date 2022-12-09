@@ -1,10 +1,9 @@
 
 use super::HtmlResponse;
-use crate::models::{
-    job::{Job, NewJobForm},
-};
+use crate::models::{job::{Job, NewJobForm}, tag::Tag};
 use crate::states::Directus;
 use rocket::{State, form::{Contextual, Form}};
+use rocket::http::Status;
 use rocket_dyn_templates::{context, Template};
 
 
@@ -21,7 +20,18 @@ pub async fn index(directus: &State<Directus>) -> &'static str {
 
 #[get("/hire-remotely")]
 pub async fn new_job(directus: &State<Directus>) -> HtmlResponse {
-    Ok(Template::render("jobs/hire", context! {}))
+
+    // get the tags
+    let tags = Tag::get_all(directus)
+        .await
+        .map_err(|_| Status::InternalServerError)?;
+
+    println!("{:?}", tags);
+
+    Ok(Template::render("jobs/hire",
+                        context! {
+                            tags: tags,
+                        }))
 }
 
 

@@ -9,6 +9,7 @@ use rocket::State;
 use reqwest;
 use reqwest::header;
 use reqwest::header::HeaderValue;
+use crate::uilts::is_valid_guid;
 
 #[derive(Debug, FromForm, Serialize,  Deserialize)]
 pub struct NewJobForm<'r> {
@@ -24,7 +25,9 @@ pub struct NewJobForm<'r> {
     pub apply_url: Option<String>,
     pub apply_email: Option<String>,
     pub location: Vec<String>,
+    pub tags: Option<Vec<String>>,
 }
+
 
 #[derive(Debug, Serialize,  Deserialize)]
 pub struct CreateJobResult {
@@ -45,6 +48,7 @@ pub struct Job{
     pub how_to_apply: Option<String>,
     pub apply_url: Option<String>,
     pub apply_email: Option<String>,
+    pub tags: Option<Vec<String>>,
     pub date_created: DateTime<Utc>,
     pub date_updated: Option<DateTime<Utc>>,
 }
@@ -55,6 +59,27 @@ impl Job {
             new_job: &'r NewJobForm<'r>,
             directus: &State<Directus>,
     ) -> Result<Self, OurError> {
+
+
+        let mut tags: Vec<String> = Vec::new();
+
+        if !new_job.tags.is_none() {
+            for tag_id in new_job.tags.as_ref().unwrap().iter() {
+                // println!("{:?}", tag_id);
+                // tags.push(tag_id.to_string());
+                if is_valid_guid(tag_id) {
+                    println!("{:?}", true);
+                    tags.push(tag_id.to_string())
+                } else {
+                    println!("{:?} needs to be create", tag_id);
+                }
+            }
+        }
+
+        // println!("{:?}", serde_json::to_string(&new_job).unwrap(),);
+        //
+        //
+
 
         let post_url = directus.directus_api_url.to_string() + "/items/jobs";
         let create_job_result: CreateJobResult = reqwest::Client::new()

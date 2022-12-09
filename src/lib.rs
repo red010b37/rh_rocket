@@ -14,6 +14,7 @@ pub mod errors;
 pub mod models;
 pub mod routes;
 pub mod states;
+pub mod uilts;
 
 #[derive(Deserialize)]
 pub struct Config {
