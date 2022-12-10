@@ -1,17 +1,18 @@
-
-use rocket::form::{self, Error as FormError, FromForm};
-use serde::{Serialize, Deserialize};
-use chrono::{Datelike, DateTime, Duration, NaiveDate, NaiveDateTime, Utc};
 use crate::errors::our_error::OurError;
-use crate::states::{Directus};
+use crate::states::Directus;
+use chrono::{DateTime, Datelike, Duration, NaiveDate, NaiveDateTime, Utc};
+use rocket::form::{self, Error as FormError, FromForm};
 use rocket::State;
+use serde::{Deserialize, Serialize};
 
+use crate::models::jos_tags::JobTags;
+use crate::models::tag::Tag;
+use crate::uilts::is_valid_guid;
 use reqwest;
 use reqwest::header;
 use reqwest::header::HeaderValue;
-use crate::uilts::is_valid_guid;
 
-#[derive(Debug, FromForm, Serialize,  Deserialize)]
+#[derive(Debug, FromForm, Serialize, Deserialize)]
 pub struct NewJobForm<'r> {
     #[field(validate = len(3..100).or_else(msg!("company name cannot be empty")))]
     pub company_name: &'r str,
@@ -24,24 +25,38 @@ pub struct NewJobForm<'r> {
     pub how_to_apply: Option<String>,
     pub apply_url: Option<String>,
     pub apply_email: Option<String>,
-    pub location: Vec<String>,
+    // pub location: Vec<String>,
     pub tags: Option<Vec<String>>,
 }
 
-
-#[derive(Debug, Serialize,  Deserialize)]
-pub struct CreateJobResult {
-    pub data: Job,
-}
-
-
 #[derive(Debug, Deserialize, Serialize)]
-pub struct Job{
+pub struct CreateJobPost {
     pub company_name: String,
     pub position: String,
     pub position_type: String,
     pub category: String,
-    pub location: String,
+    // pub location: Vec<String>,
+    pub min_per_year: i32,
+    pub max_per_year: i32,
+    pub description: String,
+    pub how_to_apply: Option<String>,
+    pub apply_url: Option<String>,
+    pub apply_email: Option<String>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct CreateJobResult {
+    pub data: Job,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+pub struct Job {
+    pub id: String,
+    pub company_name: String,
+    pub position: String,
+    pub position_type: String,
+    pub category: String,
+    // pub location: Vec<String>,
     pub min_per_year: i32,
     pub max_per_year: i32,
     pub description: String,
@@ -54,15 +69,14 @@ pub struct Job{
 }
 
 impl Job {
-
     pub async fn create<'r>(
-            new_job: &'r NewJobForm<'r>,
-            directus: &State<Directus>,
+        new_job: &'r NewJobForm<'r>,
+        directus: &State<Directus>,
     ) -> Result<Self, OurError> {
-
-
         let mut tags: Vec<String> = Vec::new();
+        let mut tags_to_create: Vec<String> = Vec::new();
 
+        // look to see if we have any new tags to create
         if !new_job.tags.is_none() {
             for tag_id in new_job.tags.as_ref().unwrap().iter() {
                 // println!("{:?}", tag_id);
@@ -72,30 +86,52 @@ impl Job {
                     tags.push(tag_id.to_string())
                 } else {
                     println!("{:?} needs to be create", tag_id);
+                    tags_to_create.push(tag_id.to_string());
                 }
             }
         }
 
-        // println!("{:?}", serde_json::to_string(&new_job).unwrap(),);
-        //
-        //
+        // if we have fund some tags to create post them
+        if !tags_to_create.is_empty() {
+            let create_tags = Tag::create_tags(directus, tags_to_create).await?;
+            // println!("Created tagd {:?}", create_tags);
+            for new_tag in create_tags {
+                tags.push(new_tag.id)
+            }
+        }
 
+        let dPost = CreateJobPost {
+            company_name: new_job.company_name.parse().unwrap(),
+            position: new_job.position.parse().unwrap(),
+            position_type: new_job.position_type.parse().unwrap(),
+            category: new_job.category.parse().unwrap(),
+            // location: new_job.location.clone(),
+            min_per_year: new_job.max_per_year,
+            max_per_year: new_job.max_per_year,
+            description: new_job.description.parse().unwrap(),
+            how_to_apply: new_job.how_to_apply.clone(),
+            apply_url: new_job.apply_url.clone(),
+            apply_email: new_job.apply_email.clone(),
+        };
 
+        // create the job
         let post_url = directus.directus_api_url.to_string() + "/items/jobs";
         let create_job_result: CreateJobResult = reqwest::Client::new()
             .post(post_url)
-            .json(&new_job)
+            .json(&dPost)
             .bearer_auth(directus.token.to_string())
             .send()
             .await?
             .json()
             .await?;
-            
 
-            println!("{:?}", create_job_result);
+        // connect the job and the tags together
+        if !tags.is_empty() {
+            JobTags::create(directus, create_job_result.data.id.to_string(), tags).await?;
+        }
 
-            Ok(create_job_result.data)
-        
+        println!("{:?}", create_job_result);
+
+        Ok(create_job_result.data)
     }
-
 }
