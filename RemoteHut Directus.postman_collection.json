@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "d2458d74-a57e-43a6-88c4-2757000b8d69",
+		"name": "RemoteHut Directus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Collections",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Jobs",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Create Job",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"company_name\": \"test name\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{appdomain}}.directus.app/items/jobs",
+					"protocol": "https",
+					"host": [
+						"{{appdomain}}",
+						"directus",
+						"app"
+					],
+					"path": [
+						"items",
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Homepage queries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{appdomain}}.directus.app/items/jobs?fields=status,company_name,date_updated,date_created,tags.tag_id.name,tags.tag_id.id&sort=date_created&filter[status][_eq]=published",
+					"protocol": "https",
+					"host": [
+						"{{appdomain}}",
+						"directus",
+						"app"
+					],
+					"path": [
+						"items",
+						"jobs"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "status,company_name,date_updated,date_created,tags.tag_id.name,tags.tag_id.id"
+						},
+						{
+							"key": "sort",
+							"value": "date_created"
+						},
+						{
+							"key": "filter[status][_eq]",
+							"value": "published"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "s1BJBWSKakca8exmk3GmcHVIbTi1U1SC",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "appdomain",
+			"value": "remotehut"
+		}
+	]
+}
