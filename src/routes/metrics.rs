@@ -1,25 +1,18 @@
 use serde::{Deserialize, Serialize};
 
+use super::HtmlResponse;
+use crate::models::metrics_clockify;
+use crate::states::{Clockify, Directus};
 use rocket::State;
 use rocket_dyn_templates::{context, Template};
-use crate::states::{
-    Clockify,
-    Directus,
-};
-use crate::models::metrics_clockify;
-use super::HtmlResponse;
-
 
 #[get("/metrics")]
-pub async fn index(
-    directus: &State<Directus>
-) -> HtmlResponse {
-    let r = metrics_clockify::MetricsClockify::list(directus)
-        .await;
+pub async fn index(directus: &State<Directus>) -> HtmlResponse {
+    let r = metrics_clockify::MetricsClockify::list(directus).await;
 
     let mut d = r.unwrap().data;
 
-    d.sort_by(|a,b| a.log_date.cmp(&b.log_date));
+    d.sort_by(|a, b| a.log_date.cmp(&b.log_date));
 
     let mut gdata: Vec<GraphData> = vec![];
 
@@ -37,7 +30,7 @@ pub async fn index(
 
         if !exists {
             gdata.push(GraphData {
-                amount_cents: item.amount.clone() * -1 ,
+                amount_cents: item.amount.clone() * -1,
                 date: log_date.clone(),
                 duration_seconds: item.duration.clone(),
                 cumulative_amount_cents: 0.0,
@@ -51,11 +44,13 @@ pub async fn index(
         di.cumulative_amount_cents = ct.clone();
     }
 
-
-    Ok(Template::render("metrics/metrics", context! {
-        clockifydata: &gdata,
-        cumulative_total: (ct.round() * -1.0),
-    }))
+    Ok(Template::render(
+        "metrics/metrics",
+        context! {
+            clockifydata: &gdata,
+            cumulative_total: (ct.round() * -1.0),
+        },
+    ))
 }
 
 #[derive(Serialize, Deserialize)]
@@ -66,12 +61,8 @@ pub struct GraphData {
     pub cumulative_amount_cents: f32,
 }
 
-
 #[get("/metrics/cron/clockify")]
-pub async fn clockfyCron(
-    clockify: &State<Clockify>,
-    directus: &State<Directus>,
-) -> &'static str {
+pub async fn clockfyCron(clockify: &State<Clockify>, directus: &State<Directus>) -> &'static str {
     println!("{}", &clockify.token.to_string());
     let r = metrics_clockify::MetricsClockify::get_info(clockify, directus).await;
     "im the clockify cron"
