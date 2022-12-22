@@ -13,6 +13,19 @@ use reqwest::header;
 use reqwest::header::HeaderValue;
 use crate::models::jobs_countries::JobCountry;
 use crate::models::jobs_regions::JobRegion;
+use crate::models::query_resp::{Daum, GetJobsResult};
+
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ManyJobsResult {
+    pub data: Vec<Job>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct SingleJobResult {
+    pub data: Job,
+}
+
 
 #[derive(Debug, FromForm, Serialize, Deserialize)]
 pub struct NewJobForm<'r> {
@@ -54,6 +67,7 @@ pub struct CreateJobResult {
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Job {
     pub id: String,
+    pub status: String,
     pub company_name: String,
     pub position: String,
     pub position_type: String,
@@ -65,7 +79,7 @@ pub struct Job {
     pub how_to_apply: Option<String>,
     pub apply_url: Option<String>,
     pub apply_email: Option<String>,
-    pub tags: Option<Vec<String>>,
+    pub tags: Option<Vec<Tag>>,
     pub date_created: DateTime<Utc>,
     pub date_updated: Option<DateTime<Utc>>,
 }
@@ -122,9 +136,6 @@ impl Job {
             }
         }
 
-
-
-
         let dPost = CreateJobPost {
             company_name: new_job.company_name.parse().unwrap(),
             position: new_job.position.parse().unwrap(),
@@ -171,4 +182,25 @@ impl Job {
 
         Ok(create_job_result.data)
     }
+
+    pub async fn get_jobs<'r>(
+        directus: &State<Directus>,
+    ) -> Result<Vec<Daum>, OurError> {
+
+        let mut url =  directus.directus_api_url.to_string() + "/items/jobs";
+        url += "?fields=id,status,company_name,date_updated,date_created,tags.tag_id.name,tags.tag_id.id&sort=date_created&filter[status][_eq]=published";
+
+        println!("{:?}", url);
+        let result: GetJobsResult = reqwest::Client::new()
+            .get(url)
+            .bearer_auth(directus.token.to_string())
+            .send()
+            .await?
+            .json()
+            .await?;
+
+        Ok(result.data)
+    }
+
+
 }
