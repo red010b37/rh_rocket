@@ -5,12 +5,14 @@ use rocket::form::{self, Error as FormError, FromForm};
 use rocket::State;
 use serde::{Deserialize, Serialize};
 
-use crate::models::jos_tags::JobTags;
+use crate::models::jobs_tags::JobTags;
 use crate::models::tag::Tag;
 use crate::uilts::is_valid_guid;
 use reqwest;
 use reqwest::header;
 use reqwest::header::HeaderValue;
+use crate::models::jobs_countries::JobCountry;
+use crate::models::jobs_regions::JobRegion;
 
 #[derive(Debug, FromForm, Serialize, Deserialize)]
 pub struct NewJobForm<'r> {
@@ -21,11 +23,11 @@ pub struct NewJobForm<'r> {
     pub category: &'r str,
     pub min_per_year: i32,
     pub max_per_year: i32,
-    pub description: String,
+    pub job_description: String,
     pub how_to_apply: Option<String>,
     pub apply_url: Option<String>,
     pub apply_email: Option<String>,
-    // pub location: Vec<String>,
+    pub location: Vec<String>,
     pub tags: Option<Vec<String>>,
 }
 
@@ -100,6 +102,29 @@ impl Job {
             }
         }
 
+        let mut regions: Vec<i32> = Vec::new();
+        let mut countries: Vec<i32> = Vec::new();
+
+        // sort out the regions and countires
+        for location in new_job.location.iter() {
+            if location.starts_with('r') {
+                println!("{:?}", location);
+                let locationId: i32 = location.split('_').nth(1).unwrap().parse().unwrap();
+                println!("{:?}", locationId);
+                regions.push(locationId);
+            }
+
+            if location.starts_with('c') {
+                println!("{:?}", location);
+                let countryId: i32 = location.split('_').nth(1).unwrap().parse().unwrap();
+                println!("{:?}", countryId);
+                countries.push(countryId);
+            }
+        }
+
+
+
+
         let dPost = CreateJobPost {
             company_name: new_job.company_name.parse().unwrap(),
             position: new_job.position.parse().unwrap(),
@@ -108,7 +133,7 @@ impl Job {
             // location: new_job.location.clone(),
             min_per_year: new_job.max_per_year,
             max_per_year: new_job.max_per_year,
-            description: new_job.description.parse().unwrap(),
+            description: new_job.job_description.parse().unwrap(),
             how_to_apply: new_job.how_to_apply.clone(),
             apply_url: new_job.apply_url.clone(),
             apply_email: new_job.apply_email.clone(),
@@ -125,9 +150,21 @@ impl Job {
             .json()
             .await?;
 
+        let job_id = create_job_result.data.id.to_string();
+
         // connect the job and the tags together
         if !tags.is_empty() {
-            JobTags::create(directus, create_job_result.data.id.to_string(), tags).await?;
+            JobTags::create(directus, job_id.to_string(), tags).await?;
+        }
+
+        // connect the regions
+        if !regions.is_empty() {
+            JobRegion::create(directus, job_id.to_string(), regions ).await?
+        }
+
+        // connect the countries
+        if !countries.is_empty() {
+            JobCountry::create(directus, job_id.to_string(), countries ).await?
         }
 
         println!("{:?}", create_job_result);

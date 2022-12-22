@@ -43,7 +43,7 @@ impl Tag {
     pub async fn get_all<'r>(
         directus: &State<Directus>,
     ) -> Result<Vec<Self>, OurError> {
-        let url = directus.directus_api_url.to_string() + "/items/tags";
+        let url = Self::url_path(directus);
         println!("{:?}", url);
         let result: ManyTagsResult = reqwest::Client::new()
             .get(url)
@@ -92,6 +92,6 @@ impl Tag {
     }
 
     fn url_path (directus: &State<Directus>) -> String {
-        directus.directus_api_url.to_string() + "/items/tags"
+        directus.directus_api_url.to_string() + "/items/tags?limit=-1"
     }
 }

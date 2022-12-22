@@ -45,6 +45,12 @@ impl From<reqwest::Error> for OurError {
     }
 }
 
+impl From<OurError> for Status {
+    fn from(error: OurError) -> Self {
+        error.status
+    }
+}
+
 impl OurError {
     fn new_error_with_status(
         status: Status,
