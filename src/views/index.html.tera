@@ -107,7 +107,7 @@
                             </div>
                             <div class="info-card-content">
                                 <h6 class="info-card-title">${{job.min_per_year}} - ${{job.max_per_year}}</h6>
-                                <div class="info-card-desc">Monthly Salary</div>
+                                <div class="info-card-desc">Yearly Salary</div>
                             </div>
                         </div>
                         <div class="info-card">
@@ -121,8 +121,7 @@
                                     {% endfor %}
 
                                     {% for c in job.countries %}
-                                        {{c.country_id.name}}
-                                        {% if not loop.last %},{% endif %}
+                                        {{c.country_id.name}}{% if not loop.last %},{% endif %}
                                     {% endfor %}
                                 </h6>
                                 <div class="info-card-desc">Location</div>
