@@ -1,20 +1,23 @@
 use crate::errors::our_error::OurError;
 use crate::states::Directus;
 use chrono::{DateTime, Datelike, Duration, NaiveDate, NaiveDateTime, Utc};
+use rand::distributions::Uniform;
+use rand::{thread_rng, Rng};
+use regex::Regex;
 use rocket::form::{self, Error as FormError, FromForm};
 use rocket::State;
 use serde::{Deserialize, Serialize};
 
+use crate::models::jobs_countries::JobCountry;
+use crate::models::jobs_regions::JobRegion;
 use crate::models::jobs_tags::JobTags;
+use crate::models::query_resp::{Daum, GetJobsResult};
 use crate::models::tag::Tag;
 use crate::uilts::is_valid_guid;
 use reqwest;
 use reqwest::header;
 use reqwest::header::HeaderValue;
-use crate::models::jobs_countries::JobCountry;
-use crate::models::jobs_regions::JobRegion;
-use crate::models::query_resp::{Daum, GetJobsResult};
-
+use rocket::tokio::task;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ManyJobsResult {
@@ -25,7 +28,6 @@ pub struct ManyJobsResult {
 pub struct SingleJobResult {
     pub data: Job,
 }
-
 
 #[derive(Debug, FromForm, Serialize, Deserialize)]
 pub struct NewJobForm<'r> {
@@ -57,6 +59,8 @@ pub struct CreateJobPost {
     pub how_to_apply: Option<String>,
     pub apply_url: Option<String>,
     pub apply_email: Option<String>,
+    pub gen_id: i32,
+    pub slug: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -136,18 +140,31 @@ impl Job {
             }
         }
 
+        let random_number = task::spawn_blocking(|| {
+            let mut rng = thread_rng();
+            rng.gen_range(10000..100000)
+        })
+        .await
+        .unwrap();
+
+        let num_i32: i32 = random_number as i32;
+        println!("Random 5-digit number: {}", num_i32);
+
+        let slug = Self::gen_slug(new_job.position.parse().unwrap(), num_i32);
+
         let dPost = CreateJobPost {
             company_name: new_job.company_name.parse().unwrap(),
             position: new_job.position.parse().unwrap(),
             position_type: new_job.position_type.parse().unwrap(),
             category: new_job.category.parse().unwrap(),
-            // location: new_job.location.clone(),
             min_per_year: new_job.max_per_year,
             max_per_year: new_job.max_per_year,
             description: new_job.job_description.parse().unwrap(),
             how_to_apply: new_job.how_to_apply.clone(),
             apply_url: new_job.apply_url.clone(),
             apply_email: new_job.apply_email.clone(),
+            gen_id: num_i32,
+            slug,
         };
 
         // create the job
@@ -170,12 +187,12 @@ impl Job {
 
         // connect the regions
         if !regions.is_empty() {
-            JobRegion::create(directus, job_id.to_string(), regions ).await?
+            JobRegion::create(directus, job_id.to_string(), regions).await?
         }
 
         // connect the countries
         if !countries.is_empty() {
-            JobCountry::create(directus, job_id.to_string(), countries ).await?
+            JobCountry::create(directus, job_id.to_string(), countries).await?
         }
 
         println!("{:?}", create_job_result);
@@ -183,12 +200,9 @@ impl Job {
         Ok(create_job_result.data)
     }
 
-    pub async fn get_jobs<'r>(
-        directus: &State<Directus>,
-    ) -> Result<Vec<Daum>, OurError> {
-
-        let mut url =  directus.directus_api_url.to_string() + "/items/jobs";
-        url += "?fields=id,status,company_name,date_updated,date_created,tags.tag_id.name,tags.tag_id.id&sort=date_created&filter[status][_eq]=published";
+    pub async fn get_jobs<'r>(directus: &State<Directus>) -> Result<Vec<Daum>, OurError> {
+        let mut url = directus.directus_api_url.to_string() + "/items/jobs";
+        url += "?fields=id,status,position,company_name,min_per_year,max_per_year,slug,date_updated,date_created,tags.tag_id.name,tags.tag_id.id,region.region_id.id,region.region_id.name,countries.country_id.id,countries.country_id.name";
 
         println!("{:?}", url);
         let result: GetJobsResult = reqwest::Client::new()
@@ -202,5 +216,23 @@ impl Job {
         Ok(result.data)
     }
 
+    fn gen_slug(title: String, gen_id: i32) -> String {
+        // Make the string lowercase
+        let s_lower = title.to_lowercase();
 
+        // Remove all characters except for letters, numbers, and spaces
+        let s_filtered = Regex::new(r"[^a-z0-9\s]")
+            .unwrap()
+            .replace_all(&s_lower, "");
+
+        // Replace multiple spaces with a single hyphen
+        let s_hyphenated = Regex::new(r"\s+").unwrap().replace_all(&s_filtered, "-");
+
+        // Convert to a String
+        let mut s_final: String = s_hyphenated.into();
+
+        s_final = format!("{}-{}", s_final, gen_id.to_string());
+        println!("Modified string: {}", s_final);
+        return s_final;
+    }
 }

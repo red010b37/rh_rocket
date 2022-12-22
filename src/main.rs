@@ -1,5 +1,7 @@
 #[macro_use]
 extern crate rocket;
+extern crate rand;
+extern crate regex;
 
 use remote_hut::setup_rocket;
 use rocket::{Build, Rocket};

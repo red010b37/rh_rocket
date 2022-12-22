@@ -14,10 +14,8 @@
       type="text/css"
     />
 
-        <link rel="stylesheet" href="/css/styles.css" />
-<!--    <link rel="stylesheet" href="/css/normalize.css" />-->
-<!--    <link rel="stylesheet" href="/css/skeleton.css" />-->
-<!--    <link rel="stylesheet" href="/css/style.css" />-->
+
+    <link rel="stylesheet" href="/css/theme.css" />
     <link rel="icon" type="image/png" href="/images/favicon.png" />
 
     <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
@@ -33,7 +31,7 @@
       <!-- /.navbar-brand -->
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-        <img src="./assets/icons/bars.svg" class="svg-inject svg-icon" alt="" />
+        <img src="/assets/icons/bars.svg" class="svg-inject svg-icon" alt="" />
       </button>
       <!-- /.navbar-toggler-mobile -->
 
@@ -85,5 +83,11 @@
   <main class="main">
       {% block content %}{% endblock content %}
   </main>
+
+  <script src="/vendors/svg-inject/dist/svg-inject.min.js"></script>
+
+  <!-- Template Function -->
+  <script src="/js/theme.js"></script>
+
   </body>
 </html>

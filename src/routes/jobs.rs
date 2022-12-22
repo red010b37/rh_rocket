@@ -1,19 +1,19 @@
 use super::HtmlResponse;
+use crate::errors::our_error::OurError;
+use crate::models::countries::Country;
+use crate::models::region::Region;
 use crate::models::{
     job::{Job, NewJobForm},
     tag::Tag,
 };
 use crate::states::Directus;
 use rocket::http::Status;
+use rocket::tokio::{join, try_join};
 use rocket::{
     form::{Contextual, Form},
     State,
 };
-use rocket::tokio::{join, try_join};
 use rocket_dyn_templates::{context, Template};
-use crate::errors::our_error::OurError;
-use crate::models::countries::Country;
-use crate::models::region::Region;
 
 #[get("/job")]
 pub async fn index(directus: &State<Directus>) -> &'static str {
@@ -25,9 +25,15 @@ pub async fn index(directus: &State<Directus>) -> &'static str {
     "Im the job"
 }
 
+#[get("/remote-job/<slug>")]
+pub async fn view_job(directus: &State<Directus>, slug: &str) -> HtmlResponse {
+    println!("{:?}", slug);
+
+    Ok(Template::render("jobs/hire", context! {}))
+}
+
 #[get("/hire-remotely")]
 pub async fn new_job(directus: &State<Directus>) -> HtmlResponse {
-
     // get the tags
     let tags = Tag::get_all(directus)
         .await
@@ -52,9 +58,9 @@ pub async fn new_job(directus: &State<Directus>) -> HtmlResponse {
 }
 
 #[post(
-"/hire-remotely",
-format = "application/x-www-form-urlencoded",
-data = "<job_context>"
+    "/hire-remotely",
+    format = "application/x-www-form-urlencoded",
+    data = "<job_context>"
 )]
 pub async fn create_new_job<'r>(
     job_context: Form<Contextual<'r, NewJobForm<'r>>>,

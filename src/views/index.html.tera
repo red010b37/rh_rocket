@@ -1,12 +1,174 @@
 {% extends "layout" %} {% block content %}
 <div>
-  <p><!--Nothing to see here --></p>
-  <h1>Remote Hut</h1>
-  {% if flash %}
-  <small class="field-{{ flash.kind }}-flash">
-    {{ flash.message }}
-  </small>
-  {% endif %}
+    <p><!--Nothing to see here --></p>
+    <h1>Remote Hut</h1>
+    {% if flash %}
+    <small class="field-{{ flash.kind }}-flash">
+        {{ flash.message }}
+    </small>
+    {% endif %}
+
+
+    <div class="container-xxl">
+        <div class="d-flex flex-column flex-xl-row align-items-xl-center gap-20">
+            <h4 class="heading-section-4 text-dark mb-0">Showing 34 Jobs</h4>
+            <!-- /.heading-section -->
+
+            <div class="d-flex flex-column flex-md-row align-items-md-center w-100 w-xl-auto ms-auto gap-15 gap-md-34">
+                <div class="d-flex gap-43 py-15 overflow-auto">
+                    <div class="d-flex gap-25">
+                        <div class="checkbox-type type-1">
+                            <input class="checkbox-type-input" type="checkbox" value="" id="checkFulltime"/>
+                            <label class="checkbox-type-label" for="checkFulltime">
+                                <div class="checkbox-type-icon">
+                                    <img src="./assets/icons/check-circle-stroke.svg" class="svg-inject" alt=""/>
+                                </div>
+                                <div class="checkbox-type-text fw-semiBold">Fulltime</div>
+                            </label>
+                        </div>
+                        <!-- /.checkbox-filter -->
+
+                        <div class="checkbox-type type-1">
+                            <input class="checkbox-type-input" type="checkbox" value="" id="checkFreelance" checked/>
+                            <label class="checkbox-type-label" for="checkFreelance">
+                                <div class="checkbox-type-icon">
+                                    <img src="./assets/icons/check-circle-stroke.svg" class="svg-inject" alt=""/>
+                                </div>
+                                <div class="checkbox-type-text fw-semiBold">Freelance</div>
+                            </label>
+                        </div>
+                        <!-- /.checkbox-filter -->
+                    </div>
+
+                    <div class="d-flex gap-25">
+                        <div class="checkbox-switch checkbox-switch-end">
+                            <input class="checkbox-switch-input" type="checkbox" role="switch" id="swicthCheckDetails"/>
+                            <label class="checkbox-switch-label" for="swicthCheckDetails">
+                                <div class="checkbox-switch"></div>
+                                <div class="checkbox-switch-text fw-semiBold">Details</div>
+                            </label>
+                        </div>
+                        <!-- /.checkbox-swicth-fillter -->
+
+                        <div class="checkbox-switch checkbox-switch-end">
+                            <input class="checkbox-switch-input" type="checkbox" role="switch" id="switchCheckSalary"
+                                   checked/>
+                            <label class="checkbox-switch-label" for="switchCheckSalary">
+                                <div class="checkbox-switch"></div>
+                                <div class="checkbox-switch-text fw-semiBold">Salary</div>
+                            </label>
+                        </div>
+                        <!-- /.checkbox-swicth-fillter -->
+                    </div>
+                </div>
+
+                <div class="d-flex gap-15 ms-auto">
+                    <button class="btn d-flex align-items-center fw-medium text-dark py-12 px-25 border border-1 border-platinum rounded-pill shadow-none">
+                        Newest
+                        <img src="./assets/icons/chevron-down.svg" class="svg-inject text-primary is-20 ms-15" alt=""/>
+                    </button>
+                    <!-- /.btn-newest -->
+
+                    <button class="btn btn-rounded border border-1 border-platinum shadow-none" role="button">
+                        <img src="./assets/icons/filter.svg" class="svg-inject svg-icon text-primary" alt=""/>
+                    </button>
+                    <!-- /.btn-filter -->
+                </div>
+            </div>
+        </div>
+
+        <div class="d-grid mt-60 gap-34">
+
+            {% for job in jobs %}
+            <div class="job-card-harizontal">
+                <button class="btn btn-rounded btn-white position-absolute d-xl-none top-100 start-50 p-10 translate-middle"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#jobInfoCardCollapse"
+                        aria-expanded="false" aria-controls="jobInfoCardCollapse">
+                    <img src="./assets/icons/chevron-down.svg" class="svg-inject text-primary is-16" alt=""/>
+                </button>
+                <div class="job-info">
+                    <div class="job-image">
+                        <img src="./assets/job-logo-image-80x80.png" alt=""/>
+                    </div>
+                    <div class="job-info-inner">
+                        <h5 class="job-title">
+                            <a href="/remote-job/{{job.slug}}">{{job.position}}</a>
+                        </h5>
+                        <div class="job-author">
+                            <a href="#">{{job.company_name}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="job-info-card-collapse collapse" id="jobInfoCardCollapse">
+                    <div class="job-info-card">
+                        <div class="info-card">
+                            <div class="info-card-icon bg-ufo-green-100 rounded-pill">
+                                <img src="./assets/icons/sack-dollar.svg" class="svg-inject svg-icon" alt=""/>
+                            </div>
+                            <div class="info-card-content">
+                                <h6 class="info-card-title">${{job.min_per_year}} - ${{job.max_per_year}}</h6>
+                                <div class="info-card-desc">Monthly Salary</div>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-icon bg-rajah rounded-pill">
+                                <img src="/assets/icons/mark.svg" class="svg-inject svg-icon" alt=""/>
+                            </div>
+                            <div class="info-card-content">
+                                <h6 class="info-card-title">
+                                    {% for r in job.region %}
+                                        {{r.region_id.name}},
+                                    {% endfor %}
+
+                                    {% for c in job.countries %}
+                                        {{c.country_id.name}}
+                                        {% if not loop.last %},{% endif %}
+                                    {% endfor %}
+                                </h6>
+                                <div class="info-card-desc">Location</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="job-action">
+                    <a class="btn btn-apply flex-fill flex-md-nofill fw-semiBold py-12 px-43 rounded-pill"
+                       href="/jobdetail.html">Apply Now</a>
+                    <button class="btn btn-rounded btn-book">
+                        <img src="/assets/icons/heart.svg" class="svg-inject svg-icon is-20" alt=""/>
+                    </button>
+                </div>
+            </div>
+            <!-- /.job-card-grid-harizontal-component -->
+
+            {% endfor %}
+
+
+        </div>
+        <!-- /.job-list -->
+
+        <div class="d-flex justify-content-center mt-60">
+            <nav class="pagination-container" aria-label="Page navigation example">
+                <a href="#" class="page-link previous">
+                    <img src="./assets/icons/angles-left.svg" class="svg-inject" alt=""/>
+                    Previous
+                </a>
+                <ul class="pagination bg-lavender-web-100">
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                </ul>
+                <a href="#" class="page-link next">
+                    Next
+                    <img src="./assets/icons/angles-right.svg" class="svg-inject" alt=""/>
+                </a>
+            </nav>
+        </div>
+        <!-- /.job-list-pagination -->
+    </div>
+    <!-- /.container -->
+    <!-- = /. Job List Section = -->
 
 
 </div>

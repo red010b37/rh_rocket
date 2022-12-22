@@ -18,6 +18,8 @@ base64 = {version = "0.13.0"}
 chrono = {version = "0.4.23", features= ["serde"]}
 fern = "0.6"
 log = "0.4"
+rand = "0.8.5"
+regex = "1.7.0"
 reqwest = {version = "0.11.13", features = ["json"]}
 rocket = { version = "0.5.0-rc.2", features = ["uuid", "secrets", "json"] }
 rocket_dyn_templates = {version = "0.1.0-rc.2", features = ["tera"]}

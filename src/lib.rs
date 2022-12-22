@@ -1,7 +1,7 @@
 #[macro_use]
 extern crate rocket;
 
-use crate::routes::{jobs, metrics, home};
+use crate::routes::{home, jobs, metrics};
 use crate::states::{Clockify, Directus};
 use log::LevelFilter;
 use rocket::fs::relative;
@@ -44,24 +44,21 @@ fn setup_logger() {
     async_log::Logger::wrap(logger, || 0).start(level).unwrap();
 }
 
-
 pub async fn setup_rocket() -> Rocket<Build> {
     // setup_logger();
     let our_rocket = rocket::build()
-    .attach(Template::fairing())
-        .mount("/", routes![
-            home::homepage,
-            home::health_check,
-        ])
-        .mount("/", routes![
-            jobs::index,
-            jobs::new_job,
-            jobs::create_new_job,
-        ])
-        .mount("/", routes![
-            metrics::index,
-            metrics::clockfyCron,
-        ])
+        .attach(Template::fairing())
+        .mount("/", routes![home::homepage, home::health_check,])
+        .mount(
+            "/",
+            routes![
+                jobs::index,
+                jobs::new_job,
+                jobs::create_new_job,
+                jobs::view_job,
+            ],
+        )
+        .mount("/", routes![metrics::index, metrics::clockfyCron,])
         .mount("/", FileServer::from(relative!("static")));
 
     // Load the config
@@ -82,5 +79,3 @@ pub async fn setup_rocket() -> Rocket<Build> {
     let final_rocket = our_rocket.manage(directus).manage(clockify);
     final_rocket
 }
-
-
