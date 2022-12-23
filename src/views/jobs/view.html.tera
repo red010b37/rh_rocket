@@ -1,0 +1,316 @@
+{% extends "layout" %}
+
+{% block head %}
+    {{ super() }}
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.14.0/css/selectize.css"
+          integrity="sha512-ikoGg2i+6jXI1u0qXylbyIb+9f9/z/fVQR4kor0Dmt3oTIb/ZnOZ33POmdUitzXTDrd5XCpQUhsiXnl/oTuiHA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.14.0/js/standalone/selectize.min.js"
+            integrity="sha512-EZjqrrnoamnlzX1VpHSu7mCYXpbVJdqeJBbpPIHdfH/AtF8Lp/jKrCzYqzKSuVjxriFkEWR0I3qoT2evvrvRmw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script>
+      tinymce.init({
+        selector: '#job_description',
+        menubar: false,
+        statusbar: false,
+        height: 400,
+        plugins: "link lists",
+        toolbar: "undo redo | bold italic | h1 h2 | bullist numlist | outdent indent | link | styleselect",
+      });
+      tinymce.init({
+        selector: '#applyDescription',
+        menubar: false,
+        statusbar: false,
+        height: 300,
+        plugins: "link lists",
+        toolbar: "undo redo | bold italic | h1 h2 | bullist numlist | outdent indent | link | styleselect",
+      });
+
+      $(function () {
+        $("#location").selectize(
+          {copyClassesToDropdown: false}
+        );
+
+        $("#tags").selectize(
+          {
+            create: true,
+            copyClassesToDropdown: false,
+          }
+        );
+      });
+
+    </script>
+
+
+    <style>
+        .selectize-input {
+            background: none;
+            border: none;
+            box-shadow: none;
+        }
+
+        .selectize-input.focus {
+            box-shadow: none;
+        }
+
+        .selectize-dropdown .optgroup-header {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #3638488c;
+        }
+
+        .selectize-dropdown .option {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #363848;
+            padding-left: 20px;
+        }
+    </style>
+
+
+{% endblock head %}
+
+
+{% block content %}
+    <div>
+        {% if flash %}
+            <small class="field-{{ flash.kind }}-flash">
+                {{ flash.message }}
+            </small>
+        {% endif %}
+
+    </div>
+
+
+    <main class="main position-relative">
+
+
+        <div class="container-xxl">
+            <div class="position-relative py-43 py-lg-80">
+                <div class="d-grid gap-10 text-center">
+                    <h4 class="heading-section-4 text-white mb-0">Job Details</h4>
+                    <div class="heading-text-2 text-white"><a class="text-white text-decoration-none" href="#">Jobs</a>
+                        / <a class="text-white text-decoration-none" href="#">Highspeed Studios</a> / <a
+                                class="text-white text-decoration-none" href="#">UI Designer</a></div>
+                </div>
+                <!-- /.heading-header -->
+
+                <a class="position-absolute btn btn-rounded btn-white top-0 top-md-50 top-md start-0 translate-middle-md-y p-10 mt-15 mt-md-0"
+                   href="/">
+                    <img src="/assets/icons/long-arrow-left.svg" class="svg-inject text-dark is-20" alt=""/>
+                </a>
+                <!-- /.btn-back -->
+
+                <button class="btn btn-rounded btn-book position-absolute d-md-none top-100 start-85 translate-middle">
+                    <img src="/assets/icons/heart.svg" class="svg-inject svg-icon" alt=""/>
+                </button>
+                <!-- /.btn-book-mobile -->
+            </div>
+        </div>
+        <!-- /.container -->
+        <!-- = /. Header Section = -->
+
+        <div class="container-xxl">
+            <div class="row">
+                <div class="col-12 col-lg-8 col-xl-9 order-lg-2">
+                    <div class="d-grid bg-white p-20 p-md-34 p-xxl-43 gap-34 rounded-20 shadow-2">
+                        <div class="d-flex align-items-center">
+                            <div class="d-grid gap-10">
+                                <h2 class="heading-section-4 text-dark mb-0">Lead UI/UX Designer</h2>
+                                <div class="fs-14">Posted by <a href="#"
+                                                                class="text-dark text-decoration-none">Admin</a> on
+                                    November 12th, 2020
+                                </div>
+                            </div>
+                            <!-- /.job-title and job-meta -->
+
+                            <div class="d-none d-md-flex align-items-md-center gap-10 gap-xl-20 ms-auto ps-20">
+                                <a class="btn btn-apply fw-semiBold py-12 px-34 rounded-pill" href="#">Apply Now</a>
+                                <!-- /.btn-apply -->
+
+                                <button class="btn btn-rounded btn-book">
+                                    <img src="/assets/icons/heart.svg" class="svg-inject svg-icon" alt=""/>
+                                </button>
+                                <!-- /.btn-book -->
+                            </div>
+                            <!-- end action-btn-desktop -->
+                        </div>
+
+                        <div class="d-flex flex-column flex-xl-row gap-15 gap-xl-34 py-10 py-lg-20">
+                            <div class="info-card">
+                                <div class="info-card-icon bg-ufo-green-100 rounded-pill">
+                                    <img src="/assets/icons/sack-dollar.svg" class="svg-inject svg-icon" alt=""/>
+                                </div>
+                                <div class="info-card-content flex-nofill">
+                                    <h6 class="info-card-title">$14,000 - $25,000</h6>
+                                    <div class="info-card-desc">Monthly Salary</div>
+                                </div>
+                            </div>
+                            <!-- /.info-card-component -->
+
+                            <div class="info-card">
+                                <div class="info-card-icon bg-deep-lilac rounded-pill">
+                                    <img src="/assets/icons/compas.svg" class="svg-inject svg-icon" alt=""/>
+                                </div>
+                                <div class="info-card-content flex-nofill">
+                                    <h6 class="info-card-title">2-3 Years</h6>
+                                    <div class="info-card-desc">Experience</div>
+                                </div>
+                            </div>
+                            <!-- /.info-card-component -->
+
+                            <div class="info-card">
+                                <div class="info-card-icon bg-rajah rounded-pill">
+                                    <img src="/assets/icons/mark.svg" class="svg-inject svg-icon" alt=""/>
+                                </div>
+                                <div class="info-card-content flex-nofill">
+                                    <h6 class="info-card-title">London, England</h6>
+                                    <div class="info-card-desc">Location</div>
+                                </div>
+                            </div>
+                            <!-- /.info-card-component -->
+                        </div>
+
+                        <div class="d-grid gap-15">
+                            <div class="fs-14 fw-semiBold">Job Description</div>
+                            <div class="fs-16">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt mollit anim id est laborum</p>
+                                <p>
+                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+                                    veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
+                                    voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
+                                    magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
+                                    qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                                    velit, s
+                                </p>
+                            </div>
+                        </div>
+                        <!-- /.job-description -->
+
+
+                        <a class="btn btn-apply fw-semiBold py-12 w-100 rounded-pill d-md-none" href="#">Apply Now</a>
+                        <!-- /.btn-apply-mobile -->
+
+                        <div class="mt-34"></div>
+                        <!-- /.gap -->
+                    </div>
+                </div>
+                <!-- /.col -->
+
+                <div class="col-12 col-lg-4 col-xl-3 mt-20 mt-lg-0 order-lg-1">
+                    <div class="d-grid gap-34 bg-white p-20 py-43 rounded-20 shadow-2">
+                        <div class="d-grid text-center gap-34 mx-auto">
+                            <img src="/assets/job-logo-image-115x115.png" class="img-avatar mx-auto rounded-pill"
+                                 alt="job-logo-1"/>
+                            <!-- /.company-image -->
+
+                            <div class="d-grid gap-10">
+                                <h6 class="heading-text-1 fw-medium mb-0">
+                                    <a class="text-dark text-decoration-none" href="#">Highspeed Studios</a>
+                                </h6>
+                                <div class="fs-14">
+                                    <a class="text-gray text-decoration-none" href="#">Creative Design Agency</a>
+                                </div>
+                            </div>
+                            <!-- /.company-info -->
+
+                            <button class="btn btn-primary fw-semiBold py-12 rounded-pill">+ Follow</button>
+                            <!-- /.btn-follow -->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="info-card">
+                                    <div class="info-card-icon bg-blue-violet">
+                                        <img src="/assets/icons/user.svg" class="svg-inject is-16" alt=""/>
+                                    </div>
+                                    <div class="info-card-content gap-5 flex-fill">
+                                        <h6 class="info-card-title fw-semiBold">80 - 100</h6>
+                                        <div class="info-card-desc">Employee</div>
+                                    </div>
+                                </div>
+                                <!-- /.info-card-component -->
+                            </div>
+                            <!-- /.col -->
+
+                            <div class="col-6">
+                                <div class="info-card">
+                                    <div class="info-card-icon bg-mikado-yellow">
+                                        <img src="/assets/icons/star.svg" class="svg-inject is-16" alt=""/>
+                                    </div>
+                                    <div class="info-card-content gap-5 flex-fill">
+                                        <h6 class="info-card-title fw-semiBold">4.5</h6>
+                                        <div class="info-card-desc">Reviews</div>
+                                    </div>
+                                </div>
+                                <!-- /.info-card-component -->
+                            </div>
+                            <!-- /.col -->
+
+                            <div class="col-12 mt-25">
+                                <div class="info-card">
+                                    <div class="info-card-icon bg-bright-gray text-gray-100">
+                                        <img src="/assets/icons/mark.svg" class="svg-inject is-16" alt=""/>
+                                    </div>
+                                    <div class="info-card-content gap-5 flex-fill">
+                                        <h6 class="info-card-title fw-semiBold">London, England</h6>
+                                        <div class="info-card-desc">Location</div>
+                                    </div>
+                                </div>
+                                <!-- /.info-card-component -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="border-top"></div>
+                        <!-- /.gap-border -->
+
+                        <div class="d-grid gap-15">
+                            <h6 class="fs-15 mb-0">About Company</h6>
+                            <div class="fs-14">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.</p>
+                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in</p>
+                            </div>
+                        </div>
+                        <!-- /.company-about -->
+
+                        <div class="d-flex align-items-center gap-15">
+                            <a href="#" class="btn btn-apply fw-semiBold py-12 w-100 rounded-pill">23 Vacancy</a>
+                            <!-- /.btn-vacancy -->
+
+                            <a href="#"
+                               class="btn btn-white text-dark fw-semiBold py-12 w-100 border border-platinum rounded-pill shadow-none">More
+                                Detail</a>
+                            <!-- /.btn-more-detail -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+        <!-- = /. Main Section = -->
+
+    </main>
+    <!-- = /. Main Section = -->
+
+
+{% endblock content %}

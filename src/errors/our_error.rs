@@ -89,4 +89,5 @@ impl OurError {
     pub fn from_uuid_error(e: uuidError) -> Self {
         OurError::new_bad_request_error(String::from("Something went wrong"), Some(Box::new(e)))
     }
+
 }

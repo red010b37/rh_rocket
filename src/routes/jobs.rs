@@ -29,7 +29,11 @@ pub async fn index(directus: &State<Directus>) -> &'static str {
 pub async fn view_job(directus: &State<Directus>, slug: &str) -> HtmlResponse {
     println!("{:?}", slug);
 
-    Ok(Template::render("jobs/hire", context! {}))
+    let job_item = Job::get_job(directus, slug.to_string())
+        .await?;
+
+
+    Ok(Template::render("jobs/view", context! {}))
 }
 
 #[get("/hire-remotely")]

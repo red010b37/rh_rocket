@@ -11,13 +11,14 @@ use serde::{Deserialize, Serialize};
 use crate::models::jobs_countries::JobCountry;
 use crate::models::jobs_regions::JobRegion;
 use crate::models::jobs_tags::JobTags;
-use crate::models::query_resp::{Daum, GetJobsResult};
 use crate::models::tag::Tag;
 use crate::uilts::is_valid_guid;
 use reqwest;
 use reqwest::header;
 use reqwest::header::HeaderValue;
 use rocket::tokio::task;
+use crate::directus_res::jobs_view_result::{JobQueryResults, JobResultItem};
+
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ManyJobsResult {
@@ -31,7 +32,7 @@ pub struct SingleJobResult {
 
 #[derive(Debug, FromForm, Serialize, Deserialize)]
 pub struct NewJobForm<'r> {
-    #[field(validate = len(3..100).or_else(msg!("company name cannot be empty")))]
+    #[field(validate = len(3..100).or_else(msg ! ("company name cannot be empty")))]
     pub company_name: &'r str,
     pub position: &'r str,
     pub position_type: &'r str,
@@ -144,8 +145,8 @@ impl Job {
             let mut rng = thread_rng();
             rng.gen_range(10000..100000)
         })
-        .await
-        .unwrap();
+            .await
+            .unwrap();
 
         let num_i32: i32 = random_number as i32;
         println!("Random 5-digit number: {}", num_i32);
@@ -200,12 +201,15 @@ impl Job {
         Ok(create_job_result.data)
     }
 
-    pub async fn get_jobs<'r>(directus: &State<Directus>) -> Result<Vec<Daum>, OurError> {
-        let mut url = directus.directus_api_url.to_string() + "/items/jobs";
-        url += "?fields=id,status,position,company_name,min_per_year,max_per_year,slug,date_updated,date_created,tags.tag_id.name,tags.tag_id.id,region.region_id.id,region.region_id.name,countries.country_id.id,countries.country_id.name";
+    pub async fn get_jobs<'r>(directus: &State<Directus>) -> Result<Vec<JobResultItem>, OurError> {
+        let mut url = Self::build_query_url(
+            directus,
+            -1,
+            Option::from("filter[status][_eq]=published".to_string()),
+            Option::from("sort=date_created".to_string()),
+        );
 
-        println!("{:?}", url);
-        let result: GetJobsResult = reqwest::Client::new()
+        let result: JobQueryResults = reqwest::Client::new()
             .get(url)
             .bearer_auth(directus.token.to_string())
             .send()
@@ -214,6 +218,57 @@ impl Job {
             .await?;
 
         Ok(result.data)
+    }
+
+    pub async fn get_job<'r>(directus: &State<Directus>, slug: String) -> Result<JobResultItem, OurError> {
+        let url = Self::build_query_url(
+            directus,
+            1,
+            Option::from(format!("filter[slug][_eq]={}", slug)),
+            None,
+        );
+
+        let result: JobQueryResults = reqwest::Client::new()
+            .get(url)
+            .bearer_auth(directus.token.to_string())
+            .send()
+            .await?
+            .json()
+            .await?;
+
+        let d = match result.data.get(0) {
+            Some(v) => v,
+            None => return Err(
+                OurError::new_not_found_error(
+                    String::from("Job not found"),
+                    None)
+            ),
+        };
+        let r = d.clone();
+        Ok(r)
+    }
+
+    fn url_path(directus: &State<Directus>) -> String {
+        directus.directus_api_url.to_string() + "/items/jobs"
+    }
+
+    fn build_query_url(directus: &State<Directus>, limit: i32, filter: Option<String>, sort: Option<String>) -> String {
+        let fields = "?fields=*,tags.tag_id.name,tags.tag_id.id,region.region_id.id,region.region_id.name,countries.country_id.id,countries.country_id.name";
+
+        let mut url = Self::url_path(directus) + fields + "&limit=" + &*limit.to_string();
+
+
+        if !filter.is_none() {
+            url = url + "&" + &*filter.unwrap().to_string()
+        }
+
+        if !sort.is_none() {
+            url = url + "&" + &*sort.unwrap().to_string()
+        }
+
+        println!("{:?}", url);
+
+        url
     }
 
     fn gen_slug(title: String, gen_id: i32) -> String {

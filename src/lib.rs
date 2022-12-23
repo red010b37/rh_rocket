@@ -15,6 +15,7 @@ pub mod models;
 pub mod routes;
 pub mod states;
 pub mod uilts;
+pub mod directus_res;
 
 #[derive(Deserialize)]
 pub struct Config {
