@@ -8,12 +8,12 @@ use crate::models::{
 };
 use crate::states::Directus;
 use rocket::http::Status;
-use rocket::tokio::{join, try_join};
 use rocket::{
     form::{Contextual, Form},
     State,
 };
 use rocket_dyn_templates::{context, Template};
+use thousands::Separable;
 
 #[get("/job")]
 pub async fn index(directus: &State<Directus>) -> &'static str {
@@ -29,11 +29,24 @@ pub async fn index(directus: &State<Directus>) -> &'static str {
 pub async fn view_job(directus: &State<Directus>, slug: &str) -> HtmlResponse {
     println!("{:?}", slug);
 
-    let job_item = Job::get_job(directus, slug.to_string())
-        .await?;
+    let job_item = Job::get_job(directus, slug.to_string()).await?;
 
+    let formatted_min = job_item.min_per_year.clone().separate_with_commas();
+    let formatted_max = job_item.max_per_year.clone().separate_with_commas();
 
-    Ok(Template::render("jobs/view", context! {}))
+    let clean_description = ammonia::clean(&*job_item.description.clone());
+    let clean_apply = ammonia::clean(&*job_item.how_to_apply.clone());
+
+    Ok(Template::render(
+        "jobs/view",
+        context! {
+            job_item,
+            formatted_min_per_year: formatted_min,
+            formatted_max_per_year: formatted_max,
+            clean_description,
+            clean_apply,
+        },
+    ))
 }
 
 #[get("/hire-remotely")]

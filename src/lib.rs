@@ -8,14 +8,16 @@ use rocket::fs::relative;
 use rocket::fs::FileServer;
 use rocket::serde::Deserialize;
 use rocket::{Build, Rocket};
+use rocket_dyn_templates::tera::Function;
 use rocket_dyn_templates::Template;
+use std::collections::BTreeMap;
 
+pub mod directus_res;
 pub mod errors;
 pub mod models;
 pub mod routes;
 pub mod states;
 pub mod uilts;
-pub mod directus_res;
 
 #[derive(Deserialize)]
 pub struct Config {

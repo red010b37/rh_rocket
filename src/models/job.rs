@@ -8,6 +8,7 @@ use rocket::form::{self, Error as FormError, FromForm};
 use rocket::State;
 use serde::{Deserialize, Serialize};
 
+use crate::directus_res::jobs_view_result::{JobQueryResults, JobResultItem};
 use crate::models::jobs_countries::JobCountry;
 use crate::models::jobs_regions::JobRegion;
 use crate::models::jobs_tags::JobTags;
@@ -17,8 +18,6 @@ use reqwest;
 use reqwest::header;
 use reqwest::header::HeaderValue;
 use rocket::tokio::task;
-use crate::directus_res::jobs_view_result::{JobQueryResults, JobResultItem};
-
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ManyJobsResult {
@@ -145,23 +144,29 @@ impl Job {
             let mut rng = thread_rng();
             rng.gen_range(10000..100000)
         })
-            .await
-            .unwrap();
+        .await
+        .unwrap();
 
         let num_i32: i32 = random_number as i32;
         println!("Random 5-digit number: {}", num_i32);
 
         let slug = Self::gen_slug(new_job.position.parse().unwrap(), num_i32);
 
+        let clean_desc = ammonia::clean(&*new_job.job_description.to_string());
+
+        let mut cloned_opt = new_job.how_to_apply.clone();
+        let apply_data = cloned_opt.get_or_insert("".to_string());
+        let clean_apply = &mut ammonia::clean(apply_data);
+
         let dPost = CreateJobPost {
             company_name: new_job.company_name.parse().unwrap(),
             position: new_job.position.parse().unwrap(),
             position_type: new_job.position_type.parse().unwrap(),
             category: new_job.category.parse().unwrap(),
-            min_per_year: new_job.max_per_year,
+            min_per_year: new_job.min_per_year,
             max_per_year: new_job.max_per_year,
-            description: new_job.job_description.parse().unwrap(),
-            how_to_apply: new_job.how_to_apply.clone(),
+            description: clean_desc,
+            how_to_apply: Some((*clean_apply.clone()).parse().unwrap()),
             apply_url: new_job.apply_url.clone(),
             apply_email: new_job.apply_email.clone(),
             gen_id: num_i32,
@@ -206,7 +211,7 @@ impl Job {
             directus,
             -1,
             Option::from("filter[status][_eq]=published".to_string()),
-            Option::from("sort=date_created".to_string()),
+            Option::from("sort=-publish_date".to_string()),
         );
 
         let result: JobQueryResults = reqwest::Client::new()
@@ -220,7 +225,10 @@ impl Job {
         Ok(result.data)
     }
 
-    pub async fn get_job<'r>(directus: &State<Directus>, slug: String) -> Result<JobResultItem, OurError> {
+    pub async fn get_job<'r>(
+        directus: &State<Directus>,
+        slug: String,
+    ) -> Result<JobResultItem, OurError> {
         let url = Self::build_query_url(
             directus,
             1,
@@ -238,11 +246,12 @@ impl Job {
 
         let d = match result.data.get(0) {
             Some(v) => v,
-            None => return Err(
-                OurError::new_not_found_error(
+            None => {
+                return Err(OurError::new_not_found_error(
                     String::from("Job not found"),
-                    None)
-            ),
+                    None,
+                ))
+            }
         };
         let r = d.clone();
         Ok(r)
@@ -252,11 +261,15 @@ impl Job {
         directus.directus_api_url.to_string() + "/items/jobs"
     }
 
-    fn build_query_url(directus: &State<Directus>, limit: i32, filter: Option<String>, sort: Option<String>) -> String {
+    fn build_query_url(
+        directus: &State<Directus>,
+        limit: i32,
+        filter: Option<String>,
+        sort: Option<String>,
+    ) -> String {
         let fields = "?fields=*,tags.tag_id.name,tags.tag_id.id,region.region_id.id,region.region_id.name,countries.country_id.id,countries.country_id.name";
 
         let mut url = Self::url_path(directus) + fields + "&limit=" + &*limit.to_string();
-
 
         if !filter.is_none() {
             url = url + "&" + &*filter.unwrap().to_string()
