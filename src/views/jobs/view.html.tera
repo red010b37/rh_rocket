@@ -54,6 +54,14 @@
                                 <div class="fs-14">Posted  on
                                     {{job_item.publish_date | date(format="%e %B, %Y")}}
                                 </div>
+                                <div>
+
+                                    {% for t in job_item.tags %}
+                                    <a class="rounded-20 text-decoration-none small text-white ps-10 pe-10 bg-accent" href="#">{{t.tag_id.name}}</a>
+                                    {% endfor %}
+
+
+                                </div>
                             </div>
                             <!-- /.job-title and job-meta -->
 
@@ -81,15 +89,15 @@
                             </div>
                             <!-- /.info-card-component -->
 
-                            <div class="info-card">
-                                <div class="info-card-icon bg-deep-lilac rounded-pill">
-                                    <img src="/assets/icons/compas.svg" class="svg-inject svg-icon" alt=""/>
-                                </div>
-                                <div class="info-card-content flex-nofill">
-                                    <h6 class="info-card-title">2-3 Years</h6>
-                                    <div class="info-card-desc">Experience</div>
-                                </div>
-                            </div>
+<!--                            <div class="info-card">-->
+<!--                                <div class="info-card-icon bg-deep-lilac rounded-pill">-->
+<!--                                    <img src="/assets/icons/compas.svg" class="svg-inject svg-icon" alt=""/>-->
+<!--                                </div>-->
+<!--                                <div class="info-card-content flex-nofill">-->
+<!--                                    <h6 class="info-card-title">2-3 Years</h6>-->
+<!--                                    <div class="info-card-desc">Experience</div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <!-- /.info-card-component -->
 
                             <div class="info-card">
@@ -97,7 +105,13 @@
                                     <img src="/assets/icons/mark.svg" class="svg-inject svg-icon" alt=""/>
                                 </div>
                                 <div class="info-card-content flex-nofill">
-                                    <h6 class="info-card-title">London, England</h6>
+                                    <h6 class="info-card-title">   {% for r in job_item.region %}
+                                        {{r.region_id.name}},
+                                        {% endfor %}
+
+                                        {% for c in job_item.countries %}
+                                        {{c.country_id.name}}{% if not loop.last %},{% endif %}
+                                        {% endfor %}</h6>
                                     <div class="info-card-desc">Location</div>
                                 </div>
                             </div>
@@ -134,61 +148,61 @@
 
                             <div class="d-grid gap-10">
                                 <h6 class="heading-text-1 fw-medium mb-0">
-                                    <a class="text-dark text-decoration-none" href="#">Highspeed Studios</a>
+                                    <p class="text-dark text-decoration-none">{{job_item.company_name}}</p>
                                 </h6>
                                 <div class="fs-14">
-                                    <a class="text-gray text-decoration-none" href="#">Creative Design Agency</a>
+                                    <a class="text-gray text-decoration-none" href="{{job_item.company_url}}" target="_blank">{{job_item.company_url}}</a>
                                 </div>
                             </div>
                             <!-- /.company-info -->
 
-                            <button class="btn btn-primary fw-semiBold py-12 rounded-pill">+ Follow</button>
+<!--                            <button class="btn btn-primary fw-semiBold py-12 rounded-pill">+ Follow</button>-->
                             <!-- /.btn-follow -->
                         </div>
 
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="info-card">
-                                    <div class="info-card-icon bg-blue-violet">
-                                        <img src="/assets/icons/user.svg" class="svg-inject is-16" alt=""/>
-                                    </div>
-                                    <div class="info-card-content gap-5 flex-fill">
-                                        <h6 class="info-card-title fw-semiBold">80 - 100</h6>
-                                        <div class="info-card-desc">Employee</div>
-                                    </div>
-                                </div>
-                                <!-- /.info-card-component -->
-                            </div>
-                            <!-- /.col -->
+<!--                        <div class="row">-->
+<!--                            <div class="col-6">-->
+<!--                                <div class="info-card">-->
+<!--                                    <div class="info-card-icon bg-blue-violet">-->
+<!--                                        <img src="/assets/icons/user.svg" class="svg-inject is-16" alt=""/>-->
+<!--                                    </div>-->
+<!--                                    <div class="info-card-content gap-5 flex-fill">-->
+<!--                                        <h6 class="info-card-title fw-semiBold">80 - 100</h6>-->
+<!--                                        <div class="info-card-desc">Employee</div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash; /.info-card-component &ndash;&gt;-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; /.col &ndash;&gt;-->
 
-                            <div class="col-6">
-                                <div class="info-card">
-                                    <div class="info-card-icon bg-mikado-yellow">
-                                        <img src="/assets/icons/star.svg" class="svg-inject is-16" alt=""/>
-                                    </div>
-                                    <div class="info-card-content gap-5 flex-fill">
-                                        <h6 class="info-card-title fw-semiBold">4.5</h6>
-                                        <div class="info-card-desc">Reviews</div>
-                                    </div>
-                                </div>
-                                <!-- /.info-card-component -->
-                            </div>
-                            <!-- /.col -->
+<!--                            <div class="col-6">-->
+<!--                                <div class="info-card">-->
+<!--                                    <div class="info-card-icon bg-mikado-yellow">-->
+<!--                                        <img src="/assets/icons/star.svg" class="svg-inject is-16" alt=""/>-->
+<!--                                    </div>-->
+<!--                                    <div class="info-card-content gap-5 flex-fill">-->
+<!--                                        <h6 class="info-card-title fw-semiBold">4.5</h6>-->
+<!--                                        <div class="info-card-desc">Reviews</div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash; /.info-card-component &ndash;&gt;-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; /.col &ndash;&gt;-->
 
-                            <div class="col-12 mt-25">
-                                <div class="info-card">
-                                    <div class="info-card-icon bg-bright-gray text-gray-100">
-                                        <img src="/assets/icons/mark.svg" class="svg-inject is-16" alt=""/>
-                                    </div>
-                                    <div class="info-card-content gap-5 flex-fill">
-                                        <h6 class="info-card-title fw-semiBold">London, England</h6>
-                                        <div class="info-card-desc">Location</div>
-                                    </div>
-                                </div>
-                                <!-- /.info-card-component -->
-                            </div>
-                            <!-- /.col -->
-                        </div>
+<!--                            <div class="col-12 mt-25">-->
+<!--                                <div class="info-card">-->
+<!--                                    <div class="info-card-icon bg-bright-gray text-gray-100">-->
+<!--                                        <img src="/assets/icons/mark.svg" class="svg-inject is-16" alt=""/>-->
+<!--                                    </div>-->
+<!--                                    <div class="info-card-content gap-5 flex-fill">-->
+<!--                                        <h6 class="info-card-title fw-semiBold">London, England</h6>-->
+<!--                                        <div class="info-card-desc">Location</div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash; /.info-card-component &ndash;&gt;-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; /.col &ndash;&gt;-->
+<!--                        </div>-->
                         <!-- /.row -->
 
                         <div class="border-top"></div>

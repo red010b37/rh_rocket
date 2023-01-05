@@ -33,6 +33,7 @@ pub struct SingleJobResult {
 pub struct NewJobForm<'r> {
     #[field(validate = len(3..100).or_else(msg ! ("company name cannot be empty")))]
     pub company_name: &'r str,
+    pub company_url: Option<String>,
     pub position: &'r str,
     pub position_type: &'r str,
     pub category: &'r str,
@@ -49,6 +50,7 @@ pub struct NewJobForm<'r> {
 #[derive(Debug, Deserialize, Serialize)]
 pub struct CreateJobPost {
     pub company_name: String,
+    pub company_url: Option<String>,
     pub position: String,
     pub position_type: String,
     pub category: String,
@@ -73,6 +75,7 @@ pub struct Job {
     pub id: String,
     pub status: String,
     pub company_name: String,
+    pub company_url: Option<String>,
     pub position: String,
     pub position_type: String,
     pub category: String,
@@ -160,6 +163,7 @@ impl Job {
 
         let dPost = CreateJobPost {
             company_name: new_job.company_name.parse().unwrap(),
+            company_url: new_job.company_url.clone(),
             position: new_job.position.parse().unwrap(),
             position_type: new_job.position_type.parse().unwrap(),
             category: new_job.category.parse().unwrap(),

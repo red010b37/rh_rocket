@@ -14,6 +14,7 @@ pub struct JobResultItem {
     pub user_updated: String,
     pub date_updated: String,
     pub company_name: String,
+    pub company_url: Option<String>,
     pub position: String,
     pub position_type: String,
     pub category: String,
