@@ -1,5 +1,5 @@
 use crate::errors::our_error::OurError;
-use crate::states::Directus;
+use crate::states::{AppSettings, Directus};
 use chrono::{DateTime, Datelike, Duration, NaiveDate, NaiveDateTime, Utc};
 use rand::distributions::Uniform;
 use rand::{thread_rng, Rng};
@@ -49,6 +49,7 @@ pub struct NewJobForm<'r> {
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct CreateJobPost {
+    pub status: String,
     pub company_name: String,
     pub company_url: Option<String>,
     pub position: String,
@@ -63,39 +64,29 @@ pub struct CreateJobPost {
     pub apply_email: Option<String>,
     pub gen_id: i32,
     pub slug: String,
+    pub expires_date: Option<DateTime<Utc>>,
+    pub publish_date: Option<DateTime<Utc>>,
+    pub env: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CreateJobResult {
-    pub data: Job,
+    pub data: CreateJobR,
+}
+#[derive(Debug, Serialize, Deserialize)]
+pub struct CreateJobR {
+    pub id: String,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct Job {
-    pub id: String,
-    pub status: String,
-    pub company_name: String,
-    pub company_url: Option<String>,
-    pub position: String,
-    pub position_type: String,
-    pub category: String,
-    // pub location: Vec<String>,
-    pub min_per_year: i32,
-    pub max_per_year: i32,
-    pub description: String,
-    pub how_to_apply: Option<String>,
-    pub apply_url: Option<String>,
-    pub apply_email: Option<String>,
-    pub tags: Option<Vec<Tag>>,
-    pub date_created: DateTime<Utc>,
-    pub date_updated: Option<DateTime<Utc>>,
-}
+pub struct Job {}
 
 impl Job {
     pub async fn create<'r>(
         new_job: &'r NewJobForm<'r>,
         directus: &State<Directus>,
-    ) -> Result<Self, OurError> {
+        app_settings: &State<AppSettings>,
+    ) -> Result<String, OurError> {
         let mut tags: Vec<String> = Vec::new();
         let mut tags_to_create: Vec<String> = Vec::new();
 
@@ -161,7 +152,11 @@ impl Job {
         let apply_data = cloned_opt.get_or_insert("".to_string());
         let clean_apply = &mut ammonia::clean(apply_data);
 
+        let publish_date = Utc::now();
+        let expires_date = Utc::now() + Duration::days(30);
+
         let dPost = CreateJobPost {
+            status: "published".to_string(),
             company_name: new_job.company_name.parse().unwrap(),
             company_url: new_job.company_url.clone(),
             position: new_job.position.parse().unwrap(),
@@ -175,10 +170,26 @@ impl Job {
             apply_email: new_job.apply_email.clone(),
             gen_id: num_i32,
             slug,
+            publish_date: Some(publish_date),
+            expires_date: Some(expires_date),
+            env: app_settings.env.clone(),
         };
 
         // create the job
         let post_url = directus.directus_api_url.to_string() + "/items/jobs";
+
+        println!("posting");
+        // let s: String = reqwest::Client::new()
+        //     .post(post_url.clone())
+        //     .json(&dPost)
+        //     .bearer_auth(directus.token.to_string())
+        //     .send()
+        //     .await?
+        //     .text()
+        //     .await?;
+        //
+        // println!("{:?}", s);
+
         let create_job_result: CreateJobResult = reqwest::Client::new()
             .post(post_url)
             .json(&dPost)
@@ -190,32 +201,44 @@ impl Job {
 
         let job_id = create_job_result.data.id.to_string();
 
+        println!("C1");
+
         // connect the job and the tags together
         if !tags.is_empty() {
+            println!("C2");
             JobTags::create(directus, job_id.to_string(), tags).await?;
+            println!("C3");
         }
 
         // connect the regions
         if !regions.is_empty() {
-            JobRegion::create(directus, job_id.to_string(), regions).await?
+            println!("C4");
+            JobRegion::create(directus, job_id.to_string(), regions).await?;
+            println!("C5");
         }
 
         // connect the countries
         if !countries.is_empty() {
-            JobCountry::create(directus, job_id.to_string(), countries).await?
+            println!("C6");
+            JobCountry::create(directus, job_id.to_string(), countries).await?;
+            println!("C7");
         }
 
         println!("{:?}", create_job_result);
 
-        Ok(create_job_result.data)
+        Ok(job_id)
     }
 
-    pub async fn get_jobs<'r>(directus: &State<Directus>) -> Result<Vec<JobResultItem>, OurError> {
+    pub async fn get_jobs<'r>(
+        directus: &State<Directus>,
+        app_settings: &State<AppSettings>,
+    ) -> Result<Vec<JobResultItem>, OurError> {
         let mut url = Self::build_query_url(
             directus,
             -1,
             Option::from("filter[status][_eq]=published".to_string()),
             Option::from("sort=-publish_date".to_string()),
+            app_settings,
         );
 
         let result: JobQueryResults = reqwest::Client::new()
@@ -231,6 +254,7 @@ impl Job {
 
     pub async fn get_job<'r>(
         directus: &State<Directus>,
+        app_settings: &State<AppSettings>,
         slug: String,
     ) -> Result<JobResultItem, OurError> {
         let url = Self::build_query_url(
@@ -238,6 +262,7 @@ impl Job {
             1,
             Option::from(format!("filter[slug][_eq]={}", slug)),
             None,
+            app_settings,
         );
 
         let result: JobQueryResults = reqwest::Client::new()
@@ -270,6 +295,7 @@ impl Job {
         limit: i32,
         filter: Option<String>,
         sort: Option<String>,
+        app_settings: &State<AppSettings>,
     ) -> String {
         let fields = "?fields=*,tags.tag_id.name,tags.tag_id.id,region.region_id.id,region.region_id.name,countries.country_id.id,countries.country_id.name";
 
@@ -278,6 +304,9 @@ impl Job {
         if !filter.is_none() {
             url = url + "&" + &*filter.unwrap().to_string()
         }
+
+        // add the env filter so test or prod jobs are retured
+        url = url + "&filter[env][_eq]=" + &*app_settings.env;
 
         if !sort.is_none() {
             url = url + "&" + &*sort.unwrap().to_string()

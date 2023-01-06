@@ -5,6 +5,8 @@ directus_api_url = "https://remotehut.directus.app"
 clockify_token = "YTVjMjZhYzgtNDBkZS00YTEyLTg5MTctODQ1OTFiMjQ3MTYw"
 log_level = "normal"
 secret_key = "m5TSfjng9pCq2J4eWwX60zH9fnk7YuupqztBx4jEEhs="
+rh_env = "testing"
 
 [release]
 address = "0.0.0.0"
+rh_env = "prod"

@@ -2,7 +2,7 @@
 extern crate rocket;
 
 use crate::routes::{home, jobs, metrics};
-use crate::states::{Clockify, Directus};
+use crate::states::{AppSettings, Clockify, Directus};
 use log::LevelFilter;
 use rocket::fs::relative;
 use rocket::fs::FileServer;
@@ -24,6 +24,7 @@ pub struct Config {
     directus_token: String,
     directus_api_url: String,
     clockify_token: String,
+    rh_env: String,
 }
 
 fn setup_logger() {
@@ -74,11 +75,19 @@ pub async fn setup_rocket() -> Rocket<Build> {
         token: config.directus_token.clone(),
         directus_api_url: config.directus_api_url.clone(),
     };
+
+    let app_settings = AppSettings {
+        env: config.rh_env.clone(),
+    };
+
     let clockify = Clockify {
         token: config.clockify_token.clone(),
     };
 
     // pass our dtat for rocket to manage in state for us
-    let final_rocket = our_rocket.manage(directus).manage(clockify);
+    let final_rocket = our_rocket
+        .manage(directus)
+        .manage(clockify)
+        .manage(app_settings);
     final_rocket
 }

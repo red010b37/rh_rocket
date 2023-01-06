@@ -6,7 +6,7 @@ use crate::models::{
     job::{Job, NewJobForm},
     tag::Tag,
 };
-use crate::states::Directus;
+use crate::states::{AppSettings, Directus};
 use rocket::http::Status;
 use rocket::{
     form::{Contextual, Form},
@@ -26,10 +26,14 @@ pub async fn index(directus: &State<Directus>) -> &'static str {
 }
 
 #[get("/remote-job/<slug>")]
-pub async fn view_job(directus: &State<Directus>, slug: &str) -> HtmlResponse {
+pub async fn view_job(
+    directus: &State<Directus>,
+    app_settings: &State<AppSettings>,
+    slug: &str,
+) -> HtmlResponse {
     println!("{:?}", slug);
 
-    let job_item = Job::get_job(directus, slug.to_string()).await?;
+    let job_item = Job::get_job(directus, app_settings, slug.to_string()).await?;
 
     let formatted_min = job_item.min_per_year.clone().separate_with_commas();
     let formatted_max = job_item.max_per_year.clone().separate_with_commas();
@@ -81,13 +85,16 @@ pub async fn new_job(directus: &State<Directus>) -> HtmlResponse {
 )]
 pub async fn create_new_job<'r>(
     job_context: Form<Contextual<'r, NewJobForm<'r>>>,
-    directus: &State<Directus>, // csrf_token: CsrfToken,
+    directus: &State<Directus>,        // csrf_token: CsrfToken,
+    app_settings: &State<AppSettings>, // csrf_token: CsrfToken,
 ) -> &'static str {
     let new_job = job_context.value.as_ref().unwrap();
 
-    Job::create(new_job, directus).await.map_err(|_| {
-        print!("{:?}", "errrorsss");
-    });
+    Job::create(new_job, directus, app_settings)
+        .await
+        .map_err(|_| {
+            print!("{:?}", "errrorsss");
+        });
 
     "post"
 }

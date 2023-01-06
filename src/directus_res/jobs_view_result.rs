@@ -11,8 +11,8 @@ pub struct JobResultItem {
     pub status: String,
     pub user_created: String,
     pub date_created: String,
-    pub user_updated: String,
-    pub date_updated: String,
+    pub user_updated: Option<String>,
+    pub date_updated: Option<String>,
     pub company_name: String,
     pub company_url: Option<String>,
     pub position: String,
@@ -31,6 +31,7 @@ pub struct JobResultItem {
     pub tags: Option<Vec<Tag>>,
     pub region: Option<Vec<Region>>,
     pub countries: Option<Vec<Country>>,
+    pub env: String,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
