@@ -62,7 +62,8 @@
                                 <div>
 
                                     {% for t in job_item.tags %}
-                                    <a class="rounded-20 text-decoration-none small text-white ps-10 pe-10 bg-accent" href="#">{{t.tag_id.name}}</a>
+                                    <a href="#" class="btn btn-suggestion fw-medium rounded-pill shadow-none">{{t.tag_id.name}}</a>
+<!--                                    <a class="rounded-20 text-decoration-none small text-white ps-10 pe-10 bg-accent" href="#">{{t.tag_id.name}}</a>-->
                                     {% endfor %}
 
 
