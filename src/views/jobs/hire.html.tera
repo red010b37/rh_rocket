@@ -1,396 +1,456 @@
 {% extends "layout" %}
 
 {% block head %}
-{{ super() }}
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    {{ super() }}
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
 
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"
-        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.14.0/css/selectize.css"
-      integrity="sha512-ikoGg2i+6jXI1u0qXylbyIb+9f9/z/fVQR4kor0Dmt3oTIb/ZnOZ33POmdUitzXTDrd5XCpQUhsiXnl/oTuiHA=="
-      crossorigin="anonymous" referrerpolicy="no-referrer"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.14.0/js/standalone/selectize.min.js"
-        integrity="sha512-EZjqrrnoamnlzX1VpHSu7mCYXpbVJdqeJBbpPIHdfH/AtF8Lp/jKrCzYqzKSuVjxriFkEWR0I3qoT2evvrvRmw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.14.0/css/selectize.css"
+          integrity="sha512-ikoGg2i+6jXI1u0qXylbyIb+9f9/z/fVQR4kor0Dmt3oTIb/ZnOZ33POmdUitzXTDrd5XCpQUhsiXnl/oTuiHA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.14.0/js/standalone/selectize.min.js"
+            integrity="sha512-EZjqrrnoamnlzX1VpHSu7mCYXpbVJdqeJBbpPIHdfH/AtF8Lp/jKrCzYqzKSuVjxriFkEWR0I3qoT2evvrvRmw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<script>
-  tinymce.init({
-    selector: '#job_description',
-    menubar: false,
-    statusbar: false,
-    height: 400,
-    plugins: "link lists",
-    toolbar: "undo redo | bold italic | h1 h2 | bullist numlist | outdent indent | link | styleselect",
-  });
-  tinymce.init({
-    selector: '#applyDescription',
-    menubar: false,
-    statusbar: false,
-    height: 300,
-    plugins: "link lists",
-    toolbar: "undo redo | bold italic | h1 h2 | bullist numlist | outdent indent | link | styleselect",
-  });
+    <script>
+      tinymce.init({
+        selector: '#job_description',
+        menubar: false,
+        statusbar: false,
+        height: 400,
+        plugins: "link lists",
+        toolbar: "undo redo | bold italic | h1 h2 | bullist numlist | outdent indent | link | styleselect",
+      });
+      tinymce.init({
+        selector: '#applyDescription',
+        menubar: false,
+        statusbar: false,
+        height: 300,
+        plugins: "link lists",
+        toolbar: "undo redo | bold italic | h1 h2 | bullist numlist | outdent indent | link | styleselect",
+      });
 
-  $(function () {
-    $("#location").selectize(
-      {copyClassesToDropdown: false}
-    );
+      $(function () {
+        $("#location").selectize(
+          {copyClassesToDropdown: false}
+        );
 
-    $("#tags").selectize(
-      {
-        create: true,
-        copyClassesToDropdown: false,
+        $("#tags").selectize(
+          {
+            create: true,
+            copyClassesToDropdown: false,
+          }
+        );
+      });
+
+      function imageViewer(src = '') {
+        return {
+          imageUrl: src,
+
+          fileChosen(event) {
+            this.fileToDataUrl(event, src => this.imageUrl = src)
+          },
+
+          fileToDataUrl(event, callback) {
+            if (!event.target.files.length) return
+
+            let file = event.target.files[0],
+              reader = new FileReader()
+
+            reader.readAsDataURL(file)
+            reader.onload = e => callback(e.target.result)
+          },
+        }
       }
-    );
-  });
 
-</script>
+    </script>
 
 
-<style>
-    .selectize-input {
-        background: none;
-        border: none;
-        box-shadow: none;
-    }
+    <style>
+        .selectize-input {
+            background: none;
+            border: none;
+            box-shadow: none;
+        }
 
-    .selectize-input.focus {
-        box-shadow: none;
-    }
+        .selectize-input.focus {
+            box-shadow: none;
+        }
 
-    .selectize-dropdown .optgroup-header {
-        font-size: 1rem;
-        font-weight: 400;
-        color: #3638488c;
-    }
+        .selectize-dropdown .optgroup-header {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #3638488c;
+        }
 
-    .selectize-dropdown .option {
-        font-size: 1rem;
-        font-weight: 400;
-        color: #363848;
-        padding-left: 20px;
-    }
-</style>
+        .selectize-dropdown .option {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #363848;
+            padding-left: 20px;
+        }
+    </style>
 
 
 {% endblock head %}
 
 
 {% block content %}
-<div>
-    {% if flash %}
-    <small class="field-{{ flash.kind }}-flash">
-        {{ flash.message }}
-    </small>
-    {% endif %}
+    <div>
+        {% if flash %}
+            <small class="field-{{ flash.kind }}-flash">
+                {{ flash.message }}
+            </small>
+        {% endif %}
 
-</div>
-
-
-<main class="main position-relative">
-
-    <!-- /.detail-background -->
-
-    <!-- /.container -->
-    <!-- = /. Header Section = -->
-
-    <form action="/hire-remotely" method="post">
-        <div class="container-xxl">
-            <div class="row">
-                <div class="d-grid bg-white p-20 p-md-34 p-xxl-43 mt-24 gap-10 rounded-20 shadow-2">
-                    <h2 class="heading-section-4 text-dark mb-0">Hire Remotely</h2>
-                    <div class="col-12 my-5 my-xl-24">
-                        <label for="companyName" class="form-label">Company Name</label>
-                        <input required
-                               type="text"
-                               id="companyName"
-                               name="company_name"
-                               class="form-control rounded-pill"/>
-                    </div>
-
-                    <div class="col-12 my-5 my-xl-24">
-                        <label for="company_url" class="form-label">Company Url</label>
-                        <input type="text"
-                               id="company_url"
-                               name="company_url"
-                               placeholder="https://"
-                               class="form-control rounded-pill"/>
-                    </div>
-                    <!-- /.col -->
-                </div>
-            </div>
-            <!-- /.row -->
-
-            <div class="row">
-                <div class="d-grid bg-white p-20 p-md-34 p-xxl-43 mt-24 gap-20 rounded-20 shadow-2">
-                    <h2 class="heading-section-4 text-dark mb-0">Job Details</h2>
-
-                    <div class="col-12 my-5 my-xl-5">
-                        <label for="position" class="form-label">Position*</label>
-                        <input type="text" name="position" required id="position" class="form-control rounded-pill"/>
-                        <p class="small pe-10 ps-10">
-                            Please specify as single job position like "Senior Rust Developer" or "Project Manager", not
-                            a sentence.
-                            Please DO NOT WRITE IN FULL CAPS. If posting multiple roles, please create multiple job
-                            posts.
-                            A job post is limited to a single job. We only allow real jobs, absolutely no MLM-type
-                            courses "learn how to work online" please. </p>
-                    </div>
-
-                    <div class="col-12 mt-10 mb-5 my-xl-5">
-                        <select type="text" id="type" name="position_type" class="form-control rounded-pill">
-                            <option value="full_time">Full Time</option>
-                            <option value="part_time">Part Time</option>
-                            <option value="contractor">Contractor</option>
-                            <option value="internship">Internship</option>
-                        </select>
-                    </div>
+    </div>
 
 
-                    <div class="col-12 mt-10 mb-5 my-xl-5">
-                        <label for="primary-tag" class="form-label">Primary Category*</label>
-                        <select required id="primary-tag" name="category" class="form-control rounded-pill">
-                            <option value="">Select a category</option>
-                            <option value="dev">Software Development</option>
-                            <option value="customer_support">Customer Support</option>
-                            <option value="sales">Sales</option>
-                            <option value="marketing">Marketing</option>
-                            <option value="design">Design</option>
-                            <option value="front_end">Front End</option>
-                            <option value="backend">Back End</option>
-                            <option value="legal">Legal</option>
-                            <option value="testing">Testing</option>
-                            <option value="quality_assurance">Quality Assurance</option>
-                            <option value="non_tech">Non-Tech</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <p class="small pe-10 ps-10">
-                            This primary category shows first and increases visibility in the main sections. Your job is
-                            shown on every page that is tagged with though. E.g. if you tag it as Software Development,
-                            it shows for Remote Software Development Jobs etc.
-                        </p>
-                    </div>
+    <main class="main position-relative">
 
-                    <div class="col-12 mt-10 mb-5 my-xl-5">
+        <!-- /.detail-background -->
 
-                        <label class="tags" for="location">Tags</label>
-                        <select multiple type="text" id="tags" name="tags[]" class="form-control rounded-pill">
-                            {% for tag in tags %}
-                                <option value="{{tag.id}}">{{tag.name}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+        <!-- /.container -->
+        <!-- = /. Header Section = -->
 
-                    <div class="col-12 my-5 my-xl-5">
-                        <label class="form-label" for="location">Job Location</label>
-                        <select multiple name="location[]" id="location" class="form-control rounded-pill">
-                            <optgroup label="Regions">
-
-                                {% for region in regions %}
-                                    <option value="r_{{region.id}}">{{region.name}}</option>
-                                {% endfor %}
-{#                                <option value="worldwide">Worldwide</option>#}
-{#                                <option value="africa">Africa</option>#}
-{#                                <option value="asia">Asia</option>#}
-{#                                <option value="europe">Europe</option>#}
-{#                                <option value="northAmerica">North America</option>#}
-{#                                <option value="oceania">Oceania</option>#}
-{#                                <option value="southAmerica">South America</option>#}
-                            </optgroup>
-                            <optgroup label="Countries">
-                                {% for country in countries %}
-                                    <option value="c_{{country.id}}">{{country.name}}</option>
-                                {% endfor %}
-                            </optgroup>
-                        </select>
-                        <p class="small pe-10 ps-10">
-                            If you'd only like to hire people from a specific location or timezone this remote job is
-                            restricted to (e.g. Europe, United States or Japan). If not restricted, please leave it as
-                            "Worldwide". The less restricted this is, the more applicants you will get.
-                        </p>
-                    </div>
-
-                    <div class="row">
-                        <div class="row">
-                            <label class="form-label">Salary or compensation in USD (gross, annualized,
-                                full-time-equivalent
-                                in USD equivalent)</label>
+        <form action="/hire-remotely" method="post">
+            <div class="container-xxl">
+                <div class="row">
+                    <div class="d-grid bg-white p-20 p-md-34 p-xxl-43 mt-24 gap-10 rounded-20 shadow-2">
+                        <h2 class="heading-section-4 text-dark mb-0">Hire Remotely</h2>
+                        <div class="col-12 my-5 my-xl-24">
+                            <label for="companyName" class="form-label">Company Name</label>
+                            <input required
+                                   type="text"
+                                   id="companyName"
+                                   name="company_name"
+                                   class="form-control rounded-pill"/>
                         </div>
 
-                        <div class="col-md-6 col-xl-6 my-5 my-xl-2">
-                            <select required="required" name="min_per_year" class="form-control rounded-pill">
-                                <option value="">Minimum per year</option>
-                                <option value="0">USD 0 per year</option>
-                                <option value="10000">USD 10,000 per year</option>
-                                <option value="20000">USD 20,000 per year</option>
-                                <option value="30000">USD 30,000 per year</option>
-                                <option value="40000">USD 40,000 per year</option>
-                                <option value="50000">USD 50,000 per year</option>
-                                <option value="60000">USD 60,000 per year</option>
-                                <option value="70000">USD 70,000 per year</option>
-                                <option value="80000">USD 80,000 per year</option>
-                                <option value="90000">USD 90,000 per year</option>
-                                <option value="100000">USD 100,000 per year</option>
-                                <option value="110000">USD 110,000 per year</option>
-                                <option value="120000">USD 120,000 per year</option>
-                                <option value="130000">USD 130,000 per year</option>
-                                <option value="140000">USD 140,000 per year</option>
-                                <option value="150000">USD 150,000 per year</option>
-                                <option value="160000">USD 160,000 per year</option>
-                                <option value="170000">USD 170,000 per year</option>
-                                <option value="180000">USD 180,000 per year</option>
-                                <option value="190000">USD 190,000 per year</option>
-                                <option value="200000">USD 200,000 per year</option>
-                                <option value="210000">USD 210,000 per year</option>
-                                <option value="220000">USD 220,000 per year</option>
-                                <option value="230000">USD 230,000 per year</option>
-                                <option value="240000">USD 240,000 per year</option>
-                                <option value="250000">USD 250,000 per year</option>
-                                <option value="260000">USD 260,000 per year</option>
-                                <option value="270000">USD 270,000 per year</option>
-                                <option value="280000">USD 280,000 per year</option>
-                                <option value="290000">USD 290,000 per year</option>
-                                <option value="300000">USD 300,000 per year</option>
-                                <option value="310000">USD 310,000 per year</option>
-                                <option value="320000">USD 320,000 per year</option>
-                                <option value="330000">USD 330,000 per year</option>
-                                <option value="340000">USD 340,000 per year</option>
-                                <option value="350000">USD 350,000 per year</option>
-                                <option value="360000">USD 360,000 per year</option>
-                                <option value="370000">USD 370,000 per year</option>
-                                <option value="380000">USD 380,000 per year</option>
-                                <option value="390000">USD 390,000 per year</option>
-                                <option value="400000">USD 400,000 per year</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-6 col-xl-6 my-5 my-xl-2">
-                            <select data-required="required" name="max_per_year" class="form-control rounded-pill">
-                                <option value="">Maximum per year</option>
-                                <option value="0">USD 0 per year</option>
-                                <option value="10000">USD 10,000 per year</option>
-                                <option value="20000">USD 20,000 per year</option>
-                                <option value="30000">USD 30,000 per year</option>
-                                <option value="40000">USD 40,000 per year</option>
-                                <option value="50000">USD 50,000 per year</option>
-                                <option value="60000">USD 60,000 per year</option>
-                                <option value="70000">USD 70,000 per year</option>
-                                <option value="80000">USD 80,000 per year</option>
-                                <option value="90000">USD 90,000 per year</option>
-                                <option value="100000">USD 100,000 per year</option>
-                                <option value="110000">USD 110,000 per year</option>
-                                <option value="120000">USD 120,000 per year</option>
-                                <option value="130000">USD 130,000 per year</option>
-                                <option value="140000">USD 140,000 per year</option>
-                                <option value="150000">USD 150,000 per year</option>
-                                <option value="160000">USD 160,000 per year</option>
-                                <option value="170000">USD 170,000 per year</option>
-                                <option value="180000">USD 180,000 per year</option>
-                                <option value="190000">USD 190,000 per year</option>
-                                <option value="200000">USD 200,000 per year</option>
-                                <option value="210000">USD 210,000 per year</option>
-                                <option value="220000">USD 220,000 per year</option>
-                                <option value="230000">USD 230,000 per year</option>
-                                <option value="240000">USD 240,000 per year</option>
-                                <option value="250000">USD 250,000 per year</option>
-                                <option value="260000">USD 260,000 per year</option>
-                                <option value="270000">USD 270,000 per year</option>
-                                <option value="280000">USD 280,000 per year</option>
-                                <option value="290000">USD 290,000 per year</option>
-                                <option value="300000">USD 300,000 per year</option>
-                                <option value="310000">USD 310,000 per year</option>
-                                <option value="320000">USD 320,000 per year</option>
-                                <option value="330000">USD 330,000 per year</option>
-                                <option value="340000">USD 340,000 per year</option>
-                                <option value="350000">USD 350,000 per year</option>
-                                <option value="360000">USD 360,000 per year</option>
-                                <option value="370000">USD 370,000 per year</option>
-                                <option value="380000">USD 380,000 per year</option>
-                                <option value="390000">USD 390,000 per year</option>
-                                <option value="400000">USD 400,000 per year</option>
-                            </select>
-                        </div>
-
-                        <div class="row">
-                            <p class="small pe-10 ps-10">
-                                Remote job postings are legally required to show a salary compensation range in many
-                                U.S.
-                                states and countries. Google does NOT index jobs without salary data. If it's a
-                                short-term
-                                gig, use the annual full-time equivalent. For example, if it's a 2-week project for
-                                $2,000,
-                                the annual equivalent would be $2,000 / 2 weeks * 52 weeks = $52,000. Please use convert
-                                and
-                                use USD equivalent
-                            </p>
-                        </div>
-                    </div>
-
-
-                    <div class="col-12 my-15 my-xl-24">
-                        <label for="job_description" class="form-label">Job description</label>
-                        <textarea type="text"  name="job_description" id="job_description"
-                                  class="form-control rounded-pill"></textarea>
-                    </div>
-
-                    <div class="col-12 my-15 my-xl-24">
-                        <label for="applyDescription" class="form-label">How to apply?</label>
-                        <textarea id="applyDescription" name="how_to_apply"
-                                  class="form-control rounded-pill"></textarea>
-                    </div>
-
-
-                    <div>
-                        <div class="col-12 my-15 my-xl-24">
-                            <label for="apply_url" class="form-label">Apply URL*</label>
+                        <div class="col-12 my-5 my-xl-24">
+                            <label for="company_url" class="form-label">Company Url</label>
                             <input type="text"
-                                   required
-                                   id="apply_url"
-                                   name="apply_url"
+                                   id="company_url"
+                                   name="company_url"
                                    placeholder="https://"
                                    class="form-control rounded-pill"/>
-                            <p class="small ps-10 pe-10">
-                                A URL with a form the applicant can fill out generally receives a lot more applicants
-                                than having people apply by email (below).
-                            </p>
                         </div>
-                        <p class="display-6 text-center">or</p>
-                        <div class="col-12 my-15 my-xl-24">
-                            <label for="apply_email" class="form-label">Apply Email*</label>
-                            <input type="email"
-                                   required
-                                   id="apply_email"
-                                   name="apply_email"
-                                   class="form-control rounded-pill"/>
-                            <p class="small ps-10 pe-10">
-                            </p>
+
+
+                        {% set bg_num = get_random(start=1, end=5) %}
+                        <div class="col-12 my-5 my-xl-24">
+                            <label for="company_url" class="form-label">Company Logo</label>
+                            <div x-data="imageViewer('/assets/job-logo-{{ bg_num }}.png')">
+                                <div class="mb-2">
+                                    <!-- Show the image -->
+                                    <template x-if="imageUrl">
+                                        <img :src="imageUrl"
+                                             class=""
+                                             style="width: 80px; height: 80px; object-fit: cover; object-position: center; border-radius:15px;"
+                                        >
+                                    </template>
+
+                                    <br>
+                                    <br>
+
+                                    <!-- Show the gray box when image is not available -->
+                                    <template x-if="!imageUrl">
+                                        <div style="width: 80px; height: 80px;"
+                                        ></div>
+                                    </template>
+
+                                    <!-- Image file selector -->
+                                    <input class="mt-2" type="file" accept="image/*" @change="fileChosen">
+
+                                </div>
+                            </div>
                         </div>
+                        <!-- /.col -->
+
+
                     </div>
-
-                    <div class="col-12 d-flex my-15 my-xl-24">
-                        <button type="submit" class="btn btn-primary fw-semiBold py-12 px-24 px-md-60 rounded-pill">
-                            Submit
-                        </button>
-                        <!-- /.btn-submit -->
-
-                        <a class="btn btn-cultured text-philippine-gray fw-semiBold py-12 px-20 ms-auto rounded-pill"
-                           href="#">Cancel</a>
-                        <!-- /.btn-cancel -->
-                    </div>
-                    <!-- /.col -->
-
-                    <!-- /.row -->
                 </div>
+                <!-- /.row -->
 
+                <div class="row">
+                    <div class="d-grid bg-white p-20 p-md-34 p-xxl-43 mt-24 gap-20 rounded-20 shadow-2">
+                        <h2 class="heading-section-4 text-dark mb-0">Job Details</h2>
+
+                        <div class="col-12 my-5 my-xl-5">
+                            <label for="position" class="form-label">Position*</label>
+                            <input type="text" name="position" required id="position"
+                                   class="form-control rounded-pill"/>
+                            <p class="small pe-10 ps-10">
+                                Please specify as single job position like "Senior Rust Developer" or "Project Manager",
+                                not
+                                a sentence.
+                                Please DO NOT WRITE IN FULL CAPS. If posting multiple roles, please create multiple job
+                                posts.
+                                A job post is limited to a single job. We only allow real jobs, absolutely no MLM-type
+                                courses "learn how to work online" please. </p>
+                        </div>
+
+                        <div class="col-12 mt-10 mb-5 my-xl-5">
+                            <select type="text" id="type" name="position_type" class="form-control rounded-pill">
+                                <option value="full_time">Full Time</option>
+                                <option value="part_time">Part Time</option>
+                                <option value="contractor">Contractor</option>
+                                <option value="internship">Internship</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col-12 mt-10 mb-5 my-xl-5">
+                            <label for="primary-tag" class="form-label">Primary Category*</label>
+                            <select required id="primary-tag" name="category" class="form-control rounded-pill">
+                                <option value="">Select a category</option>
+                                <option value="dev">Software Development</option>
+                                <option value="customer_support">Customer Support</option>
+                                <option value="sales">Sales</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="design">Design</option>
+                                <option value="front_end">Front End</option>
+                                <option value="backend">Back End</option>
+                                <option value="legal">Legal</option>
+                                <option value="testing">Testing</option>
+                                <option value="quality_assurance">Quality Assurance</option>
+                                <option value="non_tech">Non-Tech</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <p class="small pe-10 ps-10">
+                                This primary category shows first and increases visibility in the main sections. Your
+                                job is
+                                shown on every page that is tagged with though. E.g. if you tag it as Software
+                                Development,
+                                it shows for Remote Software Development Jobs etc.
+                            </p>
+                        </div>
+
+                        <div class="col-12 mt-10 mb-5 my-xl-5">
+
+                            <label class="tags" for="location">Tags</label>
+                            <select multiple type="text" id="tags" name="tags[]" class="form-control rounded-pill">
+                                {% for tag in tags %}
+                                    <option value="{{ tag.id }}">{{ tag.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-12 my-5 my-xl-5">
+                            <label class="form-label" for="location">Job Location</label>
+                            <select multiple name="location[]" id="location" class="form-control rounded-pill">
+                                <optgroup label="Regions">
+
+                                    {% for region in regions %}
+                                        <option value="r_{{ region.id }}">{{ region.name }}</option>
+                                    {% endfor %}
+                                    {#                                <option value="worldwide">Worldwide</option>#}
+                                    {#                                <option value="africa">Africa</option>#}
+                                    {#                                <option value="asia">Asia</option>#}
+                                    {#                                <option value="europe">Europe</option>#}
+                                    {#                                <option value="northAmerica">North America</option>#}
+                                    {#                                <option value="oceania">Oceania</option>#}
+                                    {#                                <option value="southAmerica">South America</option>#}
+                                </optgroup>
+                                <optgroup label="Countries">
+                                    {% for country in countries %}
+                                        <option value="c_{{ country.id }}">{{ country.name }}</option>
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+                            <p class="small pe-10 ps-10">
+                                If you'd only like to hire people from a specific location or timezone this remote job
+                                is
+                                restricted to (e.g. Europe, United States or Japan). If not restricted, please leave it
+                                as
+                                "Worldwide". The less restricted this is, the more applicants you will get.
+                            </p>
+                        </div>
+
+                        <div class="row">
+                            <div class="row">
+                                <label class="form-label">Salary or compensation in USD (gross, annualized,
+                                    full-time-equivalent
+                                    in USD equivalent)</label>
+                            </div>
+
+                            <div class="col-md-6 col-xl-6 my-5 my-xl-2">
+                                <select required="required" name="min_per_year" class="form-control rounded-pill">
+                                    <option value="">Minimum per year</option>
+                                    <option value="0">USD 0 per year</option>
+                                    <option value="10000">USD 10,000 per year</option>
+                                    <option value="20000">USD 20,000 per year</option>
+                                    <option value="30000">USD 30,000 per year</option>
+                                    <option value="40000">USD 40,000 per year</option>
+                                    <option value="50000">USD 50,000 per year</option>
+                                    <option value="60000">USD 60,000 per year</option>
+                                    <option value="70000">USD 70,000 per year</option>
+                                    <option value="80000">USD 80,000 per year</option>
+                                    <option value="90000">USD 90,000 per year</option>
+                                    <option value="100000">USD 100,000 per year</option>
+                                    <option value="110000">USD 110,000 per year</option>
+                                    <option value="120000">USD 120,000 per year</option>
+                                    <option value="130000">USD 130,000 per year</option>
+                                    <option value="140000">USD 140,000 per year</option>
+                                    <option value="150000">USD 150,000 per year</option>
+                                    <option value="160000">USD 160,000 per year</option>
+                                    <option value="170000">USD 170,000 per year</option>
+                                    <option value="180000">USD 180,000 per year</option>
+                                    <option value="190000">USD 190,000 per year</option>
+                                    <option value="200000">USD 200,000 per year</option>
+                                    <option value="210000">USD 210,000 per year</option>
+                                    <option value="220000">USD 220,000 per year</option>
+                                    <option value="230000">USD 230,000 per year</option>
+                                    <option value="240000">USD 240,000 per year</option>
+                                    <option value="250000">USD 250,000 per year</option>
+                                    <option value="260000">USD 260,000 per year</option>
+                                    <option value="270000">USD 270,000 per year</option>
+                                    <option value="280000">USD 280,000 per year</option>
+                                    <option value="290000">USD 290,000 per year</option>
+                                    <option value="300000">USD 300,000 per year</option>
+                                    <option value="310000">USD 310,000 per year</option>
+                                    <option value="320000">USD 320,000 per year</option>
+                                    <option value="330000">USD 330,000 per year</option>
+                                    <option value="340000">USD 340,000 per year</option>
+                                    <option value="350000">USD 350,000 per year</option>
+                                    <option value="360000">USD 360,000 per year</option>
+                                    <option value="370000">USD 370,000 per year</option>
+                                    <option value="380000">USD 380,000 per year</option>
+                                    <option value="390000">USD 390,000 per year</option>
+                                    <option value="400000">USD 400,000 per year</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 col-xl-6 my-5 my-xl-2">
+                                <select data-required="required" name="max_per_year" class="form-control rounded-pill">
+                                    <option value="">Maximum per year</option>
+                                    <option value="0">USD 0 per year</option>
+                                    <option value="10000">USD 10,000 per year</option>
+                                    <option value="20000">USD 20,000 per year</option>
+                                    <option value="30000">USD 30,000 per year</option>
+                                    <option value="40000">USD 40,000 per year</option>
+                                    <option value="50000">USD 50,000 per year</option>
+                                    <option value="60000">USD 60,000 per year</option>
+                                    <option value="70000">USD 70,000 per year</option>
+                                    <option value="80000">USD 80,000 per year</option>
+                                    <option value="90000">USD 90,000 per year</option>
+                                    <option value="100000">USD 100,000 per year</option>
+                                    <option value="110000">USD 110,000 per year</option>
+                                    <option value="120000">USD 120,000 per year</option>
+                                    <option value="130000">USD 130,000 per year</option>
+                                    <option value="140000">USD 140,000 per year</option>
+                                    <option value="150000">USD 150,000 per year</option>
+                                    <option value="160000">USD 160,000 per year</option>
+                                    <option value="170000">USD 170,000 per year</option>
+                                    <option value="180000">USD 180,000 per year</option>
+                                    <option value="190000">USD 190,000 per year</option>
+                                    <option value="200000">USD 200,000 per year</option>
+                                    <option value="210000">USD 210,000 per year</option>
+                                    <option value="220000">USD 220,000 per year</option>
+                                    <option value="230000">USD 230,000 per year</option>
+                                    <option value="240000">USD 240,000 per year</option>
+                                    <option value="250000">USD 250,000 per year</option>
+                                    <option value="260000">USD 260,000 per year</option>
+                                    <option value="270000">USD 270,000 per year</option>
+                                    <option value="280000">USD 280,000 per year</option>
+                                    <option value="290000">USD 290,000 per year</option>
+                                    <option value="300000">USD 300,000 per year</option>
+                                    <option value="310000">USD 310,000 per year</option>
+                                    <option value="320000">USD 320,000 per year</option>
+                                    <option value="330000">USD 330,000 per year</option>
+                                    <option value="340000">USD 340,000 per year</option>
+                                    <option value="350000">USD 350,000 per year</option>
+                                    <option value="360000">USD 360,000 per year</option>
+                                    <option value="370000">USD 370,000 per year</option>
+                                    <option value="380000">USD 380,000 per year</option>
+                                    <option value="390000">USD 390,000 per year</option>
+                                    <option value="400000">USD 400,000 per year</option>
+                                </select>
+                            </div>
+
+                            <div class="row">
+                                <p class="small pe-10 ps-10">
+                                    Remote job postings are legally required to show a salary compensation range in many
+                                    U.S.
+                                    states and countries. Google does NOT index jobs without salary data. If it's a
+                                    short-term
+                                    gig, use the annual full-time equivalent. For example, if it's a 2-week project for
+                                    $2,000,
+                                    the annual equivalent would be $2,000 / 2 weeks * 52 weeks = $52,000. Please use
+                                    convert
+                                    and
+                                    use USD equivalent
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 my-15 my-xl-24">
+                            <label for="job_description" class="form-label">Job description</label>
+                            <textarea type="text" name="job_description" id="job_description"
+                                      class="form-control rounded-pill"></textarea>
+                        </div>
+
+                        <div class="col-12 my-15 my-xl-24">
+                            <label for="applyDescription" class="form-label">How to apply?</label>
+                            <textarea id="applyDescription" name="how_to_apply"
+                                      class="form-control rounded-pill"></textarea>
+                        </div>
+
+
+                        <div>
+                            <div class="col-12 my-15 my-xl-24">
+                                <label for="apply_url" class="form-label">Apply URL*</label>
+                                <input type="text"
+                                       required
+                                       id="apply_url"
+                                       name="apply_url"
+                                       placeholder="https://"
+                                       class="form-control rounded-pill"/>
+                                <p class="small ps-10 pe-10">
+                                    A URL with a form the applicant can fill out generally receives a lot more
+                                    applicants
+                                    than having people apply by email (below).
+                                </p>
+                            </div>
+                            <p class="display-6 text-center">or</p>
+                            <div class="col-12 my-15 my-xl-24">
+                                <label for="apply_email" class="form-label">Apply Email*</label>
+                                <input type="email"
+                                       required
+                                       id="apply_email"
+                                       name="apply_email"
+                                       class="form-control rounded-pill"/>
+                                <p class="small ps-10 pe-10">
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-12 d-flex my-15 my-xl-24">
+                            <button type="submit" class="btn btn-primary fw-semiBold py-12 px-24 px-md-60 rounded-pill">
+                                Submit
+                            </button>
+                            <!-- /.btn-submit -->
+
+                            <a class="btn btn-cultured text-philippine-gray fw-semiBold py-12 px-20 ms-auto rounded-pill"
+                               href="#">Cancel</a>
+                            <!-- /.btn-cancel -->
+                        </div>
+                        <!-- /.col -->
+
+                        <!-- /.row -->
+                    </div>
+
+                </div>
             </div>
-        </div>
-        <!-- /.col -->
-    </form>
-</main>
-<!-- = /. Main Section = -->
+            <!-- /.col -->
+        </form>
+    </main>
+    <!-- = /. Main Section = -->
 
 
 {% endblock content %}
