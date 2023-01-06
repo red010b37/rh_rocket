@@ -132,9 +132,9 @@
                 <div class="job-action">
                     <a class="btn btn-apply flex-fill flex-md-nofill fw-semiBold py-12 px-43 rounded-pill"
                        href="/jobdetail.html">Apply Now</a>
-                    <button class="btn btn-rounded btn-book">
-                        <img src="/assets/icons/heart.svg" class="svg-inject svg-icon is-20" alt=""/>
-                    </button>
+<!--                    <button class="btn btn-rounded btn-book">-->
+<!--                        <img src="/assets/icons/heart.svg" class="svg-inject svg-icon is-20" alt=""/>-->
+<!--                    </button>-->
                 </div>
             </div>
             <!-- /.job-card-grid-harizontal-component -->

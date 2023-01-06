@@ -116,6 +116,7 @@
                         <input type="text"
                                id="company_url"
                                name="company_url"
+                               placeholder="https://"
                                class="form-control rounded-pill"/>
                     </div>
                     <!-- /.col -->
@@ -349,6 +350,7 @@
                                    required
                                    id="apply_url"
                                    name="apply_url"
+                                   placeholder="https://"
                                    class="form-control rounded-pill"/>
                             <p class="small ps-10 pe-10">
                                 A URL with a form the applicant can fill out generally receives a lot more applicants

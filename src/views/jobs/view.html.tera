@@ -18,14 +18,19 @@
 
     <main class="main position-relative">
 
+        <div class="detail-header-background">
+            <img src="/assets/header-bg.png" alt="">
+        </div>
+
 
         <div class="container-xxl">
             <div class="position-relative py-43 py-lg-80">
                 <div class="d-grid gap-10 text-center">
                     <h4 class="heading-section-4 text-white mb-0">Job Details</h4>
-                    <div class="heading-text-2 text-white"><a class="text-white text-decoration-none" href="#">Jobs</a>
-                        / <a class="text-white text-decoration-none" href="#">{{job_item.company_name}}</a> / <a
-                                class="text-white text-decoration-none" href="#">UI Designer</a></div>
+                    <div class="heading-text-2 text-white">
+<!--                        <a class="text-white text-decoration-none" href="#">Jobs</a> /-->
+                        <a class="text-white text-decoration-none" href="{{job_item.company_url}}">{{job_item.company_name}}</a> /
+                        <a class="text-white text-decoration-none" href="#">{{job_item.position}}</a></div>
                 </div>
                 <!-- /.heading-header -->
 
@@ -69,9 +74,9 @@
                                 <a class="btn btn-apply fw-semiBold py-12 px-34 rounded-pill" href="#">Apply Now</a>
                                 <!-- /.btn-apply -->
 
-                                <button class="btn btn-rounded btn-book">
-                                    <img src="/assets/icons/heart.svg" class="svg-inject svg-icon" alt=""/>
-                                </button>
+<!--                                <button class="btn btn-rounded btn-book">-->
+<!--                                    <img src="/assets/icons/heart.svg" class="svg-inject svg-icon" alt=""/>-->
+<!--                                </button>-->
                                 <!-- /.btn-book -->
                             </div>
                             <!-- end action-btn-desktop -->
@@ -208,26 +213,26 @@
                         <div class="border-top"></div>
                         <!-- /.gap-border -->
 
-                        <div class="d-grid gap-15">
-                            <h6 class="fs-15 mb-0">About Company</h6>
-                            <div class="fs-14">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in</p>
-                            </div>
-                        </div>
+<!--                        <div class="d-grid gap-15">-->
+<!--                            <h6 class="fs-15 mb-0">About Company</h6>-->
+<!--                            <div class="fs-14">-->
+<!--                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor-->
+<!--                                    incididunt ut labore et dolore magna aliqua.</p>-->
+<!--                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu-->
+<!--                                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <!-- /.company-about -->
 
-                        <div class="d-flex align-items-center gap-15">
-                            <a href="#" class="btn btn-apply fw-semiBold py-12 w-100 rounded-pill">23 Vacancy</a>
-                            <!-- /.btn-vacancy -->
+<!--                        <div class="d-flex align-items-center gap-15">-->
+<!--                            <a href="#" class="btn btn-apply fw-semiBold py-12 w-100 rounded-pill">23 Vacancy</a>-->
+<!--                            &lt;!&ndash; /.btn-vacancy &ndash;&gt;-->
 
-                            <a href="#"
-                               class="btn btn-white text-dark fw-semiBold py-12 w-100 border border-platinum rounded-pill shadow-none">More
-                                Detail</a>
-                            <!-- /.btn-more-detail -->
-                        </div>
+<!--                            <a href="#"-->
+<!--                               class="btn btn-white text-dark fw-semiBold py-12 w-100 border border-platinum rounded-pill shadow-none">More-->
+<!--                                Detail</a>-->
+<!--                            &lt;!&ndash; /.btn-more-detail &ndash;&gt;-->
+<!--                        </div>-->
                     </div>
                 </div>
                 <!-- /.col -->
