@@ -164,7 +164,7 @@
                                     </template>
 
                                     <!-- Image file selector -->
-                                    <input class="mt-2" type="file" accept="image/*" @change="fileChosen">
+                                    <input class="" name="company_logo" type="file" accept="image/*" @change="fileChosen">
 
                                 </div>
                             </div>
