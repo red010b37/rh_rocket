@@ -11,7 +11,7 @@
 {% block content %}
 <main class="main position-relative">
 
-    <div class="container-xxl">
+    <div class="container-xxl" >
         <div class="row">
 
             <p><!--Nothing to see here --></p>
@@ -24,8 +24,13 @@
             {% endif %}
         </div>
 
-        <div class="row">
+        <div class="row mb-43" >
             {% include "partials/clockify" %}
+        </div>
+
+        <div class="row">
+            <h2>Git Commits</h2>
+            <img src="https://ghchart.rshah.org/red010b37" alt="My work" />
         </div>
 
     </div>
