@@ -1,18 +1,18 @@
 use super::HtmlResponse;
+use crate::commands::command_create_job;
 use crate::errors::our_error::OurError;
 use crate::models::countries::Country;
 use crate::models::region::Region;
-use crate::models::{
-    job::{Job, NewJobForm},
-    tag::Tag,
-};
+use crate::models::tag::Tag;
 use crate::states::{AppSettings, Directus};
 use rocket::http::Status;
+use rocket::serde::Serialize;
 use rocket::{
     form::{Contextual, Form},
     State,
 };
 use rocket_dyn_templates::{context, Template};
+use serde::Deserialize;
 use thousands::Separable;
 
 #[get("/job")]
@@ -25,6 +25,7 @@ pub async fn index(directus: &State<Directus>) -> &'static str {
     "Im the job"
 }
 
+/*
 #[get("/remote-job/<slug>")]
 pub async fn view_job(
     directus: &State<Directus>,
@@ -52,6 +53,7 @@ pub async fn view_job(
         },
     ))
 }
+*/
 
 #[get("/hire-remotely")]
 pub async fn new_job(directus: &State<Directus>) -> HtmlResponse {
@@ -90,11 +92,40 @@ pub async fn create_new_job<'r>(
 ) -> &'static str {
     let new_job = job_context.value.as_ref().unwrap();
 
+    command_create_job::execute(app_settings, new_job)
+        .await
+        .map_err(|_| {
+            print!("{:?}", "errrorsss");
+        });
+
+    /*
+
     Job::create(new_job, directus, app_settings)
         .await
         .map_err(|_| {
             print!("{:?}", "errrorsss");
         });
 
+
+     */
+
     "post"
+}
+
+#[derive(Debug, FromForm, Serialize, Deserialize)]
+pub struct NewJobForm<'r> {
+    #[field(validate = len(3..100).or_else(msg ! ("company name cannot be empty")))]
+    pub company_name: &'r str,
+    pub company_url: Option<String>,
+    pub position: &'r str,
+    pub position_type: &'r str,
+    pub category: &'r str,
+    pub min_per_year: i32,
+    pub max_per_year: i32,
+    pub job_description: String,
+    pub how_to_apply: Option<String>,
+    pub apply_url: Option<String>,
+    pub apply_email: Option<String>,
+    pub location: Vec<String>,
+    pub tags: Option<Vec<String>>,
 }

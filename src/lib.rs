@@ -12,10 +12,12 @@ use rocket_dyn_templates::tera::Function;
 use rocket_dyn_templates::Template;
 use std::collections::BTreeMap;
 
+pub mod commands;
 pub mod directus_res;
 pub mod errors;
 pub mod models;
 pub mod routes;
+pub mod services;
 pub mod states;
 pub mod uilts;
 
@@ -52,14 +54,20 @@ pub async fn setup_rocket() -> Rocket<Build> {
     // setup_logger();
     let our_rocket = rocket::build()
         .attach(Template::fairing())
-        .mount("/", routes![home::homepage, home::health_check,])
+        .mount(
+            "/",
+            routes![
+                // home::homepage,
+                home::health_check,
+            ],
+        )
         .mount(
             "/",
             routes![
                 jobs::index,
                 jobs::new_job,
                 jobs::create_new_job,
-                jobs::view_job,
+                // jobs::view_job,
             ],
         )
         .mount("/", routes![metrics::index, metrics::clockfyCron,])
@@ -76,12 +84,14 @@ pub async fn setup_rocket() -> Rocket<Build> {
         directus_api_url: config.directus_api_url.clone(),
     };
 
-    let app_settings = AppSettings {
-        env: config.rh_env.clone(),
-    };
-
     let clockify = Clockify {
         token: config.clockify_token.clone(),
+    };
+
+    let app_settings = AppSettings {
+        env: config.rh_env.clone(),
+        clockify: clockify.clone(),
+        directus: directus.clone(),
     };
 
     // pass our dtat for rocket to manage in state for us
@@ -89,5 +99,6 @@ pub async fn setup_rocket() -> Rocket<Build> {
         .manage(directus)
         .manage(clockify)
         .manage(app_settings);
+
     final_rocket
 }
