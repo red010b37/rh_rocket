@@ -1,6 +1,11 @@
 use crate::errors::our_error::OurError;
 use crate::routes::jobs::NewJobForm;
-use crate::services::job_svc;
+use crate::services::
+{
+    job_svc,
+    job_tags_svc,
+};
+
 use crate::states::AppSettings;
 use crate::uilts::{gen_slug, is_valid_guid};
 use chrono::{DateTime, Duration, Utc};
@@ -30,15 +35,6 @@ pub async fn execute<'r>(
         }
     }
 
-    // if we have fund some tags to create post them
-    // if !tags_to_create.is_empty() {
-    //     let create_tags = Tag::create_tags(directus, tags_to_create).await?;
-    //     // println!("Created tagd {:?}", create_tags);
-    //     for new_tag in create_tags {
-    //         tags.push(new_tag.id)
-    //     }
-    // }
-
     let mut regions: Vec<i32> = Vec::new();
     let mut countries: Vec<i32> = Vec::new();
 
@@ -63,8 +59,8 @@ pub async fn execute<'r>(
         let mut rng = thread_rng();
         rng.gen_range(10000..100000)
     })
-    .await
-    .unwrap();
+        .await
+        .unwrap();
 
     let num_i32: i32 = random_number as i32;
     println!("Random 5-digit number: {}", num_i32);
@@ -101,6 +97,15 @@ pub async fn execute<'r>(
     };
 
     let job_id = job_svc::create_job(dPost, app_settings).await?;
+
+    // // if we have fund some tags to create post them
+    // if !tags_to_create.is_empty() {
+    //     let create_tags = job_tags_svc::create(app_settings, job_id, tags_to_create).await?;
+    //     // println!("Created tagd {:?}", create_tags);
+    //     for new_tag in create_tags {
+    //         tags.push(new_tag.id)
+    //     }
+    // }
 
     Ok(job_id)
 }

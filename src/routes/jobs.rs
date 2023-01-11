@@ -1,19 +1,20 @@
-use super::HtmlResponse;
-use crate::commands::command_create_job;
-use crate::errors::our_error::OurError;
-use crate::models::countries::Country;
-use crate::models::region::Region;
-use crate::models::tag::Tag;
-use crate::states::{AppSettings, Directus};
-use rocket::http::Status;
-use rocket::serde::Serialize;
 use rocket::{
     form::{Contextual, Form},
     State,
 };
+use rocket::http::Status;
+use rocket::serde::Serialize;
 use rocket_dyn_templates::{context, Template};
+use serde::__private::ser::serialize_tagged_newtype;
 use serde::Deserialize;
 use thousands::Separable;
+
+use crate::commands::{command_create_job, command_prep_hire_page};
+use crate::errors::our_error::OurError;
+use crate::services::tags_svc;
+use crate::states::{AppSettings, Directus};
+
+use super::HtmlResponse;
 
 #[get("/job")]
 pub async fn index(directus: &State<Directus>) -> &'static str {
@@ -56,34 +57,38 @@ pub async fn view_job(
 */
 
 #[get("/hire-remotely")]
-pub async fn new_job(directus: &State<Directus>) -> HtmlResponse {
+pub async fn new_job(app_settings: &State<AppSettings>) -> HtmlResponse {
+    let data = command_prep_hire_page::execute(app_settings)
+        .await
+        .map_err(|_| Status::InternalServerError)?;
+
     // get the tags
-    let tags = Tag::get_all(directus)
-        .await
-        .map_err(|_| Status::InternalServerError)?;
+    // let tags = tags_svc::get_all(app_settings)
+    //     .await
+    //     .map_err(|_| Status::InternalServerError)?;
 
-    let regions = Region::get_all(directus)
-        .await
-        .map_err(|_| Status::InternalServerError)?;
-
-    let countries = Country::get_all(directus)
-        .await
-        .map_err(|_| Status::InternalServerError)?;
+    // let regions = Region::get_all(app_settings.directus)
+    //     .await
+    //     .map_err(|_| Status::InternalServerError)?;
+    // //
+    // let countries = Country::get_all(app_settings.directus)
+    //     .await
+    //     .map_err(|_| Status::InternalServerError)?;
 
     Ok(Template::render(
         "jobs/hire",
         context! {
-            tags: tags,
-            regions: regions,
-            countries: countries,
+            tags: data.tags,
+            regions: data.regions,
+            countries: data.countries,
         },
     ))
 }
 
 #[post(
-    "/hire-remotely",
-    format = "application/x-www-form-urlencoded",
-    data = "<job_context>"
+"/hire-remotely",
+format = "application/x-www-form-urlencoded",
+data = "<job_context>"
 )]
 pub async fn create_new_job<'r>(
     job_context: Form<Contextual<'r, NewJobForm<'r>>>,
